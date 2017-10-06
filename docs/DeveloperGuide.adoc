@@ -28,7 +28,7 @@ This app will not work with earlier versions of Java 8.
 . *IntelliJ* IDE
 +
 [NOTE]
-IntelliJ by default has Gradle and JavaFx plugins installed. +
+IntelliJ by default has link:#gradle[Gradle] and link:#javafx[JavaFx] plugins installed. +
 Do not disable them. If you have disabled them, go to `File` > `Settings` > `Plugins` to re-enable them.
 
 
@@ -72,9 +72,9 @@ After forking the repo, links in the documentation will still point to the `se-e
 
 ==== Setting up CI
 
-Set up Travis to perform Continuous Integration (CI) for your fork. See <<UsingTravis#, UsingTravis.adoc>> to learn how to set it up.
+Set up link:#travis[Travis] to perform Continuous Integration (CI) for your fork. See <<UsingTravis#, UsingTravis.adoc>> to learn how to set it up.
 
-Optionally, you can set up AppVeyor as a second CI (see <<UsingAppVeyor#, UsingAppVeyor.adoc>>).
+Optionally, you can set up link:#appveyor[AppVeyor] as a second CI (see <<UsingAppVeyor#, UsingAppVeyor.adoc>>).
 
 [NOTE]
 Having both Travis and AppVeyor ensures your App works on both Unix-based platforms and Windows-based platforms (Travis is Unix-based and AppVeyor is Windows-based)
@@ -741,7 +741,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |user with large number of tags |identify tags by colors and their alphabetical order |easily identify different tags and their alphabetical order in the link:#GUI[GUI]
 
-|`* * *` |user visiting a friend |view a map based on a person's address in the GUI |find directions to his/her place
+|`* * *` |user visiting a friend |view a person's address location in link:#google-map[Google Maps] in the GUI |find directions to his/her place
 
 |`* * *` |user |search for contacts with just the first few characters of their name |find contacts if I'm unable to remember the spelling of the name
 
@@ -756,6 +756,14 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |`* * *` |user |find a person by name |locate details of persons without having to go through the entire list
 
 |`* * *` |forgetful user |be able to make changes to existing information when I edit a person's contact information instead of retyping it |refer to what was previously entered under a person's contact information and make changes more easily
+
+|`* *` |lazy user |auto-completion of commands |use the address book more conveniently
+
+|`* *` |trendy user |choose my own wallpaper for the address book |customise the address book to my own liking
+
+|`* *` |frequent user |change the font of the address book |protect my eyes
+
+|`* *` |expert user |define my own short-hand aliases for commands |personalise the address book to suit my needs
 
 |`* *` |user |hide link:#private-contact-detail[private contact details] by default |minimize chance of someone else seeing them by accident
 
@@ -995,6 +1003,7 @@ Use case ends.
 .  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 .  A new user to a link:#CLI[CLI] environment and/or address book application should be able to learn how to install and use the application within 20 minutes with the help of the User Guide.
 .  Should be responsive and commands are executed within 2 seconds under normal load (1000 persons or less) and typical usage.
+.  Essential services (adding, deleting contacts etc) should still work perfectly without Internet access.
 .  Layout of the application should be clear, appealing and attractive.
 .  Should be able to handle any invalid input and recover from it.
 .  Should not consume too much processing time/power, less than 10% of the CPU of modern computers/laptops.
@@ -1125,6 +1134,41 @@ The people whose details are present in my address book.
 Display Picture
 
 ....
-A photo of the person represented by this contact entry
+A photo of the person represented by this contact entry.
+....
+
+[[google-map]]
+Google Maps
+
+....
+A web mapping service procided by Google that offers satellite imagery, street maps, route planning, real-time traffic conditions and other features.
+....
+
+[[gradle]]
+Gradle
+
+....
+An open-source build automation system that also serve as a dependency management tool.
+....
+
+[[javafx]]
+JavaFX
+
+....
+A software platform that contains a set of graphics and packages that enables developers to develop rich applications that can run across a wide variety of devices and platforms.
+....
+
+[[travis]]
+Travis
+
+....
+A hosted, distributed continuous integration service used to build and test software projects hosted at GitHub on a Linux virtual machine.
+....
+
+[[appveyor]]
+AppVeyor
+
+....
+A hosted, distributed integration service used to build and test software projects hosted at GitHub on a Microsoft Windows virtual machine.
 ....
 
