@@ -125,6 +125,7 @@ public class Person implements ReadOnlyPerson {
         return nickname.get();
     }
 
+    //@@author justinpoh
     public void setBirthday(Birthday birthday) {
         this.birthday.set(requireNonNull(birthday));
     }
@@ -138,6 +139,7 @@ public class Person implements ReadOnlyPerson {
     public Birthday getBirthday() {
         return birthday.get();
     }
+    //@@author
 
     public void setDisplayPicture(DisplayPicture displayPicture) {
         this.displayPicture.set(requireNonNull(displayPicture));

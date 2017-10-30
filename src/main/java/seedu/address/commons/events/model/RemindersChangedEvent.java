@@ -3,6 +3,7 @@ package seedu.address.commons.events.model;
 import seedu.address.commons.events.BaseEvent;
 import seedu.address.model.reminders.UniqueReminderList;
 
+//@@author justinpoh
 /** Indicates the reminders have changed*/
 public class RemindersChangedEvent extends BaseEvent {
     public final UniqueReminderList reminderList;

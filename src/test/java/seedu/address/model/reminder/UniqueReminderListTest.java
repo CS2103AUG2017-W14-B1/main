@@ -21,6 +21,7 @@ import seedu.address.model.reminders.exceptions.DuplicateReminderException;
 import seedu.address.model.reminders.exceptions.ReminderNotFoundException;
 import seedu.address.storage.XmlSerializableReminders;
 
+//@@author justinpoh
 public class UniqueReminderListTest {
     @Rule
     public ExpectedException thrown = ExpectedException.none();

@@ -3,6 +3,7 @@ package guitests.guihandles;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 
+//@@author justinpoh
 /**
  * Provides a handle to a birthday reminder card in the birthday reminder list panel.
  */

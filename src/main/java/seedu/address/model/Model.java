@@ -12,6 +12,7 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.reminders.Reminder;
 import seedu.address.model.reminders.UniqueReminderList;
 import seedu.address.model.reminders.exceptions.DuplicateReminderException;
+import seedu.address.model.reminders.exceptions.ReminderNotFoundException;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -24,17 +25,21 @@ public interface Model {
     /** Clears existing backing model and replaces with the provided new data. */
     void resetData(ReadOnlyAddressBook newData);
 
+    //@@author justinpoh
     /** Clears existing backing model and replaces with the provided new reminders. */
     void resetReminders(UniqueReminderList newReminders);
+    //@@author
 
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
 
+    //@@author justinpoh
     /** Returns an unmodifiable view of the sorted list of reminders */
     ObservableList<Reminder> getSortedReminderList();
 
     /** Returns the reminders */
     UniqueReminderList getUniqueReminderList();
+    //@@author
 
     /** Deletes the given person. */
     void deletePerson(ReadOnlyPerson target) throws PersonNotFoundException;
@@ -42,8 +47,14 @@ public interface Model {
     /** Adds the given person */
     void addPerson(ReadOnlyPerson person) throws DuplicatePersonException;
 
+    //@@author justinpoh
     /** Adds the given reminder */
     void addReminder(Reminder reminder) throws DuplicateReminderException;
+
+    /** Deletes the given reminder. */
+    void deleteReminder(Reminder target) throws ReminderNotFoundException;
+    //@@author
+
 
     /** Deletes the tag from all people in Address Book**/
     void deleteTag(Tag target) throws DuplicatePersonException, PersonNotFoundException;
@@ -65,6 +76,18 @@ public interface Model {
      */
     void updatePerson(ReadOnlyPerson target, ReadOnlyPerson editedPerson)
             throws DuplicatePersonException, PersonNotFoundException;
+
+    //@@author justinpoh
+    /**
+     * Replaces the given reminder {@code target} with {@code editedReminder}.
+     *
+     * @throws DuplicateReminderException if updating the reminder's details causes the reminder to be equivalent to
+     *      another existing reminder in the list.
+     * @throws ReminderNotFoundException if {@code target} could not be found in the list.
+     */
+    void updateReminder(Reminder target, Reminder editedReminder)
+            throws DuplicateReminderException, ReminderNotFoundException;
+    //@@author
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<ReadOnlyPerson> getFilteredPersonList();

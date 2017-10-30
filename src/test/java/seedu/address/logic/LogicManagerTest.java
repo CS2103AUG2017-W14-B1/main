@@ -52,6 +52,7 @@ public class LogicManagerTest {
         logic.getFilteredPersonList().remove(0);
     }
 
+    //@@author justinpoh
     @Test
     public void getBirthdayPanelFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         thrown.expect(UnsupportedOperationException.class);
@@ -63,6 +64,7 @@ public class LogicManagerTest {
         thrown.expect(UnsupportedOperationException.class);
         logic.getReminderList().remove(0);
     }
+    //@@author
 
     /**
      * Executes the command, confirms that no exceptions are thrown and that the result message is correct.

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!-- @@author justinpoh -->
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -27,7 +28,8 @@
                 </Label>
                 <Label fx:id="reminder" styleClass="cell_big_label" text="\$reminder" />
             </HBox>
-            <Label fx:id="dueDate" styleClass="cell_big_label" text="\$duedate" />
+            <Label fx:id="date" styleClass="cell_big_label" text="\$date" />
+            <Label fx:id="time" styleClass="cell_big_label" text="\$time" />
         </VBox>
         <rowConstraints>
             <RowConstraints />

@@ -62,7 +62,6 @@ public class BrowserAndRemindersPanelTest extends GuiUnitTest {
         waitUntilBrowserLoaded(browserAndRemindersPanelHandle);
         assertEquals(expectedPersonUrl, browserAndRemindersPanelHandle.getLoadedUrl());
 
-
     }
 
     @Test

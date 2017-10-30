@@ -12,9 +12,11 @@ import seedu.address.commons.exceptions.IllegalValueException;
 
 import seedu.address.logic.commands.AddReminderCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.reminders.DueDate;
+import seedu.address.model.reminders.Date;
 import seedu.address.model.reminders.Reminder;
+import seedu.address.model.reminders.Time;
 
+//@@author justinpoh
 /**
  * Parses input arguments and creates a new AddReminderCommand object
  */
@@ -28,8 +30,6 @@ public class AddReminderCommandParser implements Parser<AddReminderCommand> {
     public AddReminderCommand parse(String args) throws ParseException {
         requireNonNull(args);
         final String reminder;
-        final String userInputDate;
-        final String userInputTime;
 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_REMINDER, PREFIX_DATE, PREFIX_TIME);
@@ -44,16 +44,15 @@ public class AddReminderCommandParser implements Parser<AddReminderCommand> {
         }
 
         try {
-            userInputDate = argMultimap.getValue(PREFIX_DATE).get();
-            userInputTime = argMultimap.getValue(PREFIX_TIME).get();
-            DueDate dueDate = new DueDate(userInputDate, userInputTime);
-            Reminder toAdd = new Reminder(reminder, dueDate);
+            Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE)).get();
+            Time time = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME)).get();
+            Reminder toAdd = new Reminder(reminder, date, time);
             return new AddReminderCommand(toAdd);
         } catch (IllegalValueException ive) {
             throw new ParseException(ive.getMessage());
         }
     }
-
+//@@author
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.

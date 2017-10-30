@@ -11,6 +11,7 @@ import seedu.address.model.reminders.exceptions.DuplicateReminderException;
 import seedu.address.model.reminders.exceptions.ReminderNotFoundException;
 import seedu.address.storage.XmlSerializableReminders;
 
+//@@author justinpoh
 /**
  * A list of reminders that enforces uniqueness between its elements and does not allow nulls.
  *
@@ -22,6 +23,11 @@ public class UniqueReminderList implements Iterable<Reminder> {
     private final ObservableList<Reminder> internalList = FXCollections.observableArrayList();
 
     public UniqueReminderList() {
+    }
+
+    public UniqueReminderList(UniqueReminderList uniqueReminderList) {
+        this();
+        setReminders(uniqueReminderList);
     }
 
     /**
@@ -59,6 +65,29 @@ public class UniqueReminderList implements Iterable<Reminder> {
         }
         internalList.add(toAdd);
     }
+
+    /**
+     * Replaces the reminder {@code target} in the list with {@code editedReminder}.
+     *
+     * @throws DuplicateReminderException if the replacement is equivalent to another existing reminder in the list.
+     * @throws ReminderNotFoundException if {@code target} could not be found in the list.
+     */
+    public void setReminder(Reminder target, Reminder editedReminder)
+            throws DuplicateReminderException, ReminderNotFoundException {
+        requireNonNull(editedReminder);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new ReminderNotFoundException();
+        }
+
+        if (!target.equals(editedReminder) && internalList.contains(editedReminder)) {
+            throw new DuplicateReminderException();
+        }
+
+        internalList.set(index, new Reminder(editedReminder));
+    }
+
     /**
      * Removes the equivalent reminder from the list.
      *

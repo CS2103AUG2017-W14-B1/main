@@ -10,12 +10,13 @@ import org.junit.Test;
 import seedu.address.commons.events.ui.BrowserAndRemindersPanelToggleEvent;
 import seedu.address.ui.testutil.EventsCollectorRule;
 
+//@@author justinpoh
 public class ToggleCommandTest {
     @Rule
     public final EventsCollectorRule eventsCollectorRule = new EventsCollectorRule();
 
     @Test
-    public void execute_exit_success() {
+    public void execute_toggle_success() {
         CommandResult result = new ToggleCommand().execute();
         assertEquals(MESSAGE_TOGGLE_SUCCESS, result.feedbackToUser);
         assertTrue(eventsCollectorRule.eventsCollector.getMostRecent() instanceof BrowserAndRemindersPanelToggleEvent);

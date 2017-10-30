@@ -28,9 +28,11 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.reminders.Reminder;
 import seedu.address.model.reminders.UniqueReminderList;
 import seedu.address.model.reminders.exceptions.DuplicateReminderException;
+import seedu.address.model.reminders.exceptions.ReminderNotFoundException;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.ReminderBuilder;
 
+//@@author justinpoh
 public class AddReminderCommandTest {
     @Rule
     public ExpectedException thrown = ExpectedException.none();
@@ -96,6 +98,7 @@ public class AddReminderCommandTest {
         command.setData(model, new CommandHistory(), new UndoRedoStack());
         return command;
     }
+    //@@author
 
     /**
      * A default model stub that have all of the methods failing.
@@ -127,6 +130,10 @@ public class AddReminderCommandTest {
             fail("This method should not be called.");
         }
 
+        @Override
+        public void deleteReminder(Reminder target) throws ReminderNotFoundException {
+            fail("This method should not be called.");
+        }
         @Override
         public void updatePerson(ReadOnlyPerson target, ReadOnlyPerson editedPerson)
                 throws DuplicatePersonException {
@@ -197,8 +204,15 @@ public class AddReminderCommandTest {
             fail("This method should not be called");
             return null;
         }
+
+        @Override
+        public void updateReminder(Reminder target, Reminder editedReminder)
+                throws DuplicateReminderException, ReminderNotFoundException {
+            fail("This method should not be called");
+        }
     }
 
+    //@@author justinpoh
     /**
      * A Model stub that always accept the reminder being added.
      */

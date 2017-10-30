@@ -33,6 +33,7 @@ public class UserPrefs {
     }
 
 
+    //@@author justinpoh
     public String getRemindersFilePath() {
         return remindersFilePath;
     }
@@ -40,6 +41,7 @@ public class UserPrefs {
     public void setRemindersFilePath(String remindersFilePath) {
         this.remindersFilePath = remindersFilePath;
     }
+    //@@author
 
     public String getAddressBookFilePath() {
         return addressBookFilePath;

@@ -30,6 +30,7 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.reminders.Reminder;
 import seedu.address.model.reminders.UniqueReminderList;
 import seedu.address.model.reminders.exceptions.DuplicateReminderException;
+import seedu.address.model.reminders.exceptions.ReminderNotFoundException;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
@@ -130,6 +131,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void deleteReminder(Reminder target) throws ReminderNotFoundException {
+            fail("This method should not be called.");
+        }
+
+        @Override
         public void updatePerson(ReadOnlyPerson target, ReadOnlyPerson editedPerson)
                 throws DuplicatePersonException {
             fail("This method should not be called.");
@@ -197,6 +203,12 @@ public class AddCommandTest {
 
         @Override
         public void addReminder(Reminder reminder) throws DuplicateReminderException {
+            fail("This method should not be called");
+        }
+
+        @Override
+        public void updateReminder(Reminder target, Reminder editedReminder)
+                throws DuplicateReminderException, ReminderNotFoundException {
             fail("This method should not be called");
         }
     }

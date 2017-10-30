@@ -19,8 +19,8 @@ public class BrowserAndRemindersPanelHandle extends NodeHandle<Node> {
 
     private URL lastRememberedUrl;
 
-    public BrowserAndRemindersPanelHandle(Node browserPanelNode) {
-        super(browserPanelNode);
+    public BrowserAndRemindersPanelHandle(Node browserAndReminderPanelNode) {
+        super(browserAndReminderPanelNode);
 
         WebView webView = getChildNode(BROWSER_ID);
         WebEngine engine = webView.getEngine();

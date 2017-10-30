@@ -9,6 +9,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.reminders.Reminder;
 import seedu.address.model.reminders.exceptions.DuplicateReminderException;
 
+//@@author justinpoh
 /**
  *  Adds a reminder to the program.
  */

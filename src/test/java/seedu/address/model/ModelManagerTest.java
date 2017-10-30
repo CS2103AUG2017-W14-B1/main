@@ -32,6 +32,7 @@ public class ModelManagerTest {
         modelManager.getFilteredPersonList().remove(0);
     }
 
+    //@@author justinpoh
     @Test
     public void getBirthdayPanelFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         ModelManager modelManager = new ModelManager();
@@ -45,6 +46,7 @@ public class ModelManagerTest {
         thrown.expect(UnsupportedOperationException.class);
         modelManager.getSortedReminderList().remove(0);
     }
+    //@@author
 
     @Test
     public void equals() {
@@ -75,10 +77,12 @@ public class ModelManagerTest {
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, uniqueReminders, userPrefs)));
 
+        //@@author justinpoh
         // different list of reminders -> return false
         XmlSerializableReminders differentReminders = new XmlSerializableReminders();
         UniqueReminderList uniqueDifferentReminders = new UniqueReminderList(differentReminders);
         assertFalse(modelManager.equals(new ModelManager(addressBook, uniqueDifferentReminders, userPrefs)));
+        //@@author
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

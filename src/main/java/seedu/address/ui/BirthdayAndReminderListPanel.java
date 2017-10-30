@@ -28,10 +28,13 @@ public class BirthdayAndReminderListPanel extends UiPart<Region> {
     public BirthdayAndReminderListPanel(ObservableList<ReadOnlyPerson> birthdayList,
                                         ObservableList<Reminder> reminderList) {
         super(FXML);
+        //@@author justinpoh
         setConnections(birthdayList, reminderList);
+        //@@author
         registerAsAnEventHandler(this);
     }
 
+    //@@author justinpoh
     private void setConnections(ObservableList<ReadOnlyPerson> birthdayList, ObservableList<Reminder> reminderList) {
         ObservableList<BirthdayReminderCard> birthdayMappedList = EasyBind.map(
                 birthdayList, (birthdayPerson) -> new BirthdayReminderCard(birthdayPerson,
@@ -81,5 +84,6 @@ public class BirthdayAndReminderListPanel extends UiPart<Region> {
             }
         }
     }
+    //@@author
 
 }

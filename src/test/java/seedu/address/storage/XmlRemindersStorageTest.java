@@ -19,6 +19,7 @@ import seedu.address.commons.util.FileUtil;
 import seedu.address.model.reminders.Reminder;
 import seedu.address.model.reminders.UniqueReminderList;
 
+//@@author justinpoh
 public class XmlRemindersStorageTest {
     private static final String TEST_DATA_FOLDER = FileUtil.getPath("./src/test/data/XmlRemindersStorageTest/");
 

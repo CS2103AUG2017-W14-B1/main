@@ -71,6 +71,7 @@ public class StorageManagerTest {
         assertEquals(original, new AddressBook(retrieved));
     }
 
+    //@@author justinpoh
     @Test
     public void remindersReadSave() throws Exception {
         UniqueReminderList original = getUniqueTypicalReminders();
@@ -78,6 +79,7 @@ public class StorageManagerTest {
         UniqueReminderList retrieved = new UniqueReminderList(storageManager.readReminders().get());
         assertEquals(original, retrieved);
     }
+    //@@author
 
     @Test
     public void addressBookReadBackUp() throws Exception {
@@ -93,10 +95,12 @@ public class StorageManagerTest {
         assertNotNull(storageManager.getAddressBookFilePath());
     }
 
+    //@@author justinpoh
     @Test
     public void getRemindersFilePath() {
         assertNotNull(storageManager.getRemindersFilePath());
     }
+    //@@author
 
     @Test
     public void handleAddressBookChangedEvent_exceptionThrown_eventRaised() {
@@ -124,6 +128,7 @@ public class StorageManagerTest {
         }
     }
 
+    //@@author justinpoh
     @Test
     public void handleRemindersChangedEvent_exceptionThrown_eventRaised() {
         // Create a StorageManager while injecting a stub that  throws an exception when the save method is called
@@ -149,6 +154,6 @@ public class StorageManagerTest {
             throw new IOException("dummy exception");
         }
     }
-
+    //@@author
 
 }

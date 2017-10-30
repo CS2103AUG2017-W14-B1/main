@@ -10,7 +10,9 @@ public class CliSyntax {
     public static final Prefix PREFIX_PHONE = new Prefix("p/");
     public static final Prefix PREFIX_EMAIL = new Prefix("e/");
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
+    //@@author justinpoh
     public static final Prefix PREFIX_BIRTHDAY = new Prefix("b/");
+    //@@author
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_RANGE = new Prefix("r/");
     public static final Prefix PREFIX_PATH = new Prefix("p/");
@@ -20,7 +22,9 @@ public class CliSyntax {
     public static final Prefix PREFIX_EMAIL_SERVICE = new Prefix("s/");
     public static final Prefix PREFIX_EMAIL_SUBJECT = new Prefix("sub/");
     public static final Prefix PREFIX_EMAIL_BODY = new Prefix("body/");
+    //@@author justinpoh
     public static final Prefix PREFIX_REMINDER = new Prefix("rd/");
     public static final Prefix PREFIX_DATE = new Prefix("d/");
     public static final Prefix PREFIX_TIME = new Prefix("ti/");
+    //@@author
 }

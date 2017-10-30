@@ -26,11 +26,13 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<ReadOnlyPerson> getFilteredPersonList();
 
+    //@@author justinpoh
     /** Returns an unmodifiable view of the birthday panel filtered person list */
     ObservableList<ReadOnlyPerson> getBirthdayPanelFilteredPersonList();
 
     /** Returns an unmodifiable view of the reminder list */
     ObservableList<Reminder> getReminderList();
+    //@@author
 
     /** Returns the list of input entered by the user, encapsulated in a {@code ListElementPointer} object */
     ListElementPointer getHistorySnapshot();

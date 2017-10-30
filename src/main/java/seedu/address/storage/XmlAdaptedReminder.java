@@ -4,9 +4,12 @@ import java.time.format.DateTimeParseException;
 
 import javax.xml.bind.annotation.XmlElement;
 
-import seedu.address.model.reminders.DueDate;
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.reminders.Date;
 import seedu.address.model.reminders.Reminder;
+import seedu.address.model.reminders.Time;
 
+//@@author justinpoh
 /**
  * JAXB-friendly version of the Reminder.
  */
@@ -15,7 +18,9 @@ public class XmlAdaptedReminder {
     @XmlElement(required = true)
     private String reminder;
     @XmlElement(required = true)
-    private String dateAndTime;
+    private String date;
+    @XmlElement(required = true)
+    private String time;
 
     /**
      * Constructs an XmlAdaptedReminder.
@@ -30,15 +35,18 @@ public class XmlAdaptedReminder {
      */
     public XmlAdaptedReminder(Reminder source) {
         this.reminder = source.getReminder();
-        this.dateAndTime = source.getDueDate().getLocalDateTime().toString();
+        this.date = source.getDate().value;
+        this.time = source.getTime().value;
     }
     /**
      * Converts this jaxb-friendly adapted reminder object into the model's Reminder object.
      *
      * @throws DateTimeParseException if there were any data constraints violated in the adapted reminder
      */
-    public Reminder toModelType() {
-        return new Reminder(this.reminder, new DueDate(dateAndTime));
+    public Reminder toModelType() throws IllegalValueException {
+        final Date date = new Date(this.date);
+        final Time time = new Time(this.time);
+        return new Reminder(this.reminder, date, time);
     }
 
 

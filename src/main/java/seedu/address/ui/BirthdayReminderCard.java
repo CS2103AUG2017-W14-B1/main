@@ -8,6 +8,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.person.ReadOnlyPerson;
 
 
+//@@author justinpoh
 /**
  * An UI component that displays the name, nickname and birthday of a Person.
  */

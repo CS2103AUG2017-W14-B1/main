@@ -11,8 +11,10 @@ import seedu.address.logic.commands.AddReminderCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteReminderCommand;
 import seedu.address.logic.commands.DisplayPictureCommand;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditReminderCommand;
 import seedu.address.logic.commands.EmailCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.ExportCommand;
@@ -62,13 +64,19 @@ public class AddressBookParser {
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
+        //@@author justinpoh
         case AddReminderCommand.COMMAND_WORD:
             return new AddReminderCommandParser().parse(arguments);
+        //@@author
 
         case EditCommand.COMMAND_ALIAS:
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
+        //@@author justinpoh
+        case EditReminderCommand.COMMAND_WORD:
+            return new EditReminderCommandParser().parse(arguments);
+        //@@author
         case SelectCommand.COMMAND_ALIAS:
         case SelectCommand.COMMAND_WORD:
             return new SelectCommandParser().parse(arguments);
@@ -76,6 +84,11 @@ public class AddressBookParser {
         case DeleteCommand.COMMAND_ALIAS:
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
+
+        //@@author justinpoh
+        case DeleteReminderCommand.COMMAND_WORD:
+            return new DeleteReminderCommandParser().parse(arguments);
+        //@@author
 
         case ClearCommand.COMMAND_ALIAS:
         case ClearCommand.COMMAND_WORD:
@@ -121,8 +134,10 @@ public class AddressBookParser {
         case SortCommand.COMMAND_WORD:
             return new SortCommand();
 
+        //@@author justinpoh
         case ToggleCommand.COMMAND_WORD:
             return new ToggleCommand();
+        //@@author
 
         case NicknameCommand.COMMAND_WORD:
             return new NicknameCommandParser().parse(arguments);

@@ -79,10 +79,12 @@ public class BrowserAndRemindersPanel extends UiPart<Region> {
 
         loadDefaultPage();
 
+        //@@author justinpoh
         birthdayAndReminderListPanel = new BirthdayAndReminderListPanel(birthdayPanelFilteredPersonList, reminderList);
 
         //remindersPanel should be displayed first so no need to shift it to the back.
         remindersPanel.getChildren().add(birthdayAndReminderListPanel.getRoot());
+        //@@author
         registerAsAnEventHandler(this);
     }
 
@@ -124,6 +126,7 @@ public class BrowserAndRemindersPanel extends UiPart<Region> {
         browser = null;
     }
 
+    //@@author justinpoh
     /**
      * Check which child is currently at the front, and do the appropriate toggling between the children nodes.
      */
@@ -148,6 +151,7 @@ public class BrowserAndRemindersPanel extends UiPart<Region> {
         browser.toFront();
         currentlyInFront = Node.BROWSER;
     }
+    //@@author
 
     /**
      * Set's up the UI to bring browser to front and show location
@@ -234,11 +238,13 @@ public class BrowserAndRemindersPanel extends UiPart<Region> {
         raise(new TurnLabelsOffEvent());
     }
 
+    //@@author justinpoh
     @Subscribe
     private void handleBrowserPanelToggleEvent(BrowserAndRemindersPanelToggleEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         toggleBrowserPanel();
     }
+    //@@author
 
     @Subscribe
     private void handleShowLocationEvent(ShowLocationEvent event) {

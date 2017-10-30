@@ -93,6 +93,7 @@ public class StorageManager extends ComponentManager implements Storage {
         }
     }
 
+    //@@author justinpoh
     @Override
     @Subscribe
     public void handleRemindersChangedEvent(RemindersChangedEvent event) {
@@ -105,6 +106,7 @@ public class StorageManager extends ComponentManager implements Storage {
             raise (new DataSavingExceptionEvent(e));
         }
     }
+    //@@author
 
     @Override
     public void backupAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
@@ -113,6 +115,7 @@ public class StorageManager extends ComponentManager implements Storage {
 
     // ================ Reminders methods ==============================
 
+    //@@author justinpoh
     @Override
     public String getRemindersFilePath() {
         return remindersStorage.getRemindersFilePath();
@@ -139,5 +142,5 @@ public class StorageManager extends ComponentManager implements Storage {
         logger.fine("Attempting to write to data file: " + filePath);
         remindersStorage.saveReminders(reminderList, filePath);
     }
-
+    //@@author
 }

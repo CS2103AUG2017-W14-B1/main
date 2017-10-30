@@ -8,6 +8,7 @@ import seedu.address.model.reminders.Reminder;
 import seedu.address.model.reminders.UniqueReminderList;
 import seedu.address.storage.XmlSerializableReminders;
 
+//@@author justinpoh
 /**
  * A utility class containing a list of {@code Reminder} objects to be used in tests.
  */
@@ -15,15 +16,15 @@ public class TypicalReminders {
 
     public static final Reminder COFFEE_REMINDER = new ReminderBuilder().build();
     public static final Reminder HOMEWORK_REMINDER = new ReminderBuilder().withReminder("Do homework")
-                                                        .withDueDate("01/01/2018", "0730").build();
+                                                        .withDate("01/01/2018").withTime("07:30").build();
     public static final Reminder DINNER_REMINDER = new ReminderBuilder().withReminder("Dinner with family")
-                                                        .withDueDate("25/12/2017", "1800").build();
+                                                        .withDate("25/12/2017").withTime("18:00").build();
 
     // Manually added
     public static final Reminder MEETING_REMINDER = new ReminderBuilder().withReminder("Meet with CS2103 group")
-                                                  .withDueDate("09/09/2017", "1200").build();
+                                                  .withDate("09/09/2017").withTime("12:00").build();
     public static final Reminder DENTIST_REMINDER = new ReminderBuilder().withReminder("Go for dental checkup")
-            .withDueDate("10/10/2017", "1400").build();
+            .withDate("10/10/2017").withTime("14:00").build();
 
     private TypicalReminders() {} //prevents instantiation
 

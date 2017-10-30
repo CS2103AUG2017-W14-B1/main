@@ -13,6 +13,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.testutil.PersonBuilder;
 
+//@@author justinpoh
 public class PersonCardTest extends GuiUnitTest {
 
     @Test

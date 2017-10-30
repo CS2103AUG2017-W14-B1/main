@@ -54,6 +54,7 @@ public class LogicManager extends ComponentManager implements Logic {
         return model.getFilteredPersonList();
     }
 
+    //@@author justinpoh
     @Override
     public ObservableList<ReadOnlyPerson> getBirthdayPanelFilteredPersonList() {
         return model.getBirthdayPanelFilteredPersonList();
@@ -63,6 +64,7 @@ public class LogicManager extends ComponentManager implements Logic {
     public ObservableList<Reminder> getReminderList() {
         return model.getSortedReminderList();
     }
+    //@@author
 
     @Override
     public ListElementPointer getHistorySnapshot() {

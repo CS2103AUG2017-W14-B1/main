@@ -37,8 +37,10 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage, Reminders
     @Override
     void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
 
+    //@@author justinpoh
     @Override
     void saveReminders(UniqueReminderList reminderList) throws IOException;
+    //@@author
 
     /**
      * Saves the current version of the Address Book to the hard disk.
@@ -47,10 +49,12 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage, Reminders
      */
     void handleAddressBookChangedEvent(AddressBookChangedEvent abce);
 
+    //@@author justinpoh
     /**
      * Saves the current version of reminders to the hard disk.
      *   Creates the data file if it is missing.
      * Raises {@link DataSavingExceptionEvent} if there was an error during saving.
      */
     void handleRemindersChangedEvent(RemindersChangedEvent rce);
+    //@@author
 }

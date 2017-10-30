@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import seedu.address.testutil.PersonBuilder;
 
+//@@author justinpoh
 public class BirthdayInCurrentMonthPredicateTest {
 
     private final int currentMonth = Calendar.getInstance().get(Calendar.MONTH) + 1;
