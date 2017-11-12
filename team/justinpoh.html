@@ -22,12 +22,12 @@
 <p>iContacts is an application that targets university students, aiming to help them manage their contacts and other aspects of their university life in an efficient manner.
 iContacts is a Command Line Interface (CLI) application, where most of the commands are executed by typing rather than clicking on buttons.
 Through iContacts, users would be able to store, manage and search through contact information efficiently and effectively.
-Not only that, users would be able to set display pictures for each contact, and also add reminders for upcoming events.
+Not only that, users would be able to set display pictures for each contact and also add reminders for upcoming events.
 Last but not least, iContacts allow users to easily share contact information amongst each other via its import and export mechanisms.<br></p>
 </div>
 <div class="paragraph">
 <p>This portfolio is to collate my contributions towards the developing of iContacts. It also showcases the software programming
-knowledge I have learned during the course of CS2103T, as well as how I utilized this knowledge and applied it onto a real-world
+knowledge I have learned during the course of CS2103T, as well as how I utilized this knowledge and applied it to a real-world
 project. This portfolio also contains some suggested enhancements to be developed for iContacts in the future.</p>
 </div>
 <div class="paragraph">
@@ -58,7 +58,7 @@ Format: <code>addreminder rd/REMINDER d/DATE ti/TIME</code></p>
 </li>
 <li>
 <p>DATE must be in the format dd/mm/yyyy. <code>'-'</code>, <code>'/'</code> or <code>'.'</code> can be used to separate the day, month and year field of the date,
-and they need not be paired up (i.e. 24.03/2017 is acceptable as well).<br></p>
+and they need not be paired up (i.e. 24.03/2017 is acceptable as well). Only values from 1900 to 2099 are allowed for the year field.<br></p>
 </li>
 <li>
 <p>TIME must be in 24-hr format, with a colon separating the hour and minute values. Example: 08:00, 16:00, 23:59.<br></p>
@@ -452,28 +452,28 @@ code snippet below:<br></p>
 </div>
 <div class="paragraph">
 <p>The methods <code>isEventToday</code>, <code>isEventWithinThreeDays</code> and <code>hasEventPassed</code> seen from the code snippet above originate from
-the <code>Status</code> object of each <code>Reminder</code> object, and propagated from <code>Status</code> to <code>Reminder</code> then finally to <code>ReminderCard</code>.</p>
+the <code>Status</code> object of each <code>Reminder</code> object and propagated from <code>Status</code> to <code>Reminder</code> then finally to <code>ReminderCard</code>.</p>
 </div>
 <h4 id="design-consideration" class="discrete">Design Consideration</h4>
 <div class="paragraph">
-<p><strong>Aspect:</strong> How to store Reminders in-memory<br>
-<strong>Alternative 1 (current choice):</strong> Store Reminder objects in UniqueReminderList, independent of AddressBook.<br>
+<p><strong>Aspect:</strong> How to store <code>Reminder</code> in-memory<br>
+<strong>Alternative 1 (current choice):</strong> Store <code>Reminder</code> objects in <code>UniqueReminderList</code>, independent of <code>AddressBook</code>.<br>
 Pros: Follows the <em>Single-Responsibility Principle</em>, because a reminder should not be an address book&#8217;s responsibility.<br>
 Cons: More changes have to be made to the existing code base, making it tougher to implement.<br>
-<strong>Alternative 2:</strong> Store Reminder objects within AddressBook.<br>
-Pros: Easier to implement as lesser changes have to be made to the existing program.<br>
+<strong>Alternative 2:</strong> Store <code>Reminder</code> objects within <code>AddressBook</code>.<br>
+Pros: Easier to implement as lesser changes have to be made to the existing code base.<br>
 Cons: Violates the <em>Single-Responsibility Principle</em>.</p>
 </div>
 <div class="paragraph">
-<p><strong>Aspect:</strong> Should the undo/redo mechanism be applied to Reminder<br>
-<strong>Alternative 1 (current choice):</strong> Commands that affect Reminder objects are not undoable/redoable.<br>
+<p><strong>Aspect:</strong> Should the undo/redo mechanism be applied to <code>Reminder</code><br>
+<strong>Alternative 1 (current choice):</strong> Commands that affect <code>Reminder</code> objects are not undoable/redoable.<br>
 Pros: Users would be more aware of any changes they made to a reminder, as they are forced to
 use the <code>editreminder</code>, <code>addreminder</code> and <code>deletereminder</code> commands.
 Cons: It is less user-friendly.<br>
-<strong>Alternative 2:</strong> Commands that affect Reminder objects are undoable/redoable.<br>
+<strong>Alternative 2:</strong> Commands that affect <code>Reminder</code> objects are undoable/redoable.<br>
 Pros: More user-friendly.<br>
-Cons: Users might get careless with changing the information of a Reminder object. This might be detrimental
-as the date and time fields of a Reminder are very important.</p>
+Cons: Users might get careless with changing the information of a <code>Reminder</code> object. This might be detrimental
+as the date and time fields of a <code>Reminder</code> are very important.</p>
 </div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
@@ -622,7 +622,7 @@ and upon receiving the event it will invoke the method <code>toggleBrowserPanel<
 </div>
 <div class="paragraph">
 <p>The <code>BrowserAndRemindersPanel</code> class has a variable <code>currentlyInFront</code> keeping track of which panel (browser or reminders) is currently being shown.
-<code>toggleBrowserPanel</code> would then use the <code>currentlyInFront</code> variable to toggle to the correct panel, and then update <code>currentlyInFront</code> appropriately:</p>
+<code>toggleBrowserPanel</code> would then use the <code>currentlyInFront</code> variable to toggle to and show the correct panel, and then update <code>currentlyInFront</code> appropriately:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -680,8 +680,7 @@ and upon receiving the event it will invoke the method <code>toggleBrowserPanel<
 <p>The <code>LoadPersonWebpageEvent</code> is posted whenever the <code>select</code> command is executed. Within the <code>handleLoadPersonPageEvent</code>
 method, the statement <code>browser.toFront()</code> and the method <code>setUpToShowWebBrowser</code> would then bring the browser panel to the front no matter what, and also make it visible.</p>
 </div>
-<div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<h4 id="design-considerations" class="discrete">Design Considerations</h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Usage of browser area<br>
 <strong>Alternative 1 (current choice):</strong> Allow users to toggle between the browser and reminders panel.<br>
@@ -705,7 +704,6 @@ Cons: Users cannot interact with the reminders panel (since the browser is techn
 </div>
 <hr>
 </div>
-</div>
 <div class="sect2">
 <h3 id="enhancement-proposed-find-by-similar-keywords"><a class="link" href="#enhancement-proposed-find-by-similar-keywords">Enhancement Proposed: Find by similar keywords</a></h3>
 <div class="paragraph">
@@ -720,7 +718,7 @@ the <code>find</code> command should be enhanced such that it can work with simi
 <p>Currently, iContacts only notify users of invalid command syntax after users have typed out the whole command and pressed <code>Enter</code>.
 As the feedback to the users is very general, users might have a hard time figuring out which part of the command had an erroneous
 syntax. Therefore, this dynamic command syntax validation feature would be able to instantly feedback to users regarding the
-validity of the command they typed, by changing the color of the border of the CommandBox. There will be three colors:<br></p>
+validity of the command they typed, by changing the color of the border of the <code>CommandBox</code>. There will be three colors:<br></p>
 </div>
 <div class="ulist">
 <ul>
@@ -755,7 +753,8 @@ to integrate iContacts with existing online address book and Cloud Storage servi
 <li>
 <p>Updated component diagrams in DG and diagrams in UG during the project. (Pull requests <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/171">#171</a>,
 <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/200">#200</a>, <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/201/files">#201</a>,
-<a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/149">#149</a>, <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/108">#108</a>, <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/215">#215</a>)</p>
+<a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/149">#149</a>, <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/108">#108</a>, <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/215">#215</a>,
+<a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/242">#242</a>, <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/243">#243</a>)</p>
 </li>
 <li>
 <p>Implemented Birthday field. (Pull requests <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/76">#76</a>)</p>
@@ -764,7 +763,8 @@ to integrate iContacts with existing online address book and Cloud Storage servi
 <p>Updated READ.ME. (Pull requests <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/86">#86</a>)</p>
 </li>
 <li>
-<p>Updated AboutUs.adoc. (Pull requests <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/88">#88</a>, <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/212">#212</a>)</p>
+<p>Updated AboutUs.adoc. (Pull requests <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/88">#88</a>, <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/212">#212</a>,
+<a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/241">#241</a>)</p>
 </li>
 <li>
 <p>Updated Glossary. (Pull requests <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/59">#59</a>, <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/70">#70</a>)</p>
@@ -780,7 +780,7 @@ to integrate iContacts with existing online address book and Cloud Storage servi
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-12 11:50:22 +00:00
+Last updated 2017-11-12 13:29:08 +00:00
 </div>
 </div>
 </body>
