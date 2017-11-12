@@ -1181,21 +1181,21 @@ The reading and writing of images is done using the <code>ImageIO</code> class.<
 <div class="paragraph">
 <p><strong>Aspect:</strong> At what stage should the image be read and stored<br>
 <strong>Alternative 1 (current choice):</strong> Make proper Storage Architecture for reading and writing of Image  <br>
-<strong>Pros:</strong> Follows existing Architectural Design and Software Engineering Principles like OCP <br>
-<strong>Cons:</strong> Takes time and tougher to implement<br>
+<strong>Pros:</strong> It will follow the existing Architectural Design and Software Engineering Principles like OCP. <br>
+<strong>Cons:</strong> It will take more time and will be tougher to implement.<br>
 <strong>Alternative 2:</strong> Invoke 'ReadAndStoreImage' from Logic component.<br>
-<strong>Pros:</strong> Easier for new developers to understand the sequence diagram and maintains event-driven nature.<br>
-<strong>Cons:</strong> Bad Architectural design and doesn&#8217;t follow the pre existing pattern also defies Law of Demeter</p>
+<strong>Pros:</strong> : It will make it easier for new developers to understand the sequence diagram and maintains event-driven nature.<br>
+<strong>Cons:</strong> It will cause bad architectural design and won’t follow the pre-existing pattern and moreover will defy the Law of Demeter.</p>
 </div>
 <hr>
 <div class="paragraph">
 <p><strong>Aspect:</strong> How should the image be taken from user<br>
 <strong>Alternative 1 (current choice):</strong> User has to enter the absolute path of image by checking his local device.  <br>
-<strong>Pros:</strong> Complete CLI process <br>
-<strong>Cons:</strong> Might be problematic for user to copy and paste and might result in error of path giving fail command.<br>
+<strong>Pros:</strong> It will be a complete CLI process. <br>
+<strong>Cons:</strong> It might be problematic for user to copy and paste and might result in error of path giving fail command.<br>
 <strong>Alternative 2:</strong> Pop up a <code>FileChooser</code> after command is entered.<br>
-<strong>Pros:</strong> Easier for users to mention the correct image quickly.<br>
-<strong>Cons:</strong> Will no longer be a CLI process completely.</p>
+<strong>Pros:</strong> It will be easier for users to mention the correct image quickly.<br>
+<strong>Cons:</strong> It will no longer be a complete CLI process.</p>
 </div>
 <hr>
 </div>
@@ -1262,11 +1262,11 @@ The reading and writing of images is done using the <code>ImageIO</code> class.<
 <div class="paragraph">
 <p><strong>Aspect:</strong> What to use to show the location<br>
 <strong>Alternative 1 (current choice):</strong> Show using google maps url in BrowserPanel <br>
-<strong>Pros:</strong> We will be able to get the location easily with accuracy<br>
-<strong>Cons:</strong> Limited functionality of URL<br>
+<strong>Pros:</strong> We will be able to get the location easily with accuracy.<br>
+<strong>Cons:</strong> It could cause problem due to limited functionality of URL.<br>
 <strong>Alternative 2:</strong> Google Maps API<br>
-<strong>Pros:</strong>  Allows more functionality<br>
-<strong>Cons:</strong> Uses more resources for the exact same feature and doesn&#8217;t utilise pre existing browser properly</p>
+<strong>Pros:</strong>  It will provide more functionality.<br>
+<strong>Cons:</strong> It could cause more resources to be used for the exact same feature and wouldn’t utilise pre-existing browser properly.</p>
 </div>
 </div>
 <div class="sect2">
@@ -3717,7 +3717,7 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-12 03:05:17 +00:00
+Last updated 2017-11-12 03:34:37 +00:00
 </div>
 </div>
 </body>
