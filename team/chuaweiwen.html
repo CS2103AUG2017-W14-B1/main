@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.3">
+<title>Chua Wei Wen - Project Portfolio</title>
+<link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Chua Wei Wen - Project Portfolio</h1>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="project-icontacts"><a class="link" href="#project-icontacts">Project: iContacts</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>iContacts is an address book application with target audience as university students for managing contacts. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 8 kLoC. iContacts allow users to manage reminders, keep track of upcoming contacts' birthday, as well as share the contact list using the application&#8217;s import and export mechanism.</p>
+</div>
+<div class="paragraph">
+<p>This portfolio showcases the features and enhancements I have contributed to iContacts, lists my enhancement proposal for the upcoming features, and also includes other contributions I have made.</p>
+</div>
+<div class="paragraph">
+<p><strong>Code contributed</strong>: [<a href="../../collated/main/chuaweiwen.md">Functional code</a>] [<a href="../../collated/test/chuaweiwen.md">Test code</a>]</p>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-nickname"><a class="link" href="#enhancement-added-nickname">Enhancement Added: Nickname</a></h3>
+<div class="sect3">
+<h4 id="external-behavior"><a class="link" href="#external-behavior">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-a-nickname-to-a-person-code-nickname-code"><a class="link" href="#adding-a-nickname-to-a-person-code-nickname-code">Adding a nickname to a person : <code>nickname</code></a></h3>
+<div class="paragraph">
+<p>Adds a nickname to an existing person in the address book.<br>
+Format: <code>nickname INDEX [NICKNAME]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Adds a nickname to the person at the specified <code>INDEX</code>. The index refers to the index number shown in the last person listing. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>Existing values will be updated to the input values.</p>
+</li>
+<li>
+<p>You can remove the person&#8217;s nickname without specifying anything after the <code>INDEX</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>nickname 1 Eddie</code><br>
+Adds a nickname <code>Eddie</code> to the 1st person.</p>
+</li>
+<li>
+<p><code>nickname 1</code><br>
+Removes the nickname from the the 1st person.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification"><a class="link" href="#justification">Justification</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Users may want to add nickname to contacts in order to identify them easily, especially if the users have many contacts.</p>
+</li>
+<li>
+<p>The nickname serves as an additional field that can be searched using the <code>find</code> command.</p>
+</li>
+</ul>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-filter"><a class="link" href="#enhancement-added-filter">Enhancement Added: Filter</a></h3>
+<div class="sect3">
+<h4 id="external-behavior-2"><a class="link" href="#external-behavior-2">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="finding-all-people-by-name-and-associated-with-one-or-more-tags-code-filter-code"><a class="link" href="#finding-all-people-by-name-and-associated-with-one-or-more-tags-code-filter-code">Finding all people by name and associated with one or more tags: <code>filter</code></a></h3>
+<div class="paragraph">
+<p>Finds persons whose names and/or tag(s) contain any of the given keywords.<br>
+Format: <code>filter [n/NAME] [t/TAG]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>To search by name, type the keywords after the <code>n/</code>.</p>
+</li>
+<li>
+<p>To search by tag, type the keywords after the <code>t/</code>.</p>
+</li>
+<li>
+<p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code></p>
+</li>
+<li>
+<p>Only full words will be matched e.g. <code>Han</code> will not match <code>Hans</code></p>
+</li>
+<li>
+<p>Persons matching all keywords will be returned (i.e. <code>AND</code> search). e.g. <code>Hans Bo</code> will return <code>Hans Bo</code> but not <code>Hans Yang</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>filter n/John</code><br>
+Returns <code>john</code> and <code>John Doe</code></p>
+</li>
+<li>
+<p><code>filter n/John n/Doe</code><br>
+<code>filter n/John Doe</code><br>
+Returns any person with both <code>John</code> and <code>Doe</code> in his name.</p>
+</li>
+<li>
+<p><code>filter t/friends</code><br>
+Returns any persons with the tag <code>friends</code>.</p>
+</li>
+<li>
+<p><code>filter t/friends t/colleagues</code><br>
+<code>filter t/friends colleagues</code><br>
+Returns any person with the tag <code>friends</code> and <code>colleagues</code>.</p>
+</li>
+<li>
+<p><code>filter n/John t/friends</code><br>
+Returns any person having the name <code>John</code> and with the tag <code>friends</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification-2"><a class="link" href="#justification-2">Justification</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Users may need a more precise search.</p>
+</li>
+<li>
+<p>The current <code>find</code> command lists the contacts that match any of the keywords (i.e. an <code>OR</code> search).</p>
+</li>
+<li>
+<p>The <code>filter</code> command is much more restrictive as it lists the contacts that match all the keywords (i.e. an <code>AND</code> search).</p>
+</li>
+<li>
+<p>The name and tags are used as the field for the filter command as they are most likely to be used as constraints in the search.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="filter-mechanism"><a class="link" href="#filter-mechanism">Filter mechanism</a></h3>
+<div class="paragraph">
+<p>The <code>FilterCommand</code> uses the <code>NameAndTagsContainsKeywordsPredicate</code> to filter the persons with matching name and/or tags. It accepts the <code>List&lt;String&gt; nameKeywords</code> and <code>List&lt;String&gt; tagKeywords</code> as parameters that are parsed by the <code>FilterCommandParser</code>. The code snippet below is the constructor for the class:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">NameAndTagsContainsKeywordsPredicate</span> {
+    <span class="directive">public</span> NameAndTagsContainsKeywordsPredicate(<span class="predefined-type">List</span>&lt;<span class="predefined-type">String</span>&gt; nameKeywords, <span class="predefined-type">List</span>&lt;<span class="predefined-type">String</span>&gt; tagKeywords) {
+        <span class="local-variable">this</span>.nameKeywords = nameKeywords;
+        <span class="local-variable">this</span>.tagKeywords = tagKeywords;
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The method <code>test(ReadOnlyPerson person)</code> iterates through the <code>nameKeywords</code> and the <code>tagKeywords</code> to find a match of every <code>person</code> from the address book.</p>
+</div>
+<div class="paragraph">
+<p>Below is an extract of the method <code>test(ReadOnlyPerson person)</code>. The tags of each person are retrieved by the <code>getTags()</code> method. This method iterates through the <code>tagKeywords</code> and counts the number of matches against the <code>tagsOfPerson</code>. If the count is equal to the size of the <code>tagKeywords</code>, this means all the keywords in the <code>tagKeywords</code> match. The <code>hasTag</code> will then be set to <code>true</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">NameAndTagsContainsKeywordsPredicate</span> {
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> <span class="type">boolean</span> test(ReadOnlyPerson person) {
+        <span class="type">boolean</span> hasTag = <span class="predefined-constant">false</span>;
+
+        <span class="type">int</span> numTagKeywords = tagKeywords.size();
+        <span class="type">int</span> tagsMatchedCount = <span class="integer">0</span>;
+        <span class="keyword">if</span> (!tagKeywords.isEmpty()) {
+            tagsMatchedCount = countTagMatches(person);
+        }
+
+        <span class="keyword">if</span> (tagsMatchedCount == numTagKeywords) {
+            hasTag = <span class="predefined-constant">true</span>;
+        }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Below is an extract of the same method for name. Each keywords in the <code>nameKeywords</code> will be compared against the name list retrieved from the <code>getName()</code> method of the <code>Person</code> class. If all the keywords match, the <code>hasName</code> will be set to <code>true</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">NameAndTagsContainsKeywordsPredicate</span> {
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> <span class="type">boolean</span> test(ReadOnlyPerson person) {
+        <span class="type">boolean</span> hasName = <span class="predefined-constant">false</span>;
+            <span class="keyword">if</span> (!nameKeywords.isEmpty()) {
+                nameFound = nameKeywords.stream().allMatch(nameKeywords -&gt; StringUtil
+                .containsWordIgnoreCase(person.getName().fullName, nameKeywords));
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For the <code>FilterCommand</code> to work properly, either the <code>nameKeywords</code> or the <code>tagKeywords</code> must be non-empty.</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-theme"><a class="link" href="#enhancement-added-theme">Enhancement Added: Theme</a></h3>
+<div class="sect3">
+<h4 id="external-behavior-3"><a class="link" href="#external-behavior-3">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="changing-the-theme-code-theme-code"><a class="link" href="#changing-the-theme-code-theme-code">Changing the theme : <code>theme</code></a></h3>
+<div class="paragraph">
+<p>Changes the theme of the address book to a specific theme.<br>
+Format: <code>theme THEME</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The search is case insensitive. e.g <code>night</code> will match <code>Night</code>.</p>
+</li>
+<li>
+<p>Only full theme names will be matched e.g. <code>night</code> will not match <code>nigh</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>theme day</code><br>
+Changes the theme to <code>day</code> (Refer to Figure 11).</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/themeDisplay.png" alt="themeDisplay" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 11: Theme changed to <code>day</code>.</em></p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification-3"><a class="link" href="#justification-3">Justification</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Users can have more choice in setting the theme of iContacts.</p>
+</li>
+<li>
+<p>Users may find it easier to use iContacts if they are working on their preferred theme.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-2"><a class="link" href="#implementation-2">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="theme-changing-mechanism"><a class="link" href="#theme-changing-mechanism">Theme-changing mechanism</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/themeChangingMechanism1.png" alt="themeChangingMechanism1" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 31 : Component interactions for the theme-changing mechanism</em></p>
+</div>
+<div class="paragraph">
+<p>The theme-changing mechanism is an event-driven mechanism. The above diagram (Refer to Figure 31) shows the high-level overview of the component interactions for the theme-changing mechanism.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/themeChangingMechanism2.png" alt="themeChangingMechanism2" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 32 : Sequence diagram for the first part of the theme-changing mechanism</em></p>
+</div>
+<div class="paragraph">
+<p>As shown from the sequence diagram above (Refer to Figure 32), after the user entered the command <code>theme sky</code>, a new object <code>ThemeCommand</code> will be created. The <code>LogicManager</code> will then execute <code>ThemeCommand</code>, and the event <code>ChangeThemeRequestEvent</code> will be posted by <code>EventsCenter</code>. The code snippet below shows the <code>execute()</code> method of <code>ThemeCommand</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>public class ThemeCommand extends Command {
+    @Override
+    public CommandResult execute() {
+        EventsCenter.getInstance().post(new ChangeThemeRequestEvent(theme));
+        return new CommandResult(String.format(MESSAGE_SET_THEME_SUCCESS, theme.getTheme()));
+    }
+}</pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/themeChangingMechanism3.png" alt="themeChangingMechanism3" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 33 : Sequence diagram for the second part of the theme-changing mechanism</em></p>
+</div>
+<div class="paragraph">
+<p>As shown from the sequence diagram above (Refer to Figure 33), the method <code>handleChangeThemeEvent()</code> in <code>MainWindow</code> will handle the event and change the theme of the address book through the method <code>changeTheme()</code> accordingly.</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="enhancement-proposed-enhance-the-command-code-filter-code"><a class="link" href="#enhancement-proposed-enhance-the-command-code-filter-code">Enhancement Proposed: Enhance the command <code>filter</code></a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Users will be able to perform an even more precise search using more fields as constraints (e.g. nickname, birthday).</p>
+</li>
+<li>
+<p>Users will also able to perform search for keywords that are incomplete (e.g. filtering <code>Ben</code> will also match <code>Benson</code>).</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-proposed-enhance-the-command-code-theme-code-to-allow-customised-theme"><a class="link" href="#enhancement-proposed-enhance-the-command-code-theme-code-to-allow-customised-theme">Enhancement Proposed: Enhance the command <code>theme</code> to allow customised theme</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Users will be able to customise the theme of their choice.</p>
+</li>
+<li>
+<p>Users will be able to import their own CSS file to update the theme.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-proposed-add-a-new-command-code-listtag-code"><a class="link" href="#enhancement-proposed-add-a-new-command-code-listtag-code">Enhancement Proposed: Add a new command <code>listtag</code></a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Users will be able to list all tags they have used when adding or editing the contacts.</p>
+</li>
+<li>
+<p>This allow the users to keep track of all the tags used.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-proposed-merge-the-command-code-nickname-code-to-the-command-code-add-code-and-code-edit-code"><a class="link" href="#enhancement-proposed-merge-the-command-code-nickname-code-to-the-command-code-add-code-and-code-edit-code">Enhancement Proposed: Merge the command <code>nickname</code> to the command <code>add</code> and <code>edit</code></a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Users will be able to add, edit or remove the nickname of contact through the <code>add</code> and <code>edit</code> command.</p>
+</li>
+<li>
+<p>Since the nickname is just another field for the contact, it would be better to add and edit the nickname using the <code>add</code> and <code>edit</code> command respectively without the <code>nickname</code> command.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="other-contributions"><a class="link" href="#other-contributions">Other contributions</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Conducted acceptance testing for another project by my peers and uncovered bugs (see issue <a href="https://github.com/CS2103AUG2017-F11-B4/main/issues/48">#48</a>, <a href="https://github.com/CS2103AUG2017-F11-B4/main/issues/49">#49</a>, <a href="https://github.com/CS2103AUG2017-F11-B4/main/issues/51">#51</a>, <a href="https://github.com/CS2103AUG2017-F11-B4/main/issues/52">#52</a>)</p>
+</li>
+<li>
+<p>Fixed the grammatical errors in the User Guide and Developer Guide (see <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/202">#202</a>).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2017-11-12 03:05:17 +00:00
+</div>
+</div>
+</body>
+</html>

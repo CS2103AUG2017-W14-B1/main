@@ -44,7 +44,7 @@ project. This portfolio also contains some suggested enhancements to be develope
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-a-reminder-code-addreminder-code-v1-3"><a class="link" href="#adding-a-reminder-code-addreminder-code-v1-3">Adding a reminder: <code>addreminder</code> [V1.3]</a></h3>
+<h3 id="adding-a-reminder-code-addreminder-code"><a class="link" href="#adding-a-reminder-code-addreminder-code">Adding a reminder: <code>addreminder</code></a></h3>
 <div class="paragraph">
 <p>Adds a reminder to iContacts.<br>
 Format: <code>addreminder rd/REMINDER d/DATE ti/TIME</code></p>
@@ -162,7 +162,7 @@ only takes place when the program is started up, and when an edit is made to a r
 </div>
 </div>
 <div class="sect2">
-<h3 id="editing-a-reminder-code-editreminder-code-v1-4"><a class="link" href="#editing-a-reminder-code-editreminder-code-v1-4">Editing a reminder: <code>editreminder</code> [V1.4]</a></h3>
+<h3 id="editing-a-reminder-code-editreminder-code"><a class="link" href="#editing-a-reminder-code-editreminder-code">Editing a reminder: <code>editreminder</code></a></h3>
 <div class="paragraph">
 <p>Edits an existing reminder in iContacts.<br>
 Format: <code>editreminder INDEX [rd/REMINDER] [d/DATE] [ti/TIME]</code></p>
@@ -201,7 +201,7 @@ Edits the date and time of the 3rd reminder to be <code>25/12/2017</code> and <c
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-reminder-code-deletereminder-code-v1-4"><a class="link" href="#deleting-a-reminder-code-deletereminder-code-v1-4">Deleting a reminder: <code>deletereminder</code>[V1.4]</a></h3>
+<h3 id="deleting-a-reminder-code-deletereminder-code"><a class="link" href="#deleting-a-reminder-code-deletereminder-code">Deleting a reminder: <code>deletereminder</code></a></h3>
 <div class="paragraph">
 <p>Deletes a specified reminder from iContacts.<br>
 Format: <code>deletereminder INDEX</code></p>
@@ -451,7 +451,7 @@ code snippet below:<br></p>
 <p>Depending on the status of the reminder, different styles would be set for the specific <code>ReminderListViewCell</code>.</p>
 </div>
 <div class="paragraph">
-<p>The methods <code>isEventToday</code>, <code>isEventWithinThreeDays</code> and <code>hasEventPassed</code> seen from the code snippet above originates from
+<p>The methods <code>isEventToday</code>, <code>isEventWithinThreeDays</code> and <code>hasEventPassed</code> seen from the code snippet above originate from
 the <code>Status</code> object of each <code>Reminder</code> object, and propagated from <code>Status</code> to <code>Reminder</code> then finally to <code>ReminderCard</code>.</p>
 </div>
 <h4 id="design-consideration" class="discrete">Design Consideration</h4>
@@ -465,7 +465,7 @@ Pros: Easier to implement as lesser changes have to be made to the existing prog
 Cons: Violates the <em>Single-Responsibility Principle</em>.</p>
 </div>
 <div class="paragraph">
-<p><strong>Aspect</strong> Should the undo/redo mechanism be applied to Reminder<br>
+<p><strong>Aspect:</strong> Should the undo/redo mechanism be applied to Reminder<br>
 <strong>Alternative 1 (current choice):</strong> Commands that affect Reminder objects are not undoable/redoable.<br>
 Pros: Users would be more aware of any changes they made to a reminder, as they are forced to
 use the <code>editreminder</code>, <code>addreminder</code> and <code>deletereminder</code> commands.
@@ -491,7 +491,7 @@ as the date and time fields of a Reminder are very important.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="toggling-between-reminders-panel-and-browser-code-toggle-code-v1-2"><a class="link" href="#toggling-between-reminders-panel-and-browser-code-toggle-code-v1-2">Toggling between reminders panel and browser: <code>toggle</code> [V1.2]</a></h3>
+<h3 id="toggling-between-reminders-panel-and-browser-code-toggle-code"><a class="link" href="#toggling-between-reminders-panel-and-browser-code-toggle-code">Toggling between reminders panel and browser: <code>toggle</code></a></h3>
 <div class="paragraph">
 <p>Toggle between the reminders panel (Refer to Figure 12 below) and the browser (Refer to Figure 13 below) as needed.<br>
 The reminders panel would display reminders for upcoming birthdays amongst the contacts in the current month and
@@ -551,7 +551,7 @@ alternate between the reminders panel and the browser on further execution of th
 <div class="sect3">
 <h4 id="justification-2"><a class="link" href="#justification-2">Justification</a></h4>
 <div class="paragraph">
-<p>To make iContacts useful and appealing, it needs to be able to provide more functionality to users, and this also mean that it needs
+<p>To make iContacts useful and appealing, it needs to be able to provide more functionality to users, and this also means that it needs
 to be able to display more information. Without this toggling mechanism, users would have to squint their eyes as all the information
 and the browser would be squeezed together. Hence, to ensure a much more pleasant user experience, this toggling mechanism is required,
 as it allows related information to be displayed together in separate panels without being squeezed.<br></p>
@@ -572,7 +572,7 @@ the list of contacts is the most important information within iContacts and thus
 <div class="sect2">
 <h3 id="toggling-mechanism"><a class="link" href="#toggling-mechanism">Toggling mechanism</a></h3>
 <div class="paragraph">
-<p>The toggling mechanism is an event-driven mechanism.</p>
+<p>The toggling mechanism is an <code>event-driven</code> mechanism.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -594,8 +594,8 @@ the list of contacts is the most important information within iContacts and thus
 <p><em>Figure 26 : Sequence diagram for the first part of the toggling mechanism.</em></p>
 </div>
 <div class="paragraph">
-<p>As seen from the sequence diagram above (Refer to Figure 26), when the user type the command for <code>toggle</code>, an instance of <code>ToggleCommand</code> would be created.<br>
-Upon execution by <code>LogicManager</code>, the event <code>BrowserAndRemindersPanelToggleEvent</code> would be posted by the <code>EventCenter</code> to the <code>EventBus</code>.</p>
+<p>As seen from the sequence diagram above (Refer to Figure 26), when the user types the command for <code>toggle</code>, an instance of <code>ToggleCommand</code> would be created.<br>
+Upon execution by <code>LogicManager</code>, the event <code>BrowserAndRemindersPanelToggleEvent</code> would be posted by the <code>EventCenter</code> to the <code>EventBus</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -610,7 +610,7 @@ Upon execution by <code>LogicManager</code>, the event <code>BrowserAndReminders
 </div>
 <div class="paragraph">
 <p>As seen from the diagram below (Refer to Figure 27), the method <code>handleBrowserToggleEvent()</code> in the <code>BrowserAndRemindersPanel</code> class in the <code>UI</code> component will then listen for the event,
-and upon receiving the event, it will invoke the method <code>toggleBrowserPanel</code> to trigger the actual toggling.</p>
+and upon receiving the event it will invoke the method <code>toggleBrowserPanel</code> to trigger the actual toggling.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -710,14 +710,14 @@ Cons: Users cannot interact with the reminders panel (since the browser is techn
 <h3 id="enhancement-proposed-find-by-similar-keywords"><a class="link" href="#enhancement-proposed-find-by-similar-keywords">Enhancement Proposed: Find by similar keywords</a></h3>
 <div class="paragraph">
 <p>The <code>find</code> command in iContacts currently only works for keywords with exact wording (i.e. <code>find Han</code> would not work for a contact with name <code>Hans</code>),
-although it is still case-insensitive. This might be very inconvenient for users as they might not remember the exact wording. Hence.
+although it is still case-insensitive. This might be very inconvenient for users, as they might not remember the exact wording. Hence,
 the <code>find</code> command should be enhanced such that it can work with similar keywords.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="enhancement-proposed-dynamic-command-syntax-validation-using-commandbox-border-color"><a class="link" href="#enhancement-proposed-dynamic-command-syntax-validation-using-commandbox-border-color">Enhancement Proposed: Dynamic command syntax validation using CommandBox border color</a></h3>
 <div class="paragraph">
-<p>Currently, iContacts only notify users of an invalid command syntax after users have typed out the whole command and pressed <code>Enter</code>.
+<p>Currently, iContacts only notify users of invalid command syntax after users have typed out the whole command and pressed <code>Enter</code>.
 As the feedback to the users is very general, users might have a hard time figuring out which part of the command had an erroneous
 syntax. Therefore, this dynamic command syntax validation feature would be able to instantly feedback to users regarding the
 validity of the command they typed, by changing the color of the border of the CommandBox. There will be three colors:<br></p>
@@ -740,7 +740,7 @@ validity of the command they typed, by changing the color of the border of the C
 <h3 id="enhancement-proposed-integration-with-online-address-book-and-cloud-storage-services"><a class="link" href="#enhancement-proposed-integration-with-online-address-book-and-cloud-storage-services">Enhancement Proposed: Integration with online address book and Cloud Storage services</a></h3>
 <div class="paragraph">
 <p>Currently, iContacts is not integrated with any existing online services such as Google Contacts or Google Cloud Platform. Users still
-have to manually export the source file to share their contacts, and this can only take place if both users uses iContacts. Furthermore,
+have to manually export the source file to share their contacts, and this can only take place if both users use iContacts. Furthermore,
 if the local copies of the source file are all corrupted or deleted, there are no online backup copies. Hence, there is a need
 to integrate iContacts with existing online address book and Cloud Storage services.</p>
 </div>
@@ -780,7 +780,7 @@ to integrate iContacts with existing online address book and Cloud Storage servi
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-11 18:00:17 +08:00
+Last updated 2017-11-12 03:05:17 +00:00
 </div>
 </div>
 </body>
