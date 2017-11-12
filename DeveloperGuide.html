@@ -331,7 +331,7 @@ The <code>.pptx</code> files used to create diagrams in this document can be fou
 <div class="ulist">
 <ul>
 <li>
-<p><code>EventsCenter</code> : This class (written using <a href="https://github.com/google/guava/wiki/EventBusExplained">Google&#8217;s Event Bus library</a>) is used by components to communicate with other components using events (i.e. a form of <em>Event Driven</em> design)</p>
+<p><code>EventsCenter</code> : This class (written using <a href="https://github.com/google/guava/wiki/EventBusExplained">Google&#8217;s Event Bus library</a>) is used by the components to communicate with other components using events (i.e. a form of <em>Event Driven</em> design)</p>
 </li>
 <li>
 <p><code>LogsCenter</code> : This class is used by many classes to write log messages to iContacts' log file.</p>
@@ -467,13 +467,13 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <div class="ulist">
 <ul>
 <li>
-<p>executes user commands using the <code>Logic</code> component.</p>
+<p>executes the user commands using the <code>Logic</code> component.</p>
 </li>
 <li>
-<p>binds itself to some data in the <code>Model</code> so that the <code>UI</code> can auto-update when data in the <code>Model</code> changes.</p>
+<p>binds itself to some data in the <code>Model</code> so that the <code>UI</code> can auto-update when the data in the <code>Model</code> changes.</p>
 </li>
 <li>
-<p>responds to events raised from various parts of iContacts and updates the <code>Ui</code> accordingly.</p>
+<p>responds to events raised from various parts of iContacts and updates the <code>UI</code> accordingly.</p>
 </li>
 </ul>
 </div>
@@ -521,7 +521,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <div class="sect3">
 <h4 id="model-component"><a class="link" href="#model-component">3.3.3. Model component</a></h4>
 <div class="paragraph">
-<p>The <code>Model</code> Component handles the contacts in address book and all its stored details in data structures which provides with the API to create, read, update and delete the contacts in the address book. The figure below (Refer to Figure 9) shows the structure of the <code>Model</code> component.</p>
+<p>The <code>Model</code> component handles the contacts in the address book and all its stored details in data structures which provide API to create, read, update and delete the contacts. The figure below (Refer to Figure 9) shows the structure of the <code>Model</code> component.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -546,10 +546,10 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p>stores the address book data.</p>
 </li>
 <li>
-<p>exposes an unmodifiable <code>ObservableList&lt;ReadOnlyPerson&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
+<p>exposes an unmodifiable <code>ObservableList&lt;ReadOnlyPerson&gt;</code> that can be 'observed' e.g. the <code>UI</code> can be bound to this list so that the <code>UI</code> automatically updates when the data in the list change.</p>
 </li>
 <li>
-<p>does not depend on any of the other three components.</p>
+<p>does not depend on any of the other three components (<code>UI</code>, <code>Logic</code> and <code>Storage</code>).</p>
 </li>
 </ul>
 </div>
@@ -557,7 +557,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <div class="sect3">
 <h4 id="storage-component"><a class="link" href="#storage-component">3.3.4. Storage component</a></h4>
 <div class="paragraph">
-<p>The <code>Storage</code> component handles the storage of all data of address book in the local device. The figure below (Refer to Figure 10) shows the structure of Storage component.</p>
+<p>The <code>Storage</code> component handles the storage of all data of the address book in the local device. The figure below (Refer to Figure 10) shows the structure of the Storage component.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -579,7 +579,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p>can save <code>UserPref</code> objects in json format and read it back.</p>
 </li>
 <li>
-<p>can save the Address Book data in xml format and read it back.</p>
+<p>can save the address book data in xml format and read it back.</p>
 </li>
 </ul>
 </div>
@@ -658,6 +658,16 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 <div class="paragraph">
 <p>For the <code>FilterCommand</code> to work properly, either the <code>nameKeywords</code> or the <code>tagKeywords</code> must be non-empty.</p>
+</div>
+<h4 id="design-considerations" class="discrete">Design Considerations</h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Command with different search logic<br>
+<strong>Alternative 1 (current choice):</strong> Create a separate command to search for contacts that match all keywords.<br>
+<strong>Pros:</strong> Implementation can be easy as the logic is similar to the <code>FindCommand</code>.<br>
+<strong>Cons:</strong> May not make sense to have separate commands to search for contacts.<br>
+<strong>Alternative 2:</strong> Modify the <code>FindCommand</code> to allow users the option to search contacts that either match any keywords or match all keywords.<br>
+<strong>Pros:</strong> Lesser command for the users to remember when searching for contacts.<br>
+<strong>Cons:</strong> Implementation can be more complicated as there is a need to address both OR search and AND search on the same command.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1013,7 +1023,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <div class="paragraph">
 <p><em>Figure 18 : Activity diagram for UndoRedoStack</em></p>
 </div>
-<h4 id="design-considerations" class="discrete">Design Considerations</h4>
+<h4 id="design-considerations-2" class="discrete">Design Considerations</h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Implementation of <code>UndoableCommand</code><br>
 <strong>Alternative 1 (current choice):</strong> Add a new abstract method <code>executeUndoableCommand()</code>.<br>
@@ -1177,7 +1187,7 @@ The reading and writing of images is done using the <code>ImageIO</code> class.<
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">4.5.2. Design Considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.5.2. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> At what stage should the image be read and stored<br>
 <strong>Alternative 1 (current choice):</strong> Make proper Storage Architecture for reading and writing of Image  <br>
@@ -1258,7 +1268,7 @@ The reading and writing of images is done using the <code>ImageIO</code> class.<
 }</code></pre>
 </div>
 </div>
-<h4 id="design-considerations-3" class="discrete">Design Considerations</h4>
+<h4 id="design-considerations-4" class="discrete">Design Considerations</h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> What to use to show the location<br>
 <strong>Alternative 1 (current choice):</strong> Show using google maps url in BrowserPanel <br>
@@ -1340,7 +1350,7 @@ The only two services offered are <code>gmail</code> and <code>outlook</code> as
 Desktop.getDesktop().browse(<span class="keyword">new</span> <span class="predefined-type">URI</span>(<span class="predefined-type">String</span>.format(GMAIL_EMAIL_URL, recipients, subject, body)));</code></pre>
 </div>
 </div>
-<h4 id="design-considerations-4" class="discrete">Design Considerations</h4>
+<h4 id="design-considerations-5" class="discrete">Design Considerations</h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Where to compose the mail<br>
 <strong>Alternative 1 (current choice):</strong> Opens the default browser of Desktop <br>
@@ -1620,7 +1630,7 @@ and upon receiving the event it will invoke the method <code>toggleBrowserPanel<
 method, the statement <code>browser.toFront()</code> and the method <code>setUpToShowWebBrowser</code> would then bring the browser panel to the front no matter what, and also make it visible.</p>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.10.1. Design Considerations</a></h4>
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">4.10.1. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Usage of browser area<br>
 <strong>Alternative 1 (current choice):</strong> Allow users to toggle between the browser and reminders panel.<br>
@@ -1870,7 +1880,7 @@ as the date and time fields of a Reminder are very important.</p>
 <p><em>Figure 32 : Sequence diagram for the first part of the theme-changing mechanism</em></p>
 </div>
 <div class="paragraph">
-<p>As shown from the sequence diagram above (Refer to Figure 32), after the user entered the command <code>theme sky</code>, a new object <code>ThemeCommand</code> will be created. The <code>LogicManager</code> will then execute <code>ThemeCommand</code>, and the event <code>ChangeThemeRequestEvent</code> will be posted by <code>EventsCenter</code>. The code snippet below shows the <code>execute()</code> method of <code>ThemeCommand</code>:</p>
+<p>As shown from the sequence diagram above (Refer to Figure 32), after the user entered the command <code>theme day</code>, a new object <code>ThemeCommand</code> will be created. The <code>LogicManager</code> will then execute <code>ThemeCommand</code>, and the event <code>ChangeThemeRequestEvent</code> will be posted by <code>EventsCenter</code>. The code snippet below shows the <code>execute()</code> method of <code>ThemeCommand</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1894,6 +1904,16 @@ as the date and time fields of a Reminder are very important.</p>
 <div class="paragraph">
 <p>As shown from the sequence diagram above (Refer to Figure 33), the method <code>handleChangeThemeEvent()</code> in <code>MainWindow</code> will handle the event and change the theme of the address book through the method <code>changeTheme()</code> accordingly.</p>
 </div>
+<h4 id="design-considerations-7" class="discrete">Design Considerations</h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Implementation of <code>ThemeCommand</code><br>
+<strong>Alternative 1 (current choice):</strong> Utilize <code>ChangeEventRequestEvent</code> that allow <code>MainWindow</code> to handle the event to change the theme.<br>
+<strong>Pros:</strong> <code>ThemeCommand</code> can be more efficient since it does not directly change the theme.<br>
+<strong>Cons:</strong> New developers may find it difficult to understand the event-driven nature of the application.<br>
+<strong>Alternative 2:</strong> Allow <code>ThemeCommand</code> to set the theme directly by allowing it access to <code>MainWindow</code>.<br>
+<strong>Pros:</strong> Easier for new developers to understand.<br>
+<strong>Cons:</strong> Violates the architectural style as <code>ThemeCommand</code> belongs to the <code>Logic</code> component that should not be able to access the <code>UI</code> component where <code>MainWindow</code> belongs to.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="logging"><a class="link" href="#logging">4.13. Logging</a></h3>
@@ -1915,6 +1935,9 @@ as the date and time fields of a Reminder are very important.</p>
 </div>
 <div class="paragraph">
 <p><strong>Logging Levels</strong></p>
+</div>
+<div class="paragraph">
+<p>The list below shows all the available logging levels used:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2080,7 +2103,7 @@ See <a href="UsingGradle.html">UsingGradle.adoc</a> for more info on how to run 
 <div class="ulist">
 <ul>
 <li>
-<p><strong>GUI Tests</strong> - These are tests involving the GUI. They include,</p>
+<p><strong>GUI Tests</strong> - These are tests involving the GUI. They include</p>
 <div class="ulist">
 <ul>
 <li>
@@ -2093,7 +2116,7 @@ See <a href="UsingGradle.html">UsingGradle.adoc</a> for more info on how to run 
 </div>
 </li>
 <li>
-<p><strong>Non-GUI Tests</strong> - These are tests not involving the GUI. They include,</p>
+<p><strong>Non-GUI Tests</strong> - These are tests not involving the GUI. They include</p>
 <div class="ulist">
 <ul>
 <li>
@@ -2105,7 +2128,7 @@ e.g. <code>seedu.address.commons.StringUtilTest</code></p>
 e.g. <code>seedu.address.storage.StorageManagerTest</code></p>
 </li>
 <li>
-<p>Hybrids of unit and integration tests. These test are checking multiple code units as well as how the are connected together.<br>
+<p>Hybrids of unit and integration tests. These tests are checking multiple code units as well as how they are connected together.<br>
 e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 </li>
 </ul>
@@ -2150,7 +2173,7 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="sect2">
 <h3 id="making-a-release"><a class="link" href="#making-a-release">7.3. Making a Release</a></h3>
 <div class="paragraph">
-<p>Here are the steps to create a new release.</p>
+<p>Here are the steps to create a new release:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -2172,9 +2195,17 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="sect2">
 <h3 id="managing-dependencies"><a class="link" href="#managing-dependencies">7.4. Managing Dependencies</a></h3>
 <div class="paragraph">
-<p>A project often depends on third-party libraries. For example, Address Book depends on the <a href="http://wiki.fasterxml.com/JacksonHome">Jackson library</a> for XML parsing. Managing these <em>dependencies</em> can be automated using Gradle. For example, Gradle can download the dependencies automatically, which is better than these alternatives.<br>
-a. Include those libraries in the repo (this bloats the repo size).<br>
-b. Require developers to download those libraries manually (this creates extra work for developers).</p>
+<p>A project often depends on third-party libraries. For example, iContacts depends on the <a href="http://wiki.fasterxml.com/JacksonHome">Jackson library</a> for XML parsing. Managing these <em>dependencies</em> can be automated using Gradle. For example, Gradle can download the dependencies automatically, which is better than these alternatives:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Include those libraries in the repo (this bloats the repo size).</p>
+</li>
+<li>
+<p>Require developers to download those libraries manually (this creates extra work for developers).</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -3717,7 +3748,7 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-12 03:34:37 +00:00
+Last updated 2017-11-12 05:23:55 +00:00
 </div>
 </div>
 </body>

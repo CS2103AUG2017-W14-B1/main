@@ -253,6 +253,16 @@ Returns any person having the name <code>John</code> and with the tag <code>frie
 <div class="paragraph">
 <p>For the <code>FilterCommand</code> to work properly, either the <code>nameKeywords</code> or the <code>tagKeywords</code> must be non-empty.</p>
 </div>
+<h4 id="design-considerations" class="discrete">Design Considerations</h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Command with different search logic<br>
+<strong>Alternative 1 (current choice):</strong> Create a separate command to search for contacts that match all keywords.<br>
+<strong>Pros:</strong> Implementation can be easy as the logic is similar to the <code>FindCommand</code>.<br>
+<strong>Cons:</strong> May not make sense to have separate commands to search for contacts.<br>
+<strong>Alternative 2:</strong> Modify the <code>FindCommand</code> to allow users the option to search contacts that either match any keywords or match all keywords.<br>
+<strong>Pros:</strong> Lesser command for the users to remember when searching for contacts.<br>
+<strong>Cons:</strong> Implementation can be more complicated as there is a need to address both OR search and AND search on the same command.</p>
+</div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
 </div>
@@ -354,7 +364,7 @@ Changes the theme to <code>day</code> (Refer to Figure 11).</p>
 <p><em>Figure 32 : Sequence diagram for the first part of the theme-changing mechanism</em></p>
 </div>
 <div class="paragraph">
-<p>As shown from the sequence diagram above (Refer to Figure 32), after the user entered the command <code>theme sky</code>, a new object <code>ThemeCommand</code> will be created. The <code>LogicManager</code> will then execute <code>ThemeCommand</code>, and the event <code>ChangeThemeRequestEvent</code> will be posted by <code>EventsCenter</code>. The code snippet below shows the <code>execute()</code> method of <code>ThemeCommand</code>:</p>
+<p>As shown from the sequence diagram above (Refer to Figure 32), after the user entered the command <code>theme day</code>, a new object <code>ThemeCommand</code> will be created. The <code>LogicManager</code> will then execute <code>ThemeCommand</code>, and the event <code>ChangeThemeRequestEvent</code> will be posted by <code>EventsCenter</code>. The code snippet below shows the <code>execute()</code> method of <code>ThemeCommand</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -377,6 +387,16 @@ Changes the theme to <code>day</code> (Refer to Figure 11).</p>
 </div>
 <div class="paragraph">
 <p>As shown from the sequence diagram above (Refer to Figure 33), the method <code>handleChangeThemeEvent()</code> in <code>MainWindow</code> will handle the event and change the theme of the address book through the method <code>changeTheme()</code> accordingly.</p>
+</div>
+<h4 id="design-considerations-2" class="discrete">Design Considerations</h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Implementation of <code>ThemeCommand</code><br>
+<strong>Alternative 1 (current choice):</strong> Utilize <code>ChangeEventRequestEvent</code> that allow <code>MainWindow</code> to handle the event to change the theme.<br>
+<strong>Pros:</strong> <code>ThemeCommand</code> can be more efficient since it does not directly change the theme.<br>
+<strong>Cons:</strong> New developers may find it difficult to understand the event-driven nature of the application.<br>
+<strong>Alternative 2:</strong> Allow <code>ThemeCommand</code> to set the theme directly by allowing it access to <code>MainWindow</code>.<br>
+<strong>Pros:</strong> Easier for new developers to understand.<br>
+<strong>Cons:</strong> Violates the architectural style as <code>ThemeCommand</code> belongs to the <code>Logic</code> component that should not be able to access the <code>UI</code> component where <code>MainWindow</code> belongs to.</p>
 </div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
@@ -453,7 +473,7 @@ Changes the theme to <code>day</code> (Refer to Figure 11).</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-12 03:34:37 +00:00
+Last updated 2017-11-12 05:23:55 +00:00
 </div>
 </div>
 </body>
