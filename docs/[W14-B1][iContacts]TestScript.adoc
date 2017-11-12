@@ -262,7 +262,7 @@ A new reminder would be added to the reminder list.
 
 . `addreminder rd/Unique Reminder d/01-02-2017 ti/08:00` +
 *As the reminder is exactly the same reminder as above, there will be an issue of duplicate reminders.* +
-Expected result: This reminder already exists!
+Expected result: This reminder already exists in iContacts.
 
 . `addreminder rd/ d/12/12/2000 ti/09:00` +
 Expected result: +
@@ -357,13 +357,14 @@ Cases:
 Expected result: +
 Edited Reminder: New reminder 1 +
 01-01-2017 +
-08:00
+08:00.
 
 . `editreminder 0 rd/New reminder 2 d/02/02/2017 ti/10:00` +
 Expected result: +
 Invalid command format! +
 editreminder: Edits the details of the reminder identified by the index number. Existing values will be overwritten by the input values. +
-Parameters: INDEX (must be a positive integer) [rd/REMINDER (cannot be empty)][d/DATE][ti/TIME] +
+Parameters: INDEX (must be a positive integer) [rd/REMINDER][d/DATE][ti/TIME] +
+Additionally, if REMINDER is edited, the new value must contain at least one character. +
 Example: editreminder 1 rd/Changed reminder
 
 . `editreminder 10 rd/New reminder 3 d/03/03/2017 ti/11:00` +
