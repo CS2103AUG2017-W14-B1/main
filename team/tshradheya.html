@@ -19,8 +19,7 @@
 <h2 id="project-icontacts"><a class="link" href="#project-icontacts">Project: iContacts</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>iContacts is an address book application with target audience as university students for managing contacts and other aspects of their university life in an efficient manner. iContacts is an Command Line Interface(CLI) application where most commands are executed by typing. Through this application, a student can manage his contacts by saving various details like their Display Picture, Birthday, Address and lot more. The user can also add reminders to keep track of deadlines and view location and send emails to his contacts.
-The purpose of this portfolio is to convey to the reader on how to use the various features, the style in which the features are implemented and their architectural design.</p>
+<p>iContacts is an address book application that helps you manage your contacts easily. The application has a GUI but most of the interactions happen using a CLI (Command Line Interface). The application was made by keeping the target audience as university students and its features help a student effectively manage their university life. You can use iContacts to add, edit and delete contacts. It can store various details about the contact which can help students in emailing, finding their location and identifying them by their display picture. It has an easy-to-use search function to find specific contacts quickly. It also provides reminders for upcoming birthdays of contacts within the application, and allows you to create your own reminders for upcoming events.</p>
 </div>
 <div class="paragraph">
 <p><strong>Code contributed</strong>: [<a href="https://github.com/CS2103AUG2017-W14-B1/main/blob/master/collated/main/tshradheya.md">Functional code</a>] [<a href="https://github.com/CS2103AUG2017-W14-B1/main/blob/master/collated/test/tshradheya.md">Test code</a>]</p>
@@ -30,19 +29,23 @@ The purpose of this portfolio is to convey to the reader on how to use the vario
 <div class="sect3">
 <h4 id="external-behavior"><a class="link" href="#external-behavior">External behavior</a></h4>
 <hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
 </div>
-<div class="sect3">
-<h4 id="adding-display-picture-for-each-person-code-displaypic-code"><a class="link" href="#adding-display-picture-for-each-person-code-displaypic-code">Adding Display picture for each person : <code>displaypic</code></a></h4>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-display-picture-for-each-person-code-displaypic-code"><a class="link" href="#adding-display-picture-for-each-person-code-displaypic-code">Adding Display picture for each person : <code>displaypic</code></a></h3>
 <div class="paragraph">
 <p>Adds a Display Picture to an existing person in the address book.<br>
-Format: <code>displaypic INDEX PATHOFIMAGE</code></p>
+Format: <code>displaypic INDEX [PATHOFIMAGE]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>The picture at the path address will be added to the person at the specified <code>INDEX</code> of currently shown list</p>
+<p>The picture at the path address will be added to the person at the specified <code>INDEX</code> of current list</p>
 </li>
 <li>
 <p>The person can have either 0 or 1 display picture</p>
@@ -54,10 +57,10 @@ Format: <code>displaypic INDEX PATHOFIMAGE</code></p>
 <p>Picture can be removed by leaving the PATHOFIMAGE empty</p>
 </li>
 <li>
-<p>The picture is also deleted when the person is deleted using the <code>delete</code> command</p>
+<p>The image should be on the local computer and the PATHOFIMAGE must be valid although it can bedeleted from local device after command is executed</p>
 </li>
 <li>
-<p>The image should be on the local computer and the <code>PATHOFIMAGE</code> specified must be valid</p>
+<p>If no image is given then the default picture will be shown</p>
 </li>
 </ul>
 </div>
@@ -69,12 +72,12 @@ Format: <code>displaypic INDEX PATHOFIMAGE</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>displaypic 1 C:\Users\Admin\Desktop\Sem 3 Mods\CS2103T\mypic.jpg</code>
-Adds the <code>mypic.jpg</code> at the given path to the person at <code>INDEX</code> 1 as his display picture(See figure 1)</p>
+<p><code>displaypic 1 C:\Users\Admin\Desktop\Sem 3 Mods\CS2103T\mypic.jpg</code><br>
+Adds the <code>mypic.jpg</code> at the given path to the person at <code>INDEX</code> 1 as his display picture (Refer to Figure 8)</p>
 </li>
 <li>
-<p><code>displaypic 3 `
-Removes the existing display picture for the person at `INDEX</code> 3</p>
+<p><code>displaypic 2</code><br>
+Removes the existing display picture for the person at <code>INDEX</code> 2</p>
 </li>
 </ul>
 </div>
@@ -84,50 +87,38 @@ Removes the existing display picture for the person at `INDEX</code> 3</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 1 : Display Picture for contacts</em></p>
+<p><em>Figure 8: Adds a picture to the first person.</em></p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
 </div>
 <hr>
-</div>
 <div class="sect3">
 <h4 id="justification"><a class="link" href="#justification">Justification</a></h4>
 <div class="paragraph">
-<p>The command is implemented in this manner because of the following:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>By specifying the index, there is no ambiguity as to who should be assigned the display picture.</p>
-</li>
-<li>
-<p>The <code>PATHOFIMAGE</code> must be an absolute path on the local device to make sure the image is referenced.</p>
-</li>
-<li>
-<p>The image is stored in directory with a unique name to avoid conflict. Hashcode of user&#8217;s email address is used to maintain uniqueness.</p>
-</li>
-<li>
-<p>The task is done using CLI to follow project requirements.</p>
-</li>
-<li>
-<p>The image is stored in jpg format to ensure maximum compatibility.</p>
-</li>
-</ul>
+<p>The Display picture command is used to add a personal factor to the iContacts application. By adding a personalised display picture for each contact, the user can identify their various contacts uniquely especially when you have multiple contacts having the same name.
+The Display picture also adds a visual appeal to the product giving a better User Interface (UI) design and make the product more appealing to the university students.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
 <hr>
 <div class="paragraph">
-<p>The Display Picture mechanism is done by using ImageView in JavaFX which is a part of the UI Component.</p>
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="display-picture-mechanism"><a class="link" href="#display-picture-mechanism">Display Picture mechanism</a></h3>
 <div class="paragraph">
-<p>The <code>displaypic</code> command adds/updates the display picture for the contact specified. The image is then displayed as ImageView in PersonCard.
+<p>The <code>displaypic</code> command adds/updates the display picture for the contact specified. The image is then displayed as <code>ImageView</code> in <code>PersonCard</code> and <code>DetailsPanel</code>.
 The arguments of the command are <code>INDEX</code> and <code>PATHOFIMAGE</code>. The image needs to be present in the local device of the user.</p>
 </div>
 <div class="paragraph">
-<p>This command works by retrieving the image using <code>BufferedImage</code>. The command extracts the image from the specified absolute path of image e.g. <code>C:\Users\Admin\Desktop\My files\pic.jpg</code>.</p>
+<p>The Display Picture command is implemented in a way so that the image is read from the user specified path and then stored in iContacts directory so that the image is never lost.</p>
 </div>
 <div class="paragraph">
-<p>By executing the given code below, a new folder named 'pictures/' is created if it is missing. The folder is used to store the images</p>
+<p>By executing the given code below, a new folder named 'pictures/' is created if it is missing. The folder is used to store the images.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -141,8 +132,7 @@ The arguments of the command are <code>INDEX</code> and <code>PATHOFIMAGE</code>
 </div>
 </div>
 <div class="paragraph">
-<p>It then stores the image in the folder called <code>/pictures/</code> present in the same directory as <code>.jar</code>  by giving it a unique hashcode based on user&#8217;s email address.
-The reading and writing of images is done using the <code>ImageIO</code> class.</p>
+<p>Since the command has function of reading and writing of image, the Storage architectural style was used and extended for Display pictures.</p>
 </div>
 <div class="paragraph">
 <p>The following UML diagram shows the Storage Architecture for reading and writing of image file:</p>
@@ -153,7 +143,17 @@ The reading and writing of images is done using the <code>ImageIO</code> class.<
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 2 : UML Diagram for the extended Storage Diagram.</em></p>
+<p><em>Figure 2 : UML Diagram for the extended Storage Component.</em></p>
+</div>
+<div class="paragraph">
+<p>This command works by retrieving the image using <code>BufferedImage</code>. The command extracts the image from the specified absolute path of image e.g. <code>C:\Users\Admin\Desktop\My files\pic.jpg</code></p>
+</div>
+<div class="paragraph">
+<p>It then stores the image in the folder called <code>/pictures/</code> present in the same directory as <code>.jar</code>  by giving it a unique hashcode based on the user&#8217;s email address.
+The reading and writing of images is done using the <code>ImageIO</code> class.</p>
+</div>
+<div class="paragraph">
+<p>An event handler is used to notify the <code>UI</code> and <code>Storage</code> component of the changes made in image and it&#8217;s name.</p>
 </div>
 <div class="paragraph">
 <p>The sequence diagram for adding a display picture is shown below:<br></p>
@@ -183,7 +183,8 @@ The reading and writing of images is done using the <code>ImageIO</code> class.<
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>Circle</code> shape is used for better UI/UX design and is filled with the <code>ImagePatten</code>. The wireframe used to display the image for each person is shown below:</p>
+<p>The Display Picture mechanism is done by using <code>ImageView</code>/<code>ImagePattern</code> in JavaFX which is a part of the UI Component.
+The <code>Circle</code> shape is used for better UI/UX design and is filled with the <code>ImagePatten</code>. The wireframe used to display the image for each person is shown below:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -210,42 +211,77 @@ The reading and writing of images is done using the <code>ImageIO</code> class.<
 }</code></pre>
 </div>
 </div>
-<div class="sect4">
-<h5 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h5>
+<div class="sect3">
+<h4 id="reason-for-this-type-of-implementation"><a class="link" href="#reason-for-this-type-of-implementation">Reason for this type of implementation</a></h4>
+<div class="paragraph">
+<p>The command is implemented in this manner because of the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>By specifying the index, there is no ambiguity as to who should be assigned the display picture.</p>
+</li>
+<li>
+<p>The <code>PATHOFIMAGE</code> must be an absolute path on the local device to make sure the image is referenced.</p>
+</li>
+<li>
+<p>The image is stored in directory with a unique name to avoid conflict. Hashcode of user&#8217;s email address is used to maintain uniqueness.</p>
+</li>
+<li>
+<p>The task is done using CLI to follow project requirements.</p>
+</li>
+<li>
+<p>The image is stored in png format to ensure maximum compatibility.</p>
+</li>
+<li>
+<p>In case of image corruption/deletion, care is taken to avoid hanging of UI and display the default image. This is done by checking <code>file.exists()</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> At what stage should the image be read and stored<br>
 <strong>Alternative 1 (current choice):</strong> Make proper Storage Architecture for reading and writing of Image  <br>
-<strong>Pros:</strong> Follows existing Architectural Design and Software Engineering Principles like OCP <br>
-<strong>Cons:</strong> Takes time and tougher to implement<br>
+<strong>Pros:</strong> It will follow the existing Architectural Design and Software Engineering Principles like OCP. <br>
+<strong>Cons:</strong> It will take more time and will be tougher to implement.<br>
 <strong>Alternative 2:</strong> Invoke 'ReadAndStoreImage' from Logic component.<br>
-<strong>Pros:</strong> Easier for new developers to understand the sequence diagram and maintains event-driven nature.<br>
-<strong>Cons:</strong> Bad Architectural design and doesn&#8217;t follow the pre existing pattern also defies Law of Demeter</p>
+<strong>Pros:</strong> : It will make it easier for new developers to understand the sequence diagram and maintains event-driven nature.<br>
+<strong>Cons:</strong> It will cause bad architectural design and won’t follow the pre-existing pattern and moreover will defy the Law of Demeter.</p>
 </div>
 <hr>
 <div class="paragraph">
 <p><strong>Aspect:</strong> How should the image be taken from user<br>
 <strong>Alternative 1 (current choice):</strong> User has to enter the absolute path of image by checking his local device.  <br>
-<strong>Pros:</strong> Complete CLI process <br>
-<strong>Cons:</strong> Might be problematic for user to copy and paste and might result in error of path giving fail command.<br>
+<strong>Pros:</strong> It will be a complete CLI process. <br>
+<strong>Cons:</strong> It might be problematic for user to copy and paste and might result in error of path giving fail command.<br>
 <strong>Alternative 2:</strong> Pop up a <code>FileChooser</code> after command is entered.<br>
-<strong>Pros:</strong> Easier for users to mention the correct image quickly.<br>
-<strong>Cons:</strong> Will no longer be a CLI process completely.</p>
+<strong>Pros:</strong> It will be easier for users to mention the correct image quickly.<br>
+<strong>Cons:</strong> It will no longer be a complete CLI process.</p>
 </div>
 <hr>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-location-command"><a class="link" href="#enhancement-added-location-command">Enhancement Added: Location Command</a></h3>
+<div class="sect3">
+<h4 id="external-behavior-2"><a class="link" href="#external-behavior-2">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="enhancement-added-display-location-of-an-contact"><a class="link" href="#enhancement-added-display-location-of-an-contact">Enhancement Added: Display Location of an contact</a></h3>
-<div class="sect3">
-<h4 id="external-behavior-2"><a class="link" href="#external-behavior-2">External behavior</a></h4>
-<hr>
-</div>
-<div class="sect3">
-<h4 id="displaying-location-to-a-contact-s-address-code-location-code"><a class="link" href="#displaying-location-to-a-contact-s-address-code-location-code">Displaying location to a contact&#8217;s address: <code>location</code></a></h4>
+<h3 id="displaying-location-to-a-contact-s-address-code-location-code"><a class="link" href="#displaying-location-to-a-contact-s-address-code-location-code">Displaying location to a contact&#8217;s address: <code>location</code></a></h3>
 <div class="paragraph">
-<p>Uses Google Maps to show location of the address of the selected <code>INDEX</code>
-Format: location INDEX</p>
+<p>Uses Google Maps to show location of the address of the selected <code>INDEX</code><br>
+Format: <code>location INDEX</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -260,6 +296,9 @@ Format: location INDEX</p>
 <li>
 <p>The command is only valid for INDEX which have an valid address</p>
 </li>
+<li>
+<p>The application let&#8217;s Google Maps handle the case when invalid address is specified for a person</p>
+</li>
 </ul>
 </div>
 </div>
@@ -271,28 +310,41 @@ Format: location INDEX</p>
 <ul>
 <li>
 <p><code>location 2</code>
-Returns location of the address of person at <code>INDEX</code> 2</p>
+Returns location of the address of person at <code>INDEX</code> 2 (Refer to Figure 9)</p>
 </li>
 </ul>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/directon.PNG" alt="directon" width="790">
+<img src="../images/location.PNG" alt="location" width="790">
 </div>
+</div>
+<div class="paragraph">
+<p><em>Figure 9: Displays the location of the second person.</em></p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
 </div>
 <hr>
-</div>
 <div class="sect3">
 <h4 id="justification-2"><a class="link" href="#justification-2">Justification</a></h4>
 <div class="paragraph">
-<p>To be filled in according to CS2101</p>
+<p>Google Maps are often used by students to know the exact location of the destination. The command makes it easier for users to find location of a contact’s address and find directions to their place.
+The exact location can be obtained by just typing the command, which is a lot more user friendly than having to search for the location in Google Maps by typing the entire address.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="implementation-2"><a class="link" href="#implementation-2">Implementation</a></h4>
 <hr>
 <div class="paragraph">
-<p>The location command is an event-driven mechanism. The below diagram shows sequence diagram for it.</p>
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="location-mechanism"><a class="link" href="#location-mechanism">Location mechanism</a></h3>
+<div class="paragraph">
+<p>The location command is implemented in the form of an event-driven mechanism . The diagram below (Refer to Figure 21) shows the sequence diagram for it.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -303,7 +355,8 @@ Returns location of the address of person at <code>INDEX</code> 2</p>
 <p><em>Figure 21 : Sequence diagram for the Location Command.</em></p>
 </div>
 <div class="paragraph">
-<p>The execution of command raises an event <code>ShowLocationEvent</code>. This causes the <code>BrowserAndReminderPanel</code> to switch to Node <code>Browser</code> irrespective of current state of the application. The activity diagram for such a case is shown below:</p>
+<p>The execution of command raises an event <code>ShowLocationEvent</code>. This causes the <code>BrowserAndReminderPanel</code> to switch to Node <code>Browser</code> irrespective of current state of the application.
+The activity diagram for such a case is shown below (Refer to Figure 22):</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -314,21 +367,21 @@ Returns location of the address of person at <code>INDEX</code> 2</p>
 <p><em>Figure 22 : Sequence diagram for the Location Command.</em></p>
 </div>
 <div class="paragraph">
-<p>Following is the code written to ensure the GUI set up for the command.</p>
+<p>Following is the code written to ensure the GUI set up for the command:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span class="directive">private</span> <span class="type">void</span> setUpToShowLocation() {
     <span class="keyword">if</span> (currentlyInFront == Node.REMINDERS) {
+        setUpToShowBrowser();
         browser.toFront();
         currentlyInFront = Node.BROWSER;
-        raise(<span class="keyword">new</span> TurnLabelsOffEvent());
     }
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The URL for denoting the specified person&#8217;s address in Google Maps is set up through the following code</p>
+<p>The URL for denoting the specified person&#8217;s address in Google Maps is set up through the following code:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -347,32 +400,36 @@ Returns location of the address of person at <code>INDEX</code> 2</p>
 }</code></pre>
 </div>
 </div>
-</div>
-<div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
+<h4 id="design-consideration" class="discrete">Design Consideration</h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> What to use to show the location<br>
 <strong>Alternative 1 (current choice):</strong> Show using google maps url in BrowserPanel <br>
-<strong>Pros:</strong> We will be able to get the location easily with accuracy<br>
-<strong>Cons:</strong> Limited functionality of URL<br>
+<strong>Pros:</strong> We will be able to get the location easily with accuracy.<br>
+<strong>Cons:</strong> It could cause problem due to limited functionality of URL.<br>
 <strong>Alternative 2:</strong> Google Maps API<br>
-<strong>Pros:</strong>  Allows more functionality<br>
-<strong>Cons:</strong> Uses more resources for the exact same feature and doesn&#8217;t utilise pre existing browser properly</p>
+<strong>Pros:</strong>  It will provide more functionality.<br>
+<strong>Cons:</strong> It could cause more resources to be used for the exact same feature and wouldn’t utilise pre-existing browser properly.</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
 </div>
 <hr>
 </div>
-</div>
 <div class="sect2">
-<h3 id="enhancement-added-email-to-a-group-of-contacts"><a class="link" href="#enhancement-added-email-to-a-group-of-contacts">Enhancement Added: Email to a group of contacts</a></h3>
+<h3 id="enhancement-added-email-command"><a class="link" href="#enhancement-added-email-command">Enhancement Added: Email Command</a></h3>
 <div class="sect3">
 <h4 id="external-behavior-3"><a class="link" href="#external-behavior-3">External behavior</a></h4>
 <hr>
-</div>
-<div class="sect3">
-<h4 id="email-to-a-group-of-people-having-a-particular-tag-code-email-code-v1-3"><a class="link" href="#email-to-a-group-of-people-having-a-particular-tag-code-email-code-v1-3">Email to a group of people having a particular tag: <code>email</code> [V1.3]</a></h4>
 <div class="paragraph">
-<p>Opens up the link to send email to all people of having a particular tag
-Format: email s/SERVICE to/KEYWORD sub/SUBJECT b/BODY</p>
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="emailing-to-a-group-of-people-having-a-particular-tag-code-email-code"><a class="link" href="#emailing-to-a-group-of-people-having-a-particular-tag-code-email-code">Emailing to a group of people having a particular tag: <code>email</code></a></h3>
+<div class="paragraph">
+<p>Opens up the link to send email to all people of having a particular tag. A drafter email with subject, body and recipients is opened in default browser<br>
+Format: <code>email s/SERVICE to/KEYWORD [sub/SUBJECT] [b/BODY]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -385,7 +442,7 @@ Format: email s/SERVICE to/KEYWORD sub/SUBJECT b/BODY</p>
 <p>The <code>SERVICE</code> supported are only <code>gmail</code> and <code>outlook</code></p>
 </li>
 <li>
-<p>The <code>SUBJECT</code> and <code>BODY</code> prefix are optional and can be not mentioned</p>
+<p>The <code>SUBJECT</code> and <code>BODY</code> prefix are optional and can be skipped</p>
 </li>
 <li>
 <p>The email drafting will open up in the default browser of your local device</p>
@@ -408,22 +465,43 @@ Allows to send email after drafting message to everyone with the tag `cs2103</co
 </li>
 </ul>
 </div>
-<hr>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
 </div>
+<hr>
 <div class="sect3">
 <h4 id="justification-3"><a class="link" href="#justification-3">Justification</a></h4>
 <div class="paragraph">
-<p>To be filled in according to CS2101</p>
+<p>Email is highly used by university students. Usually the student has to go to the mailing website, individually type in the email id to all those people whom the user wants to email.
+This has been made easier through the <code>email</code> command. A user can simply email all contacts with a particular tag for e.g. <code>cs2103teammates</code> and get the drafted email with Subject and Body in the default browser.</p>
+</div>
+<div class="paragraph">
+<p>This saves the user from all the typing and copy pasting of email id&#8217;s from various places just to draft a simple email.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="implementation-3"><a class="link" href="#implementation-3">Implementation</a></h4>
 <hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
 </div>
-<div class="sect3">
-<h4 id="emailing-mechanism"><a class="link" href="#emailing-mechanism">Emailing mechanism</a></h4>
+</div>
+</div>
+<div class="sect2">
+<h3 id="email-mechanism"><a class="link" href="#email-mechanism">Email mechanism</a></h3>
 <div class="paragraph">
 <p>The email command lets the user compose an email in default browser with filled in data like recipients, subject and body.</p>
+</div>
+<div class="paragraph">
+<p>The email command has various fields to denote the Recipients, Subject, Body and Service. Than relation between them can be shown through the UML diagram below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/emailUML.PNG" alt="emailUML" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 23 : Sequence diagram for the Email Command.</em></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -450,7 +528,8 @@ The only two services offered are <code>gmail</code> and <code>outlook</code> as
 </table>
 </div>
 <div class="paragraph">
-<p>The email command through an event driven mechanism. The below diagram shows sequence diagram for it.</p>
+<p>The email command happens through an event driven mechanism. The below diagram (Refer to Figure 23) shows sequence diagram for it.
+The execution of command raises an event <code>SendingEmailEvent</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -461,10 +540,10 @@ The only two services offered are <code>gmail</code> and <code>outlook</code> as
 <p><em>Figure 23 : Sequence diagram for the Email Command.</em></p>
 </div>
 <div class="paragraph">
-<p>The given command is parsed to know the <code>Service</code> , <code>tag</code> to which email has to be sent, <code>Subject</code> and <code>Body</code>.</p>
+<p>The command is parsed to know the <code>Service</code> , <code>Tag</code> to which email has to be sent, <code>Subject</code> and <code>Body</code>.</p>
 </div>
 <div class="paragraph">
-<p>The parsing takes place in the following manner:</p>
+<p>The parsing takes place in the following manner (Refer to Figure 24):</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -473,9 +552,6 @@ The only two services offered are <code>gmail</code> and <code>outlook</code> as
 </div>
 <div class="paragraph">
 <p><em>Figure 24 : Sequence diagram for parsing the Email Command.</em></p>
-</div>
-<div class="paragraph">
-<p>The execution of command raises an event <code>SendingEmailEvent</code>.</p>
 </div>
 <div class="paragraph">
 <p>The URL for composing the mail set up through the following code</p>
@@ -491,9 +567,7 @@ The only two services offered are <code>gmail</code> and <code>outlook</code> as
 Desktop.getDesktop().browse(<span class="keyword">new</span> <span class="predefined-type">URI</span>(<span class="predefined-type">String</span>.format(GMAIL_EMAIL_URL, recipients, subject, body)));</code></pre>
 </div>
 </div>
-</div>
-<div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">Design Considerations</a></h4>
+<h4 id="design-consideration-2" class="discrete">Design Consideration</h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Where to compose the mail<br>
 <strong>Alternative 1 (current choice):</strong> Opens the default browser of Desktop <br>
@@ -503,13 +577,591 @@ Desktop.getDesktop().browse(<span class="keyword">new</span> <span class="predef
 <strong>Pros:</strong> No dependency on other apps<br>
 <strong>Cons:</strong> Does not auto fill in the text due to older version of browser</p>
 </div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-frequently-visited-contacts"><a class="link" href="#enhancement-added-frequently-visited-contacts">Enhancement Added: Frequently Visited Contacts</a></h3>
+<div class="sect3">
+<h4 id="external-behavior-4"><a class="link" href="#external-behavior-4">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="frequently-viewed-contacts"><a class="link" href="#frequently-viewed-contacts">Frequently Viewed Contacts</a></h3>
+<div class="paragraph">
+<p>Shows the user a list of top five contacts which the user has viewed the most<br></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The top five users are decided based on these commands : <code>select</code>, <code>viewtag</code>, <code>email</code>, <code>location</code>.</p>
+</li>
+<li>
+<p>The more the user is being searched or viewed, his Popularity Counter increases making him move on the top of the Favourites</p>
+</li>
+<li>
+<p>The list keeps automatically updating after each of the four mentioned commands are executed.</p>
+</li>
+<li>
+<p>Any new contacts will have a Popularity Counter of 0 initially.</p>
+</li>
+<li>
+<p>If two people have same popularity then the person who was added earlier is shown before in the Top 5 list</p>
+</li>
+<li>
+<p>The following commands increase the popularity counter of the person viewed/searched:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>select</code></p>
+</li>
+<li>
+<p><code>details</code> [special case when counter increases by 2 as it is a stronger indicator of who could be a frequently visited contact]</p>
+</li>
+<li>
+<p><code>viewtag</code></p>
+</li>
+<li>
+<p><code>email</code></p>
+</li>
+<li>
+<p><code>location</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="paragraph">
+<p>If the contact <code>Roy Balakrishnan</code> is <code>selected</code> once, he will be moved to the top of the list as his popularity counter is more than the rest of the contacts.
+This can be seen in the image below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/frequentlyVisited.PNG" alt="frequentlyVisited" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 7: <code>Roy Balakrishnan</code> is moved to the top of the list.</em></p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification-4"><a class="link" href="#justification-4">Justification</a></h4>
+<div class="paragraph">
+<p>Through the frequently viewed contacts list of top 5 popular contacts, the user can easily view their details by selecting them rather than having to type commands and search for them.</p>
+</div>
+<div class="paragraph">
+<p>It also provides a better user experience as the user can see the people he has frequenlty visited and are his favourites on top of the list.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-4"><a class="link" href="#implementation-4">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="frequently-visited-contacts-mechanism"><a class="link" href="#frequently-visited-contacts-mechanism">Frequently Visited Contacts mechanism</a></h3>
+<div class="paragraph">
+<p>This feature brings in a new UI element which is a list of maximum size 5 called <code>PopularContactList</code> and each list showing the name, popularity rank and display picture in a <code>PopularContactCard</code>.
+These way these UI elements are added is shown in the following diagram:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/umlfvc.PNG" alt="umlfvc" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure TBD : Class Digram of UI with Popular Contact Panel.</em></p>
+</div>
+<div class="paragraph">
+<p>The mechanism to show the top five most frequently visited contacts is facilitated by the <code>PopularityCounter</code> of each contact.
+For every new person added into the address book, he is assigned a popularity counter of <code>0</code>. The top five popular contacts are extracted by sorting the list based on the field <code>PopularityCounter</code> of each person. In case of same popularity counter, the person who was added before is given higher priority.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This feature is not implemented as a command.The list gets refreshed whenever the popularity counter is supposed to change.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The Frequently Visited Contacts mechanism is an event-driven mechanism. However, there is no explicit command to view the top five frequently visited contacts as they are always refreshed whenever there is an change in the address book. They are always displayed on the UI below the <code>CommandResult</code> panel. The
+The event to refresh the Popular Contacts List, <code>PopularContactChangedEvent</code> is triggered whenever any of the command that increases <code>PopularityCounter</code> is execcuted.</p>
+</div>
+<div class="paragraph">
+<p>The event triggers the following method:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">void</span> updatePopularContactList() {
+        refreshWithPopulatingAddressBook();
+        listOfPersonsForPopularContacts.sort((o1, o2) -&gt;
+                o2.getPopularityCounter().getCounter() - o1.getPopularityCounter().getCounter());
+
+        getOnlyTopFiveMaximum();
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Following are the commands which will increase the <code>PopularityCounter</code> by one for the contacts viewed/searched:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>viewtag</code></p>
+</li>
+<li>
+<p><code>select</code></p>
+</li>
+<li>
+<p><code>details</code> [special case when counter increases by 2 as it is a stronger indicator of who could be a frequently visited contact]</p>
+</li>
+<li>
+<p><code>location</code></p>
+</li>
+<li>
+<p><code>email</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>On execution of any of the following command, an extra event is raised which updates the popular contact list after updating the popularity counter of the contact.
+The sequence diagram for the extra event is shown below for <code>select</code> command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/selectFreuentlyVisited.PNG" alt="selectFreuentlyVisited" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure TBD : Sequence diagram for frequently visited mechanism for <code>select</code> command.</em></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Manual selection of person through a click also increases the popularity counter of that person. This is the same action as <code>details</code> command.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following method is used to increate the <code>popularityCounter</code> by one:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> ReadOnlyPerson increaseCounterByOne(ReadOnlyPerson person) {
+        person.getPopularityCounter().increasePopularityCounter();
+
+        <span class="keyword">return</span> <span class="keyword">new</span> Person(person.getName(), person.getPhone(), person.getEmail(), person.getAddress(),
+                person.getBirthday(), person.getNickname(), person.getDisplayPicture(), person.getPopularityCounter(),
+                person.getTags());
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Following is the sequence diagram which shows how the event is triggered and how the saving of updated address book takes place:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/frequentlyVisitedSD.PNG" alt="frequentlyVisitedSD" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure TBD : Sequence diagram for frequently visited mechanism.</em></p>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> How to implement the feature<br>
+<strong>Alternative 1 (current choice):</strong> Make the list get refreshed every time one of the command which changes popularity is executed  <br>
+<strong>Pros:</strong> Becomes a dynamic feature such that user can see favourite contacts at any time<br>
+<strong>Cons:</strong> Makes application slightly slower as more execution of code for those commands<br>
+<strong>Alternative 2:</strong> Execute command to refresh list of popular contacts<br>
+<strong>Pros:</strong> Reduces regular refresh of list<br>
+<strong>Cons:</strong> Will have to keep track of command history to see the list of commands executed before previous execution of favourites command</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
 <hr>
 </div>
 </div>
 <div class="sect2">
-<h3 id="enhancement-proposed-add-command-code-remark-code"><a class="link" href="#enhancement-proposed-add-command-code-remark-code">Enhancement Proposed: Add command <code>remark</code></a></h3>
+<h3 id="enhancement-added-details-panel"><a class="link" href="#enhancement-added-details-panel">Enhancement Added: Details Panel</a></h3>
+<div class="sect3">
+<h4 id="external-behavior-5"><a class="link" href="#external-behavior-5">External behavior</a></h4>
+<hr>
 <div class="paragraph">
-<p>{Explain similar to the Undo/Redo feature above.}</p>
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="viewing-details-of-a-contact-code-details-code"><a class="link" href="#viewing-details-of-a-contact-code-details-code">Viewing details of a contact: <code>details</code></a></h3>
+<div class="paragraph">
+<p>Shows the full contact information of a person in the address book.<br>
+Format: <code>details INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Shows the full contact information of the person at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the list of reminders. The index <strong>must be a positive integer</strong> 1, 2, 3&#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>details 1</code><br>
+Show the full contact information of the person at index 1 (Refer to Figure 6).</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/details.png" alt="details" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 6: The full contact information of the person at index 1.</em></p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification-5"><a class="link" href="#justification-5">Justification</a></h4>
+<div class="paragraph">
+<p>This command was made to improve the UI for better user experience. Now the user can only see important details in the person card and can use this command to view more details in better design.</p>
+</div>
+<div class="paragraph">
+<p>The <code>details</code> command also works by manual selection which gives more freedom to user when viewing details of a particular user.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-5"><a class="link" href="#implementation-5">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="details-panel-implementation"><a class="link" href="#details-panel-implementation">Details Panel Implementation</a></h3>
+<div class="paragraph">
+<p>The <code>detail</code> command shows more details of the contact like address, birthday, email in addition to the details shown in the <code>PersonCard</code> of <code>PersonListPanel</code></p>
+</div>
+<div class="paragraph">
+<p>The <code>DetailsPanel</code> is an Anchor Pane which is embedded inside <code>BrowserAndReminderPanel</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+At any point of time, only one of the three panels(Borwser, Reminder, Details) inside <code>BrowserAndReminderPanel</code> will have the visibility set as <code>true</code> and in front of the other two panels.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The UML diagram below represents the UI structure for the <code>BrowserAndReminderPanel</code>:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/umlDetails.png" alt="umlDetails" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure TBD : UML Diagram for Panel.</em></p>
+</div>
+<div class="paragraph">
+<p>The code to ensure only Details Panel is displayed on execution of command is shown below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">private</span> <span class="type">void</span> setUpToShowDetailsPanel() {
+        detailsPanel.setVisible(<span class="predefined-constant">true</span>);
+        remindersPanel.setVisible(<span class="predefined-constant">false</span>);
+        browser.setVisible(<span class="predefined-constant">false</span>);
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The details panel also gets displayed when user manually clicks on the <code>PersonCard</code>. This is made possible by making the <code>SelectionChangedEvent</code> raise the event to show the details panel.
+The <code>selectionModel()</code> of <code>PersonListView</code> is now linked to <code>details</code> command rather than <code>select</code> command.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>select</code> command now only scrolls to the INDEX specified whereas <code>details</code> command scrolls to and selects the person to show his details in the panel.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Following is the wireframe for the Details Panel:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/wireframeDetailsPanel.PNG" alt="wireframeDetailsPanel" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure TBD : Wireframe for Details Panel.</em></p>
+</div>
+<div class="paragraph">
+<p>Using the <code>FontAwesomeFx</code> library, an icon is set for each label to make the UI look appealing as seen in the UI above(Refer to figure TBD).</p>
+</div>
+<div class="paragraph">
+<p>The solution to showing the same colour for a tag in <code>DetailsPanel</code> and <code>PersonCard</code> was resolved by having a <strong>Singleton Class</strong> <code>TagColor</code>.</p>
+</div>
+<div class="paragraph">
+<p>The following code inside the class ensured that the class acted as an global class and since only one instance was created, it made the tag color&#8217;s constant for each tag.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="directive">static</span> TagColor getInstance() {
+        <span class="keyword">if</span> (tagColor == <span class="predefined-constant">null</span>) {
+            tagColor = <span class="keyword">new</span> TagColor();
+        }
+        <span class="keyword">return</span> tagColor;
+    }</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-consideration-3"><a class="link" href="#design-consideration-3">Design Consideration</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> How to improve UI<br>
+<strong>Alternative 1 (current choice):</strong> Show the extra details of contact after they are selected<br>
+Pros: Allows more contacts to be shown in the list as they information there is reduced<br>
+Cons: User needs to manually select the user to see more details of that person<br>
+<strong>Alternative 2:</strong> Show all detail of person in the <code>PersonCard</code><br>
+Pros: Reduces effort of selection of contact to see extra details<br>
+Cons: Looks very cluttered and has poor User Interface design</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-viewtag-command"><a class="link" href="#enhancement-added-viewtag-command">Enhancement Added: Viewtag  Command</a></h3>
+<div class="sect3">
+<h4 id="external-behavior-6"><a class="link" href="#external-behavior-6">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="finding-all-people-associated-with-a-particular-tag-code-viewtag-code"><a class="link" href="#finding-all-people-associated-with-a-particular-tag-code-viewtag-code">Finding all people associated with a particular Tag: <code>viewtag</code></a></h3>
+<div class="paragraph">
+<p>Finds all people who have the tag given in the keyword.<br>
+Format: <code>viewtag KEYWORD</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The search is case insensitive. e.g <code>friends</code> tag matches with <code>Friends</code></p>
+</li>
+<li>
+<p>There should only be exactly 1 keyword</p>
+</li>
+<li>
+<p>Only tags of people are searched</p>
+</li>
+<li>
+<p>The entire keyword should match with the tag</p>
+</li>
+<li>
+<p>Even if one of the many tags of a person exactly matches the keywords, the person will be listed. e.g <code>Betty</code> having <code>friends</code> and <code>classmate</code> will be matched with keyword <code>friend</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>viewtag cs2103</code><br>
+Returns all people who have the tag <code>cs2103</code> associated with them</p>
+</li>
+<li>
+<p><code>viewtag friends</code><br>
+Returns <code>Alex</code> and <code>Bernice1 as they are having the tag `friends</code> (Refer to Figure 10)</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/viewtag.PNG" alt="viewtag" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 10: Listing all contacts with the tag <code>friends</code>.</em></p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification-6"><a class="link" href="#justification-6">Justification</a></h4>
+<div class="paragraph">
+<p>Tags can be considered as groups by user. This feature is mainly implemented to enhance usage of other commands.<br>
+For e.g. in <code>export</code> command to export all contacts having a particular tag, user will have to use <code>viewtag cs2103team</code> and then use range as <code>all</code> for the <code>export</code> command than having to type the index of each of them.</p>
+</div>
+<div class="paragraph">
+<p>It only supports one keyword as <code>filter</code> command was made as an stronger search command for <code>find</code> and <code>viewtag</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-6"><a class="link" href="#implementation-6">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="view-tag-mechanism"><a class="link" href="#view-tag-mechanism">View tag mechanism</a></h3>
+<div class="paragraph">
+<p>The command is added into the logic following the given class diagram:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/umlLogic.PNG" alt="umlLogic" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure TBD : Class Diagram of Logic.</em></p>
+</div>
+<div class="paragraph">
+<p>The <code>viewtag</code> command works by setting predicate to the <code>Observable filteredlist</code>.</p>
+</div>
+<div class="paragraph">
+<p>Only one keyword is allowed for the command and it shows all people with thr given tag.</p>
+</div>
+<div class="paragraph">
+<p>The method <code>test(ReadOnlyPerson person)</code> iterates through the <code>tagKeywords</code> to find a match of every <code>person</code> from the address book.</p>
+</div>
+<div class="paragraph">
+<p>There is use of streams and lambda[Java 8 features] to make the code more readable as shown below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">boolean</span> test(ReadOnlyPerson person) {
+        <span class="predefined-type">Set</span>&lt;Tag&gt; tagsOfPerson = person.getTags();
+
+        <span class="keyword">return</span> tagsOfPerson.stream()
+                .anyMatch(tagMatches -&gt; tagMatches.getTagName().equalsIgnoreCase(keyword));
+
+    }</code></pre>
+</div>
+</div>
+<h4 id="design-consideration-4" class="discrete">Design Consideration</h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> How to filter the list<br>
+<strong>Alternative 1 (current choice):</strong> Use of Lambda and Stream <br>
+<strong>Pros:</strong>  Code is more readable<br>
+<strong>Cons:</strong> Sometimes takes more time to process than normal loops<br>
+<strong>Alternative 2:</strong> Loops and Conditions<br>
+<strong>Pros:</strong>  Known to be faster than Streams at times<br>
+<strong>Cons:</strong> Harder to avoid arrow headed violation of coding style.</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="enhancement-proposed-saving-data-on-server"><a class="link" href="#enhancement-proposed-saving-data-on-server">Enhancement Proposed: Saving Data on Server</a></h3>
+<div class="sect3">
+<h4 id="external-behaviour"><a class="link" href="#external-behaviour">External Behaviour</a></h4>
+<div class="paragraph">
+<p>This feature will make sure the data of contacts and reminders is stored in the servers online. The data files and images are stored in the cloud and cannot be directly changed by opening them on your device.</p>
+</div>
+<div class="paragraph">
+<p>This will be automatically done once the user registers in the application.
+The files are encrypted using the SHA algorithm to prevent it from being read by others. This ensures that your data is secure and there is no privacy law violation.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="justification-7"><a class="link" href="#justification-7">Justification</a></h4>
+<div class="paragraph">
+<p>This feature will make the product more personalised as the user will have to register to use this application.</p>
+</div>
+<div class="paragraph">
+<p>Moreover, the user can now access his data from any device as it is stored on cloud storage. The data cannot be directly manipulated since it is in clound and hence the application won&#8217;t crash as data will never be corrupted.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-7"><a class="link" href="#implementation-7">Implementation</a></h4>
+<div class="paragraph">
+<p>A login feature will be first implemented to identify user&#8217;s uniquely.</p>
+</div>
+<div class="paragraph">
+<p>Through the following use case diagram, signing up of user will allow data to be stored on cloud which can downloaded anytime for backup purposes.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/usecase.PNG" alt="usecase" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 1 : Use case Diagram.</em></p>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -517,13 +1169,43 @@ Desktop.getDesktop().browse(<span class="keyword">new</span> <span class="predef
 <div class="ulist">
 <ul>
 <li>
-<p>Managed all Issues and Milestone by managing the project and assigning work</p>
+<p>Managed all Issues and Milestone by managing the project and assigning work.</p>
 </li>
 <li>
-<p>Managed merging of all PR&#8217;s and handling of Merge Conflicts</p>
+<p>Wrote additional tests to increase coverage to 91%</p>
 </li>
 <li>
-<p>Wrote additional tests to increase coverage from 88% to 91%</p>
+<p>Took the role of Team Leader to make important decisions regarding development of product.</p>
+</li>
+<li>
+<p>Managed GitHub effectively to keep track of issues, merging Pull requests by resolving conflicts and keeping track of deadlines so that the weekly releases are made on time with a working product.</p>
+</li>
+<li>
+<p>Fixed various(5+) bugs in the product including some bugs which existed previously in the product <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/231"><code>Pull Request #231</code></a> <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/216"><code>Pull Request #216</code></a>.</p>
+</li>
+<li>
+<p>Added several Use Cases for features in Developed Guide <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/57"><code>Pull Request #57</code></a>.</p>
+</li>
+<li>
+<p>Improved User Interface design by adding Details Panel <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/197"><code>Pull Request #197</code></a>.</p>
+</li>
+<li>
+<p>Added Frequently Visited Contact List <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/167"><code>Pull Request #167</code></a>.</p>
+</li>
+<li>
+<p>Implemented Email Feature <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/140"><code>Pull Request #140</code></a>.</p>
+</li>
+<li>
+<p>Helped teammate fix bugs in his feature <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/236"><code>Pull Request #236</code></a>.</p>
+</li>
+<li>
+<p>Contributed in User Guide and Developer Guide to enhance its language <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/239"><code>Pull Request #239</code></a>.</p>
+</li>
+<li>
+<p>Helped several people on the forum with their technical difficulties.</p>
+</li>
+<li>
+<p>Found 6 bugs during acceptance testing <a href="https://github.com/CS2103AUG2017-T17-B4/main/issues?utf8=%E2%9C%93&amp;q=is%3Aissue%20author%3Atshradheya%20"><code>Issues Created</code></a></p>
 </li>
 </ul>
 </div>
@@ -531,17 +1213,23 @@ Desktop.getDesktop().browse(<span class="keyword">new</span> <span class="predef
 </div>
 </div>
 <div class="sect1">
-<h2 id="project-nusevents"><a class="link" href="#project-nusevents">Project: NUSEvents</a></h2>
+<h2 id="project-nusevents-android-application"><a class="link" href="#project-nusevents-android-application">Project: NUSEvents Android Application</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>{Optionally (not graded), you may include other projects in your portfolio.}</p>
+<p>Students coming into university want to experience an enriching and diverse campus life. One of the most integral parts of a campus life is the host of events taking place around the campus. We want to bring forth an application, called NUSEvents by means of which members of the NUS family will be able to view the various events going around the campus on a day to day basis. Now there will be no need to worry about searching websites, scrolling through emails and pages on Facebook to know what events are being organized by various faculties and clubs. This will be convenient for all students and members of the various faculties as it will enable them to indicate their interest in the events that they want to attend.</p>
+</div>
+<div class="paragraph">
+<p>Students will get easy access to the list of activities that will take place, thus making sure that they are notified of all important events which otherwise could have gone unnoticed. For a university like NUS, which is rated to have the best campus life, NUSEvents application will bring to you all that you need to know about the various happenings in NUS and improve the campus life experience of students. Hence it will ensure an enjoyable and fulfilling campus life for the members of the NUS family.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/NUSEvents/NusEvents"><code>Link to GitHub Repository</code></a></p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-12 17:05:30 +00:00
+Last updated 2017-11-12 17:21:30 +00:00
 </div>
 </div>
 </body>

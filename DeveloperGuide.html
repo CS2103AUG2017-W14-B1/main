@@ -52,11 +52,12 @@
 <li><a href="#email-mechanism">4.7. Email mechanism</a></li>
 <li><a href="#frequently-visited-contacts-mechanism">4.8. Frequently Visited Contacts mechanism</a></li>
 <li><a href="#details-panel-implementation">4.9. Details Panel Implementation</a></li>
-<li><a href="#toggling-mechanism">4.10. Toggling mechanism</a></li>
-<li><a href="#reminder-implementation">4.11. Reminder Implementation</a></li>
-<li><a href="#theme-changing-mechanism">4.12. Theme-changing mechanism</a></li>
-<li><a href="#logging">4.13. Logging</a></li>
-<li><a href="#configuration">4.14. Configuration</a></li>
+<li><a href="#view-tag-mechanism">4.10. View tag mechanism</a></li>
+<li><a href="#toggling-mechanism">4.11. Toggling mechanism</a></li>
+<li><a href="#reminder-implementation">4.12. Reminder Implementation</a></li>
+<li><a href="#theme-changing-mechanism">4.13. Theme-changing mechanism</a></li>
+<li><a href="#logging">4.14. Logging</a></li>
+<li><a href="#configuration">4.15. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">5. Documentation</a>
@@ -309,7 +310,7 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-The <code>.pptx</code> files used to create diagrams in this document can be found in the <a href="https://github.com/se-edu/addressbook-level4/tree/master/docs/diagrams/">diagrams</a> folder. To update a diagram, modify the diagram in the pptx file, select the objects of the diagram, and choose <code>Save as picture</code>.
+The <code>.pptx</code> files used to create diagrams in this document can be found in the <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/docs/diagrams/">diagrams</a> folder. To update a diagram, modify the diagram in the pptx file, select the objects of the diagram, and choose <code>Save as picture</code>.
 </td>
 </tr>
 </table>
@@ -320,7 +321,7 @@ The <code>.pptx</code> files used to create diagrams in this document can be fou
 <div class="ulist">
 <ul>
 <li>
-<p><code>Main</code> has only one class called <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/MainApp.java"><code>MainApp</code></a>, and it does the following:</p>
+<p><code>Main</code> has only one class called <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/MainApp.java"><code>MainApp</code></a>, and it does the following:</p>
 <div class="ulist">
 <ul>
 <li>
@@ -459,13 +460,13 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p><em>Figure 5 : Structure of the UI component</em></p>
 </div>
 <div class="paragraph">
-<p><strong><em>API</em></strong> : <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
+<p><strong><em>API</em></strong> : <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
 </div>
 <div class="paragraph">
 <p>The <code>UI</code> consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>StatusBarFooter</code>, <code>BrowserPanel</code> etc. All of these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
 </div>
 <div class="paragraph">
-<p>The <code>UI</code> component uses JavaFx UI framework. The layout of these <code>UI</code> parts is defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a>.</p>
+<p>The <code>UI</code> component uses JavaFx UI framework. The layout of these <code>UI</code> parts is defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a>.</p>
 </div>
 <div class="paragraph">
 <p>The <code>UI</code> component</p>
@@ -507,7 +508,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 <div class="paragraph">
 <p><strong><em>API</em></strong> :
-<a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/logic/Logic.java"><code>Logic.java</code></a></p>
+<a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/logic/Logic.java"><code>Logic.java</code></a></p>
 </div>
 <div class="paragraph">
 <p>The <code>Logic</code> component uses the <code>AddressBookParser</code> class to parse the user command. This results in a <code>Command</code> object which is executed by the <code>LogicManager</code>. The command execution can affect the <code>Model</code> (e.g. adding a person) and/or raise events. The result of the command execution is encapsulated as a <code>CommandResult</code> object which is passed back to the <code>UI</code>.</p>
@@ -538,7 +539,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p><em>Figure 9 : Structure of the Model component</em></p>
 </div>
 <div class="paragraph">
-<p><strong><em>API</em></strong> : <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/Model.java"><code>Model.java</code></a></p>
+<p><strong><em>API</em></strong> : <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/model/Model.java"><code>Model.java</code></a></p>
 </div>
 <div class="paragraph">
 <p>The <code>Model</code> component</p>
@@ -574,7 +575,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p><em>Figure 10 : Structure of the Storage component</em></p>
 </div>
 <div class="paragraph">
-<p><strong><em>API</em></strong> : <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/storage/Storage.java"><code>Storage.java</code></a></p>
+<p><strong><em>API</em></strong> : <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/storage/Storage.java"><code>Storage.java</code></a></p>
 </div>
 <div class="paragraph">
 <p>The <code>Storage</code> component</p>
@@ -1077,17 +1078,14 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <div class="sect2">
 <h3 id="display-picture-mechanism"><a class="link" href="#display-picture-mechanism">4.5. Display Picture mechanism</a></h3>
 <div class="paragraph">
-<p>The Display Picture mechanism is done by using ImageView in JavaFX which is a part of the UI Component.</p>
-</div>
-<div class="paragraph">
-<p>The <code>displaypic</code> command adds/updates the display picture for the contact specified. The image is then displayed as ImageView in PersonCard.
+<p>The <code>displaypic</code> command adds/updates the display picture for the contact specified. The image is then displayed as <code>ImageView</code> in <code>PersonCard</code> and <code>DetailsPanel</code>.
 The arguments of the command are <code>INDEX</code> and <code>PATHOFIMAGE</code>. The image needs to be present in the local device of the user.</p>
 </div>
 <div class="paragraph">
-<p>This command works by retrieving the image using <code>BufferedImage</code>. The command extracts the image from the specified absolute path of image e.g. <code>C:\Users\Admin\Desktop\My files\pic.jpg</code>.</p>
+<p>The Display Picture command is implemented in a way so that the image is read from the user specified path and then stored in iContacts directory so that the image is never lost.</p>
 </div>
 <div class="paragraph">
-<p>By executing the given code below, a new folder named 'pictures/' is created if it is missing. The folder is used to store the images</p>
+<p>By executing the given code below, a new folder named 'pictures/' is created if it is missing. The folder is used to store the images.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1101,8 +1099,7 @@ The arguments of the command are <code>INDEX</code> and <code>PATHOFIMAGE</code>
 </div>
 </div>
 <div class="paragraph">
-<p>It then stores the image in the folder called <code>/pictures/</code> present in the same directory as <code>.jar</code>  by giving it a unique hashcode based on the user&#8217;s email address.
-The reading and writing of images is done using the <code>ImageIO</code> class.</p>
+<p>Since the command has function of reading and writing of image, the Storage architectural style was used and extended for Display pictures.</p>
 </div>
 <div class="paragraph">
 <p>The following UML diagram shows the Storage Architecture for reading and writing of image file:</p>
@@ -1113,7 +1110,17 @@ The reading and writing of images is done using the <code>ImageIO</code> class.<
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 2 : UML Diagram for the extended Storage Diagram.</em></p>
+<p><em>Figure 2 : UML Diagram for the extended Storage Component.</em></p>
+</div>
+<div class="paragraph">
+<p>This command works by retrieving the image using <code>BufferedImage</code>. The command extracts the image from the specified absolute path of image e.g. <code>C:\Users\Admin\Desktop\My files\pic.jpg</code></p>
+</div>
+<div class="paragraph">
+<p>It then stores the image in the folder called <code>/pictures/</code> present in the same directory as <code>.jar</code>  by giving it a unique hashcode based on the user&#8217;s email address.
+The reading and writing of images is done using the <code>ImageIO</code> class.</p>
+</div>
+<div class="paragraph">
+<p>An event handler is used to notify the <code>UI</code> and <code>Storage</code> component of the changes made in image and it&#8217;s name.</p>
 </div>
 <div class="paragraph">
 <p>The sequence diagram for adding a display picture is shown below:<br></p>
@@ -1143,7 +1150,8 @@ The reading and writing of images is done using the <code>ImageIO</code> class.<
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>Circle</code> shape is used for better UI/UX design and is filled with the <code>ImagePatten</code>. The wireframe used to display the image for each person is shown below:</p>
+<p>The Display Picture mechanism is done by using <code>ImageView</code>/<code>ImagePattern</code> in JavaFX which is a part of the UI Component.
+The <code>Circle</code> shape is used for better UI/UX design and is filled with the <code>ImagePatten</code>. The wireframe used to display the image for each person is shown below:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1190,7 +1198,10 @@ The reading and writing of images is done using the <code>ImageIO</code> class.<
 <p>The task is done using CLI to follow project requirements.</p>
 </li>
 <li>
-<p>The image is stored in jpg format to ensure maximum compatibility.</p>
+<p>The image is stored in png format to ensure maximum compatibility.</p>
+</li>
+<li>
+<p>In case of image corruption/deletion, care is taken to avoid hanging of UI and display the default image. This is done by checking <code>file.exists()</code>.</p>
 </li>
 </ul>
 </div>
@@ -1222,7 +1233,7 @@ The reading and writing of images is done using the <code>ImageIO</code> class.<
 <div class="sect2">
 <h3 id="location-mechanism"><a class="link" href="#location-mechanism">4.6. Location mechanism</a></h3>
 <div class="paragraph">
-<p>The location command is implemented in an event-driven mechanism form. The below diagram (Refer to Figure 21) shows sequence diagram for it.</p>
+<p>The location command is implemented in the form of an event-driven mechanism . The diagram below (Refer to Figure 21) shows the sequence diagram for it.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1233,7 +1244,8 @@ The reading and writing of images is done using the <code>ImageIO</code> class.<
 <p><em>Figure 21 : Sequence diagram for the Location Command.</em></p>
 </div>
 <div class="paragraph">
-<p>The execution of command raises an event <code>ShowLocationEvent</code>. This causes the <code>BrowserAndReminderPanel</code> to switch to Node <code>Browser</code> irrespective of current state of the application. The activity diagram for such a case is shown below (Refer to Figure 22):</p>
+<p>The execution of command raises an event <code>ShowLocationEvent</code>. This causes the <code>BrowserAndReminderPanel</code> to switch to Node <code>Browser</code> irrespective of current state of the application.
+The activity diagram for such a case is shown below (Refer to Figure 22):</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1250,9 +1262,9 @@ The reading and writing of images is done using the <code>ImageIO</code> class.<
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span class="directive">private</span> <span class="type">void</span> setUpToShowLocation() {
     <span class="keyword">if</span> (currentlyInFront == Node.REMINDERS) {
+        setUpToShowBrowser();
         browser.toFront();
         currentlyInFront = Node.BROWSER;
-        raise(<span class="keyword">new</span> TurnLabelsOffEvent());
     }
 }</code></pre>
 </div>
@@ -1277,7 +1289,7 @@ The reading and writing of images is done using the <code>ImageIO</code> class.<
 }</code></pre>
 </div>
 </div>
-<h4 id="design-considerations-4" class="discrete">Design Considerations</h4>
+<h4 id="design-consideration" class="discrete">Design Consideration</h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> What to use to show the location<br>
 <strong>Alternative 1 (current choice):</strong> Show using google maps url in BrowserPanel <br>
@@ -1292,6 +1304,17 @@ The reading and writing of images is done using the <code>ImageIO</code> class.<
 <h3 id="email-mechanism"><a class="link" href="#email-mechanism">4.7. Email mechanism</a></h3>
 <div class="paragraph">
 <p>The email command lets the user compose an email in default browser with filled in data like recipients, subject and body.</p>
+</div>
+<div class="paragraph">
+<p>The email command has various fields to denote the Recipients, Subject, Body and Service. Than relation between them can be shown through the UML diagram below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/emailUML.PNG" alt="emailUML" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 23 : Sequence diagram for the Email Command.</em></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1318,7 +1341,8 @@ The only two services offered are <code>gmail</code> and <code>outlook</code> as
 </table>
 </div>
 <div class="paragraph">
-<p>The email command through an event driven mechanism. The below diagram (Refer to Figure 23) shows sequence diagram for it.</p>
+<p>The email command happens through an event driven mechanism. The below diagram (Refer to Figure 23) shows sequence diagram for it.
+The execution of command raises an event <code>SendingEmailEvent</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1329,7 +1353,7 @@ The only two services offered are <code>gmail</code> and <code>outlook</code> as
 <p><em>Figure 23 : Sequence diagram for the Email Command.</em></p>
 </div>
 <div class="paragraph">
-<p>The given command is parsed to know the <code>Service</code> , <code>tag</code> to which email has to be sent, <code>Subject</code> and <code>Body</code>.</p>
+<p>The command is parsed to know the <code>Service</code> , <code>Tag</code> to which email has to be sent, <code>Subject</code> and <code>Body</code>.</p>
 </div>
 <div class="paragraph">
 <p>The parsing takes place in the following manner (Refer to Figure 24):</p>
@@ -1341,9 +1365,6 @@ The only two services offered are <code>gmail</code> and <code>outlook</code> as
 </div>
 <div class="paragraph">
 <p><em>Figure 24 : Sequence diagram for parsing the Email Command.</em></p>
-</div>
-<div class="paragraph">
-<p>The execution of command raises an event <code>SendingEmailEvent</code>.</p>
 </div>
 <div class="paragraph">
 <p>The URL for composing the mail set up through the following code</p>
@@ -1359,7 +1380,7 @@ The only two services offered are <code>gmail</code> and <code>outlook</code> as
 Desktop.getDesktop().browse(<span class="keyword">new</span> <span class="predefined-type">URI</span>(<span class="predefined-type">String</span>.format(GMAIL_EMAIL_URL, recipients, subject, body)));</code></pre>
 </div>
 </div>
-<h4 id="design-considerations-5" class="discrete">Design Considerations</h4>
+<h4 id="design-consideration-2" class="discrete">Design Consideration</h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Where to compose the mail<br>
 <strong>Alternative 1 (current choice):</strong> Opens the default browser of Desktop <br>
@@ -1373,8 +1394,32 @@ Desktop.getDesktop().browse(<span class="keyword">new</span> <span class="predef
 <div class="sect2">
 <h3 id="frequently-visited-contacts-mechanism"><a class="link" href="#frequently-visited-contacts-mechanism">4.8. Frequently Visited Contacts mechanism</a></h3>
 <div class="paragraph">
+<p>This feature brings in a new UI element which is a list of maximum size 5 called <code>PopularContactList</code> and each list showing the name, popularity rank and display picture in a <code>PopularContactCard</code>.
+These way these UI elements are added is shown in the following diagram:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/umlfvc.PNG" alt="umlfvc" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure TBD : Class Digram of UI with Popular Contact Panel.</em></p>
+</div>
+<div class="paragraph">
 <p>The mechanism to show the top five most frequently visited contacts is facilitated by the <code>PopularityCounter</code> of each contact.
 For every new person added into the address book, he is assigned a popularity counter of <code>0</code>. The top five popular contacts are extracted by sorting the list based on the field <code>PopularityCounter</code> of each person. In case of same popularity counter, the person who was added before is given higher priority.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This feature is not implemented as a command.The list gets refreshed whenever the popularity counter is supposed to change.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>The Frequently Visited Contacts mechanism is an event-driven mechanism. However, there is no explicit command to view the top five frequently visited contacts as they are always refreshed whenever there is an change in the address book. They are always displayed on the UI below the <code>CommandResult</code> panel. The
@@ -1406,7 +1451,7 @@ The event to refresh the Popular Contacts List, <code>PopularContactChangedEvent
 <p><code>select</code></p>
 </li>
 <li>
-<p><code>details</code></p>
+<p><code>details</code> [special case when counter increases by 2 as it is a stronger indicator of who could be a frequently visited contact]</p>
 </li>
 <li>
 <p><code>location</code></p>
@@ -1415,6 +1460,18 @@ The event to refresh the Popular Contacts List, <code>PopularContactChangedEvent
 <p><code>email</code></p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>On execution of any of the following command, an extra event is raised which updates the popular contact list after updating the popularity counter of the contact.
+The sequence diagram for the extra event is shown below for <code>select</code> command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/selectFreuentlyVisited.PNG" alt="selectFreuentlyVisited" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure TBD : Sequence diagram for frequently visited mechanism for <code>select</code> command.</em></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1435,6 +1492,7 @@ Manual selection of person through a click also increases the popularity counter
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> ReadOnlyPerson increaseCounterByOne(ReadOnlyPerson person) {
         person.getPopularityCounter().increasePopularityCounter();
+
         <span class="keyword">return</span> <span class="keyword">new</span> Person(person.getName(), person.getPhone(), person.getEmail(), person.getAddress(),
                 person.getBirthday(), person.getNickname(), person.getDisplayPicture(), person.getPopularityCounter(),
                 person.getTags());
@@ -1451,6 +1509,18 @@ Manual selection of person through a click also increases the popularity counter
 </div>
 <div class="paragraph">
 <p><em>Figure TBD : Sequence diagram for frequently visited mechanism.</em></p>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.8.1. Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> How to implement the feature<br>
+<strong>Alternative 1 (current choice):</strong> Make the list get refreshed every time one of the command which changes popularity is executed  <br>
+<strong>Pros:</strong> Becomes a dynamic feature such that user can see favourite contacts at any time<br>
+<strong>Cons:</strong> Makes application slightly slower as more execution of code for those commands<br>
+<strong>Alternative 2:</strong> Execute command to refresh list of popular contacts<br>
+<strong>Pros:</strong> Reduces regular refresh of list<br>
+<strong>Cons:</strong> Will have to keep track of command history to see the list of commands executed before previous execution of favourites command</p>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -1524,11 +1594,86 @@ The <code>selectionModel()</code> of <code>PersonListView</code> is now linked t
 <p><em>Figure TBD : Wireframe for Details Panel.</em></p>
 </div>
 <div class="paragraph">
-<p>Using the <code>FontAwesomeFx</code> library, an icon is set for each label as seen in the UI.</p>
+<p>Using the <code>FontAwesomeFx</code> library, an icon is set for each label to make the UI look appealing as seen in the UI above(Refer to figure TBD).</p>
+</div>
+<div class="paragraph">
+<p>The solution to showing the same colour for a tag in <code>DetailsPanel</code> and <code>PersonCard</code> was resolved by having a <strong>Singleton Class</strong> <code>TagColor</code>.</p>
+</div>
+<div class="paragraph">
+<p>The following code inside the class ensured that the class acted as an global class and since only one instance was created, it made the tag color&#8217;s constant for each tag.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="directive">static</span> TagColor getInstance() {
+        <span class="keyword">if</span> (tagColor == <span class="predefined-constant">null</span>) {
+            tagColor = <span class="keyword">new</span> TagColor();
+        }
+        <span class="keyword">return</span> tagColor;
+    }</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-consideration-3"><a class="link" href="#design-consideration-3">4.9.1. Design Consideration</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> How to improve UI<br>
+<strong>Alternative 1 (current choice):</strong> Show the extra details of contact after they are selected<br>
+Pros: Allows more contacts to be shown in the list as they information there is reduced<br>
+Cons: User needs to manually select the user to see more details of that person<br>
+<strong>Alternative 2:</strong> Show all detail of person in the <code>PersonCard</code><br>
+Pros: Reduces effort of selection of contact to see extra details<br>
+Cons: Looks very cluttered and has poor User Interface design</p>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="toggling-mechanism"><a class="link" href="#toggling-mechanism">4.10. Toggling mechanism</a></h3>
+<h3 id="view-tag-mechanism"><a class="link" href="#view-tag-mechanism">4.10. View tag mechanism</a></h3>
+<div class="paragraph">
+<p>The command is added into the logic following the given class diagram:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/umlLogic.PNG" alt="umlLogic" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure TBD : Class Diagram of Logic.</em></p>
+</div>
+<div class="paragraph">
+<p>The <code>viewtag</code> command works by setting predicate to the <code>Observable filteredlist</code>.</p>
+</div>
+<div class="paragraph">
+<p>Only one keyword is allowed for the command and it shows all people with thr given tag.</p>
+</div>
+<div class="paragraph">
+<p>The method <code>test(ReadOnlyPerson person)</code> iterates through the <code>tagKeywords</code> to find a match of every <code>person</code> from the address book.</p>
+</div>
+<div class="paragraph">
+<p>There is use of streams and lambda[Java 8 features] to make the code more readable as shown below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">boolean</span> test(ReadOnlyPerson person) {
+        <span class="predefined-type">Set</span>&lt;Tag&gt; tagsOfPerson = person.getTags();
+
+        <span class="keyword">return</span> tagsOfPerson.stream()
+                .anyMatch(tagMatches -&gt; tagMatches.getTagName().equalsIgnoreCase(keyword));
+
+    }</code></pre>
+</div>
+</div>
+<h4 id="design-consideration-4" class="discrete">Design Consideration</h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> How to filter the list<br>
+<strong>Alternative 1 (current choice):</strong> Use of Lambda and Stream <br>
+<strong>Pros:</strong>  Code is more readable<br>
+<strong>Cons:</strong> Sometimes takes more time to process than normal loops<br>
+<strong>Alternative 2:</strong> Loops and Conditions<br>
+<strong>Pros:</strong>  Known to be faster than Streams at times<br>
+<strong>Cons:</strong> Harder to avoid arrow headed violation of coding style.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="toggling-mechanism"><a class="link" href="#toggling-mechanism">4.11. Toggling mechanism</a></h3>
 <div class="paragraph">
 <p>The toggling mechanism is an <code>event-driven</code> mechanism.</p>
 </div>
@@ -1638,7 +1783,7 @@ and upon receiving the event it will invoke the method <code>toggleBrowserPanel<
 <p>The <code>LoadPersonWebpageEvent</code> is posted whenever the <code>select</code> command is executed. Within the <code>handleLoadPersonPageEvent</code>
 method, the statement <code>browser.toFront()</code> and the method <code>setUpToShowWebBrowser</code> would then bring the browser panel to the front no matter what, and also make it visible.</p>
 </div>
-<h4 id="design-considerations-6" class="discrete">Design Considerations</h4>
+<h4 id="design-considerations-5" class="discrete">Design Considerations</h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Usage of browser area<br>
 <strong>Alternative 1 (current choice):</strong> Allow users to toggle between the browser and reminders panel.<br>
@@ -1659,7 +1804,7 @@ Cons: Users cannot interact with the reminders panel (since the browser is techn
 </div>
 </div>
 <div class="sect2">
-<h3 id="reminder-implementation"><a class="link" href="#reminder-implementation">4.11. Reminder Implementation</a></h3>
+<h3 id="reminder-implementation"><a class="link" href="#reminder-implementation">4.12. Reminder Implementation</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/ReminderUML1.png" alt="ReminderUML1" width="390">
@@ -1843,7 +1988,7 @@ code snippet below:<br></p>
 <p>The methods <code>isEventToday</code>, <code>isEventWithinThreeDays</code> and <code>hasEventPassed</code> seen from the code snippet above originate from
 the <code>Status</code> object of each <code>Reminder</code> object and propagated from <code>Status</code> to <code>Reminder</code> then finally to <code>ReminderCard</code>.</p>
 </div>
-<h4 id="design-consideration" class="discrete">Design Consideration</h4>
+<h4 id="design-consideration-5" class="discrete">Design Consideration</h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> How to store <code>Reminder</code> in-memory<br>
 <strong>Alternative 1 (current choice):</strong> Store <code>Reminder</code> objects in <code>UniqueReminderList</code>, independent of <code>AddressBook</code>.<br>
@@ -1866,7 +2011,7 @@ as the date and time fields of a <code>Reminder</code> are very important.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="theme-changing-mechanism"><a class="link" href="#theme-changing-mechanism">4.12. Theme-changing mechanism</a></h3>
+<h3 id="theme-changing-mechanism"><a class="link" href="#theme-changing-mechanism">4.13. Theme-changing mechanism</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/themeChangingMechanism1.png" alt="themeChangingMechanism1" width="790">
@@ -1911,7 +2056,7 @@ as the date and time fields of a <code>Reminder</code> are very important.</p>
 <div class="paragraph">
 <p>As shown from the sequence diagram above (Refer to Figure 33), the method <code>handleChangeThemeEvent()</code> in <code>MainWindow</code> will handle the event and change the theme of the address book through the method <code>changeTheme()</code> accordingly.</p>
 </div>
-<h4 id="design-considerations-7" class="discrete">Design Considerations</h4>
+<h4 id="design-considerations-6" class="discrete">Design Considerations</h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Implementation of <code>ThemeCommand</code><br>
 <strong>Alternative 1 (current choice):</strong> Utilize <code>ChangeEventRequestEvent</code> that allow <code>MainWindow</code> to handle the event to change the theme.<br>
@@ -1923,7 +2068,7 @@ as the date and time fields of a <code>Reminder</code> are very important.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">4.13. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">4.14. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
@@ -1964,7 +2109,7 @@ as the date and time fields of a <code>Reminder</code> are very important.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configuration"><a class="link" href="#configuration">4.14. Configuration</a></h3>
+<h3 id="configuration"><a class="link" href="#configuration">4.15. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -2185,7 +2330,7 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Update the version number in <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/MainApp.java"><code>MainApp.java</code></a>.</p>
+<p>Update the version number in <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/MainApp.java"><code>MainApp.java</code></a>.</p>
 </li>
 <li>
 <p>Generate a JAR file <a href="UsingGradle.html#creating-the-jar-file">using Gradle</a>.</p>
@@ -2264,10 +2409,10 @@ Do take a look at the <a href="#logic-component">Design: Logic Component</a> sec
 <div class="ulist">
 <ul>
 <li>
-<p>Just like we store each individual command word constant <code>COMMAND_WORD</code> inside <code>*Command.java</code> (e.g.  <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/logic/commands/FindCommand.java"><code>FindCommand#COMMAND_WORD</code></a>, <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/logic/commands/DeleteCommand.java"><code>DeleteCommand#COMMAND_WORD</code></a>), you need a new constant for aliases as well (e.g. <code>FindCommand#COMMAND_ALIAS</code>).</p>
+<p>Just like we store each individual command word constant <code>COMMAND_WORD</code> inside <code>*Command.java</code> (e.g.  <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/logic/commands/FindCommand.java"><code>FindCommand#COMMAND_WORD</code></a>, <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/logic/commands/DeleteCommand.java"><code>DeleteCommand#COMMAND_WORD</code></a>), you need a new constant for aliases as well (e.g. <code>FindCommand#COMMAND_ALIAS</code>).</p>
 </li>
 <li>
-<p><a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/logic/parser/AddressBookParser.java"><code>AddressBookParser</code></a> is responsible for analyzing command words.</p>
+<p><a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/logic/parser/AddressBookParser.java"><code>AddressBookParser</code></a> is responsible for analyzing command words.</p>
 </li>
 </ul>
 </div>
@@ -2277,7 +2422,7 @@ Do take a look at the <a href="#logic-component">Design: Logic Component</a> sec
 <div class="ulist">
 <ul>
 <li>
-<p>Modify the switch statement in <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/logic/parser/AddressBookParser.java"><code>AddressBookParser#parseCommand(String)</code></a> such that both the proper command word and alias can be used to execute the same intended command.</p>
+<p>Modify the switch statement in <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/logic/parser/AddressBookParser.java"><code>AddressBookParser#parseCommand(String)</code></a> such that both the proper command word and alias can be used to execute the same intended command.</p>
 </li>
 <li>
 <p>See this <a href="https://github.com/se-edu/addressbook-level4/pull/590/files">PR</a> for the full solution.</p>
@@ -2318,10 +2463,10 @@ Do take a look at the <a href="#model-component">Design: Model Component</a> sec
 <div class="ulist">
 <ul>
 <li>
-<p>The <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/Model.java"><code>Model</code></a> API needs to be updated.</p>
+<p>The <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/model/Model.java"><code>Model</code></a> API needs to be updated.</p>
 </li>
 <li>
-<p>Find out which of the existing API methods in  <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/AddressBook.java"><code>AddressBook</code></a> and <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/person/Person.java"><code>Person</code></a> classes can be used to implement the tag removal logic. <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/AddressBook.java"><code>AddressBook</code></a> allows you to update a person, and <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/person/Person.java"><code>Person</code></a> allows you to update the tags.</p>
+<p>Find out which of the existing API methods in  <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/model/AddressBook.java"><code>AddressBook</code></a> and <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/model/person/Person.java"><code>Person</code></a> classes can be used to implement the tag removal logic. <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/model/AddressBook.java"><code>AddressBook</code></a> allows you to update a person, and <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/model/person/Person.java"><code>Person</code></a> allows you to update the tags.</p>
 </li>
 </ul>
 </div>
@@ -2331,7 +2476,7 @@ Do take a look at the <a href="#model-component">Design: Model Component</a> sec
 <div class="ulist">
 <ul>
 <li>
-<p>Add the implementation of <code>deleteTag(Tag)</code> method in <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/ModelManager.java"><code>ModelManager</code></a>. Loop through each person, and remove the <code>tag</code> from each person.</p>
+<p>Add the implementation of <code>deleteTag(Tag)</code> method in <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/model/ModelManager.java"><code>ModelManager</code></a>. Loop through each person, and remove the <code>tag</code> from each person.</p>
 </li>
 <li>
 <p>See this <a href="https://github.com/se-edu/addressbook-level4/pull/591/files">PR</a> for the full solution.</p>
@@ -2394,7 +2539,7 @@ Do take a look at the <a href="#ui-component">Design: UI Component</a> section b
 <div class="ulist">
 <ul>
 <li>
-<p>The tag labels are created inside <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard#initTags(ReadOnlyPerson)</code></a> (<code>new Label(tag.tagName)</code>). <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Label.html">JavaFX&#8217;s <code>Label</code> class</a> allows you to modify the style of each Label, such as changing its color.</p>
+<p>The tag labels are created inside <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard#initTags(ReadOnlyPerson)</code></a> (<code>new Label(tag.tagName)</code>). <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Label.html">JavaFX&#8217;s <code>Label</code> class</a> allows you to modify the style of each Label, such as changing its color.</p>
 </li>
 <li>
 <p>Use the .css attribute <code>-fx-background-color</code> to add a color.</p>
@@ -2418,7 +2563,7 @@ Do take a look at the <a href="#ui-component">Design: UI Component</a> section b
 </div>
 </li>
 <li>
-<p>Modify <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/commons/events/ui/NewResultAvailableEvent.java"><code>NewResultAvailableEvent</code></a> such that <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/ResultDisplay.java"><code>ResultDisplay</code></a> can show a different style on error (currently it shows the same regardless of errors) (Refer to Figures 37 and 38).</p>
+<p>Modify <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/commons/events/ui/NewResultAvailableEvent.java"><code>NewResultAvailableEvent</code></a> such that <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/ui/ResultDisplay.java"><code>ResultDisplay</code></a> can show a different style on error (currently it shows the same regardless of errors) (Refer to Figures 37 and 38).</p>
 <div class="paragraph">
 <p><strong>Before</strong></p>
 </div>
@@ -2450,10 +2595,10 @@ Do take a look at the <a href="#ui-component">Design: UI Component</a> section b
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/commons/events/ui/NewResultAvailableEvent.java"><code>NewResultAvailableEvent</code></a> is raised by <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/CommandBox.java"><code>CommandBox</code></a> which also knows whether the result is a success or failure, and is caught by <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/ResultDisplay.java"><code>ResultDisplay</code></a> which is where we want to change the style to.</p>
+<p><a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/commons/events/ui/NewResultAvailableEvent.java"><code>NewResultAvailableEvent</code></a> is raised by <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/ui/CommandBox.java"><code>CommandBox</code></a> which also knows whether the result is a success or failure, and is caught by <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/ui/ResultDisplay.java"><code>ResultDisplay</code></a> which is where we want to change the style to.</p>
 </li>
 <li>
-<p>Refer to <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/CommandBox.java"><code>CommandBox</code></a> for an example on how to display an error.</p>
+<p>Refer to <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/ui/CommandBox.java"><code>CommandBox</code></a> for an example on how to display an error.</p>
 </li>
 </ul>
 </div>
@@ -2463,10 +2608,10 @@ Do take a look at the <a href="#ui-component">Design: UI Component</a> section b
 <div class="ulist">
 <ul>
 <li>
-<p>Modify <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/commons/events/ui/NewResultAvailableEvent.java"><code>NewResultAvailableEvent</code></a> 's constructor so that users of the event can indicate whether an error has occurred.</p>
+<p>Modify <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/commons/events/ui/NewResultAvailableEvent.java"><code>NewResultAvailableEvent</code></a> 's constructor so that users of the event can indicate whether an error has occurred.</p>
 </li>
 <li>
-<p>Modify <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/ResultDisplay.java"><code>ResultDisplay#handleNewResultAvailableEvent(event)</code></a> to react to this event appropriately.</p>
+<p>Modify <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/ui/ResultDisplay.java"><code>ResultDisplay#handleNewResultAvailableEvent(event)</code></a> to react to this event appropriately.</p>
 </li>
 <li>
 <p>See this <a href="https://github.com/se-edu/addressbook-level4/pull/593/files">PR</a> for the full solution.</p>
@@ -2480,7 +2625,7 @@ Do take a look at the <a href="#ui-component">Design: UI Component</a> section b
 </div>
 </li>
 <li>
-<p>Modify the <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> to show the total number of people in the address book (Refer to Figures 39 and 40).</p>
+<p>Modify the <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> to show the total number of people in the address book (Refer to Figures 39 and 40).</p>
 <div class="paragraph">
 <p><strong>Before</strong></p>
 </div>
@@ -2512,10 +2657,10 @@ Do take a look at the <a href="#ui-component">Design: UI Component</a> section b
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/resources/view/StatusBarFooter.fxml"><code>StatusBarFooter.fxml</code></a> will need a new <code>StatusBar</code>. Be sure to set the <code>GridPane.columnIndex</code> properly for each <code>StatusBar</code> to avoid misalignment!</p>
+<p><a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/resources/view/StatusBarFooter.fxml"><code>StatusBarFooter.fxml</code></a> will need a new <code>StatusBar</code>. Be sure to set the <code>GridPane.columnIndex</code> properly for each <code>StatusBar</code> to avoid misalignment!</p>
 </li>
 <li>
-<p><a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> needs to initialize the status bar on application start, and to update it accordingly whenever the address book is updated.</p>
+<p><a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> needs to initialize the status bar on application start, and to update it accordingly whenever the address book is updated.</p>
 </li>
 </ul>
 </div>
@@ -2525,10 +2670,10 @@ Do take a look at the <a href="#ui-component">Design: UI Component</a> section b
 <div class="ulist">
 <ul>
 <li>
-<p>Modify the constructor of <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> to take in the number of persons when the application just started.</p>
+<p>Modify the constructor of <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> to take in the number of persons when the application just started.</p>
 </li>
 <li>
-<p>Use <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter#handleAddressBookChangedEvent(AddressBookChangedEvent)</code></a> to update the number of persons whenever there are new changes to the addressbook.</p>
+<p>Use <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter#handleAddressBookChangedEvent(AddressBookChangedEvent)</code></a> to update the number of persons whenever there are new changes to the addressbook.</p>
 </li>
 <li>
 <p>See this <a href="https://github.com/se-edu/addressbook-level4/pull/596/files">PR</a> for the full solution.</p>
@@ -2569,10 +2714,10 @@ Do take a look at the <a href="#storage-component">Design: Storage Component</a>
 <div class="ulist">
 <ul>
 <li>
-<p>Add the API method in <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/storage/AddressBookStorage.java"><code>AddressBookStorage</code></a> interface.</p>
+<p>Add the API method in <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/storage/AddressBookStorage.java"><code>AddressBookStorage</code></a> interface.</p>
 </li>
 <li>
-<p>Implement the logic in <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/storage/StorageManager.java"><code>StorageManager</code></a> class.</p>
+<p>Implement the logic in <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/storage/StorageManager.java"><code>StorageManager</code></a> class.</p>
 </li>
 </ul>
 </div>
@@ -2635,10 +2780,10 @@ Removes the remark for the first person.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Add a <code>RemarkCommand</code> that extends <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/logic/commands/UndoableCommand.java"><code>UndoableCommand</code></a>. Upon execution, it should just throw an <code>Exception</code>.</p>
+<p>Add a <code>RemarkCommand</code> that extends <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/logic/commands/UndoableCommand.java"><code>UndoableCommand</code></a>. Upon execution, it should just throw an <code>Exception</code>.</p>
 </li>
 <li>
-<p>Modify <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/logic/parser/AddressBookParser.java"><code>AddressBookParser</code></a> to accept a <code>RemarkCommand</code>.</p>
+<p>Modify <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/logic/parser/AddressBookParser.java"><code>AddressBookParser</code></a> to accept a <code>RemarkCommand</code>.</p>
 </li>
 </ol>
 </div>
@@ -2651,7 +2796,7 @@ Removes the remark for the first person.</p>
 <p>Add <code>RemarkCommandTest</code> that tests that <code>executeUndoableCommand()</code> throws an Exception.</p>
 </li>
 <li>
-<p>Add new test method to <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/test/java/seedu/address/logic/parser/AddressBookParserTest.java"><code>AddressBookParserTest</code></a>, which tests that typing "remark" returns an instance of <code>RemarkCommand</code>.</p>
+<p>Add new test method to <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/test/java/seedu/address/logic/parser/AddressBookParserTest.java"><code>AddressBookParserTest</code></a>, which tests that typing "remark" returns an instance of <code>RemarkCommand</code>.</p>
 </li>
 </ol>
 </div>
@@ -2673,7 +2818,7 @@ Removes the remark for the first person.</p>
 <p>Add <code>RemarkCommandParser</code> that knows how to parse two arguments, one index and one with prefix 'r/'.</p>
 </li>
 <li>
-<p>Modify <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/logic/parser/AddressBookParser.java"><code>AddressBookParser</code></a> to use the newly implemented <code>RemarkCommandParser</code>.</p>
+<p>Modify <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/logic/parser/AddressBookParser.java"><code>AddressBookParser</code></a> to use the newly implemented <code>RemarkCommandParser</code>.</p>
 </li>
 </ol>
 </div>
@@ -2690,7 +2835,7 @@ Removes the remark for the first person.</p>
 for <code>RemarkCommandParser</code>.</p>
 </li>
 <li>
-<p>Modify <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/test/java/seedu/address/logic/parser/AddressBookParserTest.java"><code>AddressBookParserTest</code></a> to test that the correct command is generated according to the user input.</p>
+<p>Modify <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/test/java/seedu/address/logic/parser/AddressBookParserTest.java"><code>AddressBookParserTest</code></a> to test that the correct command is generated according to the user input.</p>
 </li>
 </ol>
 </div>
@@ -2698,7 +2843,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="sect4">
 <h5 id="step-3-ui-add-a-placeholder-for-remark-in-code-personcard-code"><a class="link" href="#step-3-ui-add-a-placeholder-for-remark-in-code-personcard-code">[Step 3] Ui: Add a placeholder for remark in <code>PersonCard</code></a></h5>
 <div class="paragraph">
-<p>Let&#8217;s add a placeholder on all our <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a> s to display a remark for each person later.</p>
+<p>Let&#8217;s add a placeholder on all our <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a> s to display a remark for each person later.</p>
 </div>
 <div class="paragraph">
 <p><strong>Main:</strong></p>
@@ -2706,10 +2851,10 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Add a <code>Label</code> with any random text inside <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/resources/view/PersonListCard.fxml"><code>PersonListCard.fxml</code></a>.</p>
+<p>Add a <code>Label</code> with any random text inside <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/resources/view/PersonListCard.fxml"><code>PersonListCard.fxml</code></a>.</p>
 </li>
 <li>
-<p>Add FXML annotation in <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a> to tie the variable to the actual label.</p>
+<p>Add FXML annotation in <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a> to tie the variable to the actual label.</p>
 </li>
 </ol>
 </div>
@@ -2719,7 +2864,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Modify <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/test/java/guitests/guihandles/PersonCardHandle.java"><code>PersonCardHandle</code></a> so that future tests can read the contents of the remark label.</p>
+<p>Modify <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/test/java/guitests/guihandles/PersonCardHandle.java"><code>PersonCardHandle</code></a> so that future tests can read the contents of the remark label.</p>
 </li>
 </ol>
 </div>
@@ -2727,7 +2872,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="sect4">
 <h5 id="step-4-model-add-code-remark-code-class"><a class="link" href="#step-4-model-add-code-remark-code-class">[Step 4] Model: Add <code>Remark</code> class</a></h5>
 <div class="paragraph">
-<p>We have to properly encapsulate the remark in our <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/person/ReadOnlyPerson.java"><code>ReadOnlyPerson</code></a> class. Instead of just using a <code>String</code>, let&#8217;s follow the conventional class structure that the codebase already uses by adding a <code>Remark</code> class.</p>
+<p>We have to properly encapsulate the remark in our <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/model/person/ReadOnlyPerson.java"><code>ReadOnlyPerson</code></a> class. Instead of just using a <code>String</code>, let&#8217;s follow the conventional class structure that the codebase already uses by adding a <code>Remark</code> class.</p>
 </div>
 <div class="paragraph">
 <p><strong>Main:</strong></p>
@@ -2735,7 +2880,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Add <code>Remark</code> to model component (you can copy from <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/person/Address.java"><code>Address</code></a>, remove the regex and change the names accordingly).</p>
+<p>Add <code>Remark</code> to model component (you can copy from <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/model/person/Address.java"><code>Address</code></a>, remove the regex and change the names accordingly).</p>
 </li>
 <li>
 <p>Modify <code>RemarkCommand</code> to now take in a <code>Remark</code> instead of a <code>String</code>.</p>
@@ -2756,7 +2901,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="sect4">
 <h5 id="step-5-model-modify-code-readonlyperson-code-to-support-a-code-remark-code-field"><a class="link" href="#step-5-model-modify-code-readonlyperson-code-to-support-a-code-remark-code-field">[Step 5] Model: Modify <code>ReadOnlyPerson</code> to support a <code>Remark</code> field</a></h5>
 <div class="paragraph">
-<p>Now we have the <code>Remark</code> class, we need to actually use it inside <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/person/ReadOnlyPerson.java"><code>ReadOnlyPerson</code></a>.</p>
+<p>Now we have the <code>Remark</code> class, we need to actually use it inside <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/model/person/ReadOnlyPerson.java"><code>ReadOnlyPerson</code></a>.</p>
 </div>
 <div class="paragraph">
 <p><strong>Main:</strong></p>
@@ -2764,13 +2909,13 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Add three methods <code>setRemark(Remark)</code>, <code>getRemark()</code> and <code>remarkProperty()</code>. Be sure to implement these newly created methods in <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/person/ReadOnlyPerson.java"><code>Person</code></a>, which implements the <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/person/ReadOnlyPerson.java"><code>ReadOnlyPerson</code></a> interface.</p>
+<p>Add three methods <code>setRemark(Remark)</code>, <code>getRemark()</code> and <code>remarkProperty()</code>. Be sure to implement these newly created methods in <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/model/person/ReadOnlyPerson.java"><code>Person</code></a>, which implements the <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/model/person/ReadOnlyPerson.java"><code>ReadOnlyPerson</code></a> interface.</p>
 </li>
 <li>
 <p>You may assume that the user will not be able to use the <code>add</code> and <code>edit</code> commands to modify the remarks field (i.e. the person will be created without a remark).</p>
 </li>
 <li>
-<p>Modify <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/util/SampleDataUtil.java/"><code>SampleDataUtil</code></a> to add remarks for the sample data (delete your <code>addressBook.xml</code> so that the application will load the sample data when you launch it.)</p>
+<p>Modify <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/model/util/SampleDataUtil.java/"><code>SampleDataUtil</code></a> to add remarks for the sample data (delete your <code>addressBook.xml</code> so that the application will load the sample data when you launch it.)</p>
 </li>
 </ol>
 </div>
@@ -2778,7 +2923,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="sect4">
 <h5 id="step-6-storage-add-code-remark-code-field-to-code-xmladaptedperson-code-class"><a class="link" href="#step-6-storage-add-code-remark-code-field-to-code-xmladaptedperson-code-class">[Step 6] Storage: Add <code>Remark</code> field to <code>XmlAdaptedPerson</code> class</a></h5>
 <div class="paragraph">
-<p>We now have <code>Remark</code> s for <code>Person</code> s, but they will be gone when we exit the application. Let&#8217;s modify <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/storage/XmlAdaptedPerson.java"><code>XmlAdaptedPerson</code></a> to include a <code>Remark</code> field so that it will be saved.</p>
+<p>We now have <code>Remark</code> s for <code>Person</code> s, but they will be gone when we exit the application. Let&#8217;s modify <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/storage/XmlAdaptedPerson.java"><code>XmlAdaptedPerson</code></a> to include a <code>Remark</code> field so that it will be saved.</p>
 </div>
 <div class="paragraph">
 <p><strong>Main:</strong></p>
@@ -2789,7 +2934,7 @@ for <code>RemarkCommandParser</code>.</p>
 <p>Add a new Xml field for <code>Remark</code>.</p>
 </li>
 <li>
-<p>Be sure to modify the logic of the constructor and <code>toModelType()</code>, which handles the conversion to/from  <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/person/ReadOnlyPerson.java"><code>ReadOnlyPerson</code></a>.</p>
+<p>Be sure to modify the logic of the constructor and <code>toModelType()</code>, which handles the conversion to/from  <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/model/person/ReadOnlyPerson.java"><code>ReadOnlyPerson</code></a>.</p>
 </li>
 </ol>
 </div>
@@ -2807,7 +2952,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="sect4">
 <h5 id="step-7-ui-connect-code-remark-code-field-to-code-personcard-code"><a class="link" href="#step-7-ui-connect-code-remark-code-field-to-code-personcard-code">[Step 7] Ui: Connect <code>Remark</code> field to <code>PersonCard</code></a></h5>
 <div class="paragraph">
-<p>Our remark label in <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a> is still a placeholder. Let&#8217;s bring it to life by binding it with the actual <code>remark</code> field.</p>
+<p>Our remark label in <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a> is still a placeholder. Let&#8217;s bring it to life by binding it with the actual <code>remark</code> field.</p>
 </div>
 <div class="paragraph">
 <p><strong>Main:</strong></p>
@@ -2815,7 +2960,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Modify <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard#bindListeners()</code></a> to add the binding for <code>remark</code>.</p>
+<p>Modify <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard#bindListeners()</code></a> to add the binding for <code>remark</code>.</p>
 </li>
 </ol>
 </div>
@@ -2825,10 +2970,10 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Modify <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/test/java/seedu/address/ui/testutil/GuiTestAssert.java"><code>GuiTestAssert#assertCardDisplaysPerson(&#8230;&#8203;)</code></a> so that it will compare the remark label.</p>
+<p>Modify <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/test/java/seedu/address/ui/testutil/GuiTestAssert.java"><code>GuiTestAssert#assertCardDisplaysPerson(&#8230;&#8203;)</code></a> so that it will compare the remark label.</p>
 </li>
 <li>
-<p>In <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/test/java/seedu/address/ui/PersonCardTest.java"><code>PersonCardTest</code></a>, call <code>personWithTags.setRemark(ALICE.getRemark())</code> to test that changes in the <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/person/ReadOnlyPerson.java"><code>Person</code></a> 's remark correctly updates the corresponding <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a>.</p>
+<p>In <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/test/java/seedu/address/ui/PersonCardTest.java"><code>PersonCardTest</code></a>, call <code>personWithTags.setRemark(ALICE.getRemark())</code> to test that changes in the <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/model/person/ReadOnlyPerson.java"><code>Person</code></a> 's remark correctly updates the corresponding <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a>.</p>
 </li>
 </ol>
 </div>
@@ -3755,7 +3900,7 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-12 17:05:30 +00:00
+Last updated 2017-11-12 17:21:30 +00:00
 </div>
 </div>
 </body>
