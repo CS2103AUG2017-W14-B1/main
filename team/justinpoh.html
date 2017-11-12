@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.3">
+<title>Justin Poh - Project Portfolio</title>
+<link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Justin Poh - Project Portfolio</h1>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="project-icontacts"><a class="link" href="#project-icontacts">Project: iContacts</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>iContacts is an application that targets university students, aiming to help them manage their contacts and other aspects of their university life in an efficient manner.
+iContacts is a Command Line Interface (CLI) application, where most of the commands are executed by typing rather than clicking on buttons.
+Through iContacts, users would be able to store, manage and search through contact information efficiently and effectively.
+Not only that, users would be able to set display pictures for each contact, and also add reminders for upcoming events.
+Last but not least, iContacts allow users to easily share contact information amongst each other via its import and export mechanisms.<br></p>
+</div>
+<div class="paragraph">
+<p>This portfolio is to collate my contributions towards the developing of iContacts. It also showcases the software programming
+knowledge I have learned during the course of CS2103T, as well as how I utilized this knowledge and applied it onto a real-world
+project. This portfolio also contains some suggested enhancements to be developed for iContacts in the future.</p>
+</div>
+<div class="paragraph">
+<p><strong>Code contributed</strong>: [<a href="https://github.com/CS2103AUG2017-W14-B1/main/blob/master/collated/main/justinpoh.md">Functional code</a>] [<a href="https://github.com/CS2103AUG2017-W14-B1/main/blob/master/collated/test/justinpoh.md">Test code</a>]</p>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-reminders-for-upcoming-events"><a class="link" href="#enhancement-added-reminders-for-upcoming-events">Enhancement Added: Reminders for upcoming events</a></h3>
+<div class="sect3">
+<h4 id="external-behavior"><a class="link" href="#external-behavior">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-a-reminder-code-addreminder-code-v1-3"><a class="link" href="#adding-a-reminder-code-addreminder-code-v1-3">Adding a reminder: <code>addreminder</code> [V1.3]</a></h3>
+<div class="paragraph">
+<p>Adds a reminder to iContacts.<br>
+Format: <code>addreminder rd/REMINDER d/DATE ti/TIME</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>All three parameters REMINDER, DATE and TIME must be filled.<br></p>
+</li>
+<li>
+<p>DATE must be in the format dd/mm/yyyy. <code>'-'</code>, <code>'/'</code> or <code>'.'</code> can be used to separate the day, month and year field of the date,
+and they need not be paired up (i.e. 24.03/2017 is acceptable as well).<br></p>
+</li>
+<li>
+<p>TIME must be in 24-hr format, with a colon separating the hour and minute values. Example: 08:00, 16:00, 23:59.<br></p>
+</li>
+<li>
+<p>REMINDER can be of any value, as long as it is not empty.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>addreminder rd/Dinner with family d/10/10/2017 ti/18:00</code> (Refer to Figure 2)</p>
+</li>
+<li>
+<p><code>addreminder rd/CS2105 Assignment d/26.10-2017 ti/23:59</code></p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ReminderPast.png" alt="ReminderPast" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 2: Reminder for a dinner with family on 10/10/2017 at 18:00.</em></p>
+</div>
+<div class="paragraph">
+<p>The reminder cells are colored differently according to the urgency of the event:</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>If the event has passed, the reminder cell is colored in dark grey (Refer to Figure 2).<br></p>
+</li>
+<li>
+<p>If the event is happening today, the reminder cell is colored in red (Refer to Figure 3).<br></p>
+</li>
+<li>
+<p>If the event is happening within three days, the reminder cell is colored in yellow (Refer Figure 4).<br></p>
+</li>
+<li>
+<p>If the event is happening more than three days later, the reminder cell is colored in green (Refer to Figure 5).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ReminderToday.png" alt="ReminderToday" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 3: A reminder of an event happening today.</em></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ReminderThreeDays.png" alt="ReminderThreeDays" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 4: A reminder of an event happening within three days.</em></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ReminderNormal.png" alt="ReminderNormal" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 5: A reminder of an event happening more than three days later.</em></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The countdown to the event, as well as the color of the reminder cells, <strong>are not dynamic</strong>. A new count and update
+only takes place when the program is started up, and when an edit is made to a reminder.</p>
+</li>
+<li>
+<p>The <code>undo</code> and <code>redo</code> commands do not work for commands that affect the reminders.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="editing-a-reminder-code-editreminder-code-v1-4"><a class="link" href="#editing-a-reminder-code-editreminder-code-v1-4">Editing a reminder: <code>editreminder</code> [V1.4]</a></h3>
+<div class="paragraph">
+<p>Edits an existing reminder in iContacts.<br>
+Format: <code>editreminder INDEX [rd/REMINDER] [d/DATE] [ti/TIME]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Edits the reminder at the specified <code>INDEX</code>. The index refers to the index number shown in the list of reminders. The index <strong>must be a positive integer</strong> 1, 2, 3&#8230;&#8203;</p>
+</li>
+<li>
+<p>At least one of the optional fields must be provided.</p>
+</li>
+<li>
+<p>Existing values will be updated to the given input values. If the field is left empty, the original value will be used instead.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>editreminder 1 rd/Drink coffee</code><br>
+Edits the content of the 1st reminder to be <code>Drink coffee</code>.</p>
+</li>
+<li>
+<p><code>editreminder 3 d/25/12/2017 ti/19:00</code><br>
+Edits the date and time of the 3rd reminder to be <code>25/12/2017</code> and <code>19:00</code> respectively.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-a-reminder-code-deletereminder-code-v1-4"><a class="link" href="#deleting-a-reminder-code-deletereminder-code-v1-4">Deleting a reminder: <code>deletereminder</code>[V1.4]</a></h3>
+<div class="paragraph">
+<p>Deletes a specified reminder from iContacts.<br>
+Format: <code>deletereminder INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Deletes the reminder at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the list of reminders.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>deletereminder 1</code><br>
+Deletes the 1st reminder in iContacts.</p>
+</li>
+<li>
+<p><code>deletereminder 20</code><br>
+Deletes the 20th reminder in iContacts.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification"><a class="link" href="#justification">Justification</a></h4>
+<div class="paragraph">
+<p>While iContacts allow users to store, manage and search for contact information efficiently, this alone is not
+sufficient to meet the needs of university students. Students often have multiple outstanding tasks or events such as
+assignments or meetings. Hence, what these students need is the ability to set reminders for upcoming tasks or events.</p>
+</div>
+<div class="paragraph">
+<p>We chose to display the reminders chronologically instead of having them pop-up when the event is nearing as we feel
+that it is more user-friendly to permanently display the reminders for the users to see. Displaying the reminders permanently
+can grant users a sense of the quantity of upcoming tasks and events. Also, only reminding the users of an upcoming task or event
+when it is nearing might give the user insufficient time to prepare for it. Instead, permanently displaying the reminders
+with a countdown to the event allow users to better prepare for it.</p>
+</div>
+<div class="paragraph">
+<p>We also recognise that there is a need to differentiate reminders based on the level of urgency. Therefore, we chose to do this
+by coloring the reminder cells differently. Using color is simple but powerful.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="reminder-implementation"><a class="link" href="#reminder-implementation">Reminder Implementation</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ReminderUML1.png" alt="ReminderUML1" width="390">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 28: UML diagram showing the make-up of Reminder objects.</em></p>
+</div>
+<div class="paragraph">
+<p>The <code>Reminder</code> object represents a reminder in iContacts. It contains a <code>String</code> variable <code>reminder</code>, which represents
+the actual reminder from the user, and also a <code>Date</code>, <code>Time</code> and <code>Status</code> object, which represents the date, time and <a href="#status">status</a> of the reminder respectively
+(Refer to Figure 28). As part of <em>defensive programming</em>, <code>Reminder</code> implements the <code>ReadOnlyReminder</code> interface, which only allows <em>read</em> operations, thus
+helping to prevent inappropriate or unintended modifications to <code>Reminder</code> objects (Refer to Figure 28) during the execution of the program.
+For example, for <code>DeleteReminderCommand</code>, its <code>execute</code> method should only execute the deletion of a specified reminder, not to alter any reminders.
+To ensure that no unintended or inappropriate alteration happens, <code>DeleteReminderCommand</code> is passed a list of <code>ReadOnlyReminder</code> instead of <code>Reminder</code>. This can
+be seen from the code snippet below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">DeleteReminderCommand</span> <span class="directive">extends</span> Command {
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> CommandResult execute() <span class="directive">throws</span> CommandException {
+        <span class="predefined-type">List</span>&lt;ReadOnlyReminder&gt; reminderListing = model.getSortedReminderList();
+
+        <span class="keyword">if</span> (targetIndex.getZeroBased() &gt;= reminderListing.size()) {
+            <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(Messages.MESSAGE_INVALID_REMINDER_DISPLAYED_INDEX);
+        }
+
+        ReadOnlyReminder reminderToDelete = reminderListing.get(targetIndex.getZeroBased());
+
+        <span class="keyword">try</span> {
+            model.deleteReminder(reminderToDelete);
+        } <span class="keyword">catch</span> (ReminderNotFoundException rnfe) {
+            <span class="keyword">assert</span> <span class="predefined-constant">false</span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">The target reminder cannot be missing</span><span class="delimiter">&quot;</span></span>;
+        }
+
+        ... <span class="comment">//return from method ...</span>
+    }
+}</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ReminderUML2.png" alt="ReminderUML2" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 29: In-memory implementation of Reminder.</em></p>
+</div>
+<div class="paragraph">
+<p>In terms of how <code>Reminder</code> objects are kept in-memory during the execution of the program, <code>Reminder</code> objects are
+kept within <code>UniqueReminderList</code> (Refer to Figure 29), which assures that there are no duplicate <code>Reminder</code> objects. The <code>UniqueReminderList</code>
+object is then kept and used by <code>ModelManager</code> to carry out commands related to reminders while the program is running.<br></p>
+</div>
+<div class="paragraph">
+<p>Similar to <code>Reminder</code>, as can be seen from Figure 29 above, <code>UniqueReminderList</code> implements the <code>ReadOnlyUniqueReminderList</code> interface to prevent
+inappropriate or unintended modifications to <code>UniqueReminderList</code> during the execution of the program.<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ReminderUML3.png" alt="ReminderUML3" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 30: How Reminder is stored.</em></p>
+</div>
+<div class="paragraph">
+<p>As seen from Figure 30, <code>Reminder</code> objects are stored in a XML storage file in a JAXB-friendly version <code>XmlAdaptedReminder</code>. Notably, the <code>Status</code> object is not stored along with
+the <code>Reminder</code> object; it is instantiated and initialized with an appropriate value during runtime when the <code>Reminder</code> object is instantiated.
+When the program starts, <code>XmlAdaptedReminder</code> objects are read in as <code>XmlSerializableReminders</code> via <code>XmlFileStorage</code> and <code>XmlUtil</code>.
+This can be seen below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">XmlFileStorage</span> {
+
+    <span class="directive">public</span> <span class="directive">static</span> XmlSerializableReminders loadRemindersFromSaveFile(<span class="predefined-type">File</span> file) <span class="directive">throws</span> DataConversionException, <span class="exception">FileNotFoundException</span> {
+        <span class="keyword">try</span>{
+            <span class="keyword">return</span> XmlUtil.getDataFromFile(file, XmlSerializableReminders.class);
+        } <span class="keyword">catch</span> (JAXBException e) {
+            <span class="keyword">throw</span> <span class="keyword">new</span> DataConversionException(e);
+        }
+    )
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>XmlSerializableReminders</code> object is then passed to <code>UniqueReminderList</code>, which then converts it into a list of <code>Reminder</code> objects for in-memory use.
+This can be seen below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">UniqueReminderList</span> <span class="directive">implements</span> <span class="predefined-type">Iterable</span>&lt;Reminder&gt;, ReadOnlyUniqueReminderList {
+    <span class="directive">public</span> UniqueReminderList(ReadOnlyUniqueReminderList xmlReminders) {
+        requireNonNull(xmlReminders);
+        <span class="keyword">try</span> {
+            setReminders(xmlReminders.toModelType());
+        } <span class="keyword">catch</span> (DuplicateReminderException dre) {
+            <span class="keyword">assert</span> <span class="predefined-constant">false</span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">Reminders from storage should not have duplicates</span><span class="delimiter">&quot;</span></span>;
+        }
+    }
+
+    <span class="directive">public</span> <span class="type">void</span> setReminders(<span class="predefined-type">List</span>&lt;ReadOnlyReminder&gt; reminders) <span class="directive">throws</span> DuplicateReminderException {
+        <span class="directive">final</span> UniqueReminderList replacement = <span class="keyword">new</span> UniqueReminderList();
+        <span class="keyword">for</span> (<span class="directive">final</span> ReadOnlyReminder reminder : reminders) {
+            replacement.add(<span class="keyword">new</span> Reminder(reminder));
+        }
+        setReminders(replacement);
+    }
+
+    <span class="directive">public</span> <span class="type">void</span> setReminders(UniqueReminderList replacement) {
+        <span class="local-variable">this</span>.internalList.setAll(replacement.internalList);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As can be seen from the code snippet above and in Figure 30, as part of <em>defensive programming</em>, <code>XmlSerializableReminders</code> also implements the <code>ReadOnlyUniqueReminderList</code> interface.<br></p>
+</div>
+<div class="paragraph">
+<p>To save, the <code>saveReminders</code> method in <code>StorageManager</code> is invoked:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">    <span class="annotation">@Override</span>
+    <span class="directive">public</span> <span class="type">void</span> saveReminders(ReadOnlyUniqueReminderList reminderList) <span class="directive">throws</span> <span class="exception">IOException</span> {
+        saveReminders(reminderList, remindersStorage.getRemindersFilePath());
+    }
+
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> <span class="type">void</span> saveReminders(ReadOnlyUniqueReminderList reminderList, <span class="predefined-type">String</span> filePath) <span class="directive">throws</span> <span class="exception">IOException</span> {
+        logger.fine(<span class="string"><span class="delimiter">&quot;</span><span class="content">Attempting to write to data file: </span><span class="delimiter">&quot;</span></span> + filePath);
+        remindersStorage.saveReminders(reminderList, filePath);
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will then invoke the <code>saveReminders</code> method in <code>XmlRemindersStorage</code>, and go on to invoke the <code>saveRemindersToFile</code> method in <code>XmlFileStorage</code>,
+and finally the <code>saveDataToFile</code> method in <code>XmlUtil</code>.</p>
+</div>
+<div class="paragraph">
+<p>The color of the reminder cells are decided and set during the formation of <code>ReminderListViewCell</code>. This can be seen from the
+code snippet below:<br></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">BirthdayAndReminderListPanel</span> <span class="directive">extends</span> UiPart&lt;<span class="predefined-type">Region</span>&gt; {
+
+    <span class="type">class</span> <span class="class">ReminderListViewCell</span> <span class="directive">extends</span> ListCell&lt;ReminderCard&gt; {
+
+        <span class="annotation">@Override</span>
+        <span class="directive">protected</span> <span class="type">void</span> updateItem(ReminderCard reminder, <span class="type">boolean</span> empty) {
+            <span class="local-variable">super</span>.updateItem(reminder, empty);
+
+            <span class="keyword">if</span> (empty || reminder == <span class="predefined-constant">null</span>) {
+                setGraphic(<span class="predefined-constant">null</span>);
+                setText(<span class="predefined-constant">null</span>);
+                <span class="keyword">return</span>;
+            }
+            <span class="local-variable">this</span>.getStylesheets().clear();
+            <span class="keyword">if</span> (reminder.isEventToday()) {
+                <span class="local-variable">this</span>.getStylesheets().add(REMINDER_TODAY_STYLE_SHEET);
+            } <span class="keyword">else</span> <span class="keyword">if</span> (reminder.isEventWithinThreeDays()) {
+                <span class="local-variable">this</span>.getStylesheets().add(REMINDER_THREE_DAYS_STYLE_SHEET);
+            } <span class="keyword">else</span> <span class="keyword">if</span> (!reminder.hasEventPassed()) {
+                <span class="local-variable">this</span>.getStylesheets().add(REMINDER_NORMAL_STYLE_SHEET);
+            }
+
+            setGraphic(reminder.getRoot());
+        }
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Depending on the status of the reminder, different styles would be set for the specific <code>ReminderListViewCell</code>.</p>
+</div>
+<div class="paragraph">
+<p>The methods <code>isEventToday</code>, <code>isEventWithinThreeDays</code> and <code>hasEventPassed</code> seen from the code snippet above originates from
+the <code>Status</code> object of each <code>Reminder</code> object, and propagated from <code>Status</code> to <code>Reminder</code> then finally to <code>ReminderCard</code>.</p>
+</div>
+<h4 id="design-consideration" class="discrete">Design Consideration</h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> How to store Reminders in-memory<br>
+<strong>Alternative 1 (current choice):</strong> Store Reminder objects in UniqueReminderList, independent of AddressBook.<br>
+Pros: Follows the <em>Single-Responsibility Principle</em>, because a reminder should not be an address book&#8217;s responsibility.<br>
+Cons: More changes have to be made to the existing code base, making it tougher to implement.<br>
+<strong>Alternative 2:</strong> Store Reminder objects within AddressBook.<br>
+Pros: Easier to implement as lesser changes have to be made to the existing program.<br>
+Cons: Violates the <em>Single-Responsibility Principle</em>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Aspect</strong> Should the undo/redo mechanism be applied to Reminder<br>
+<strong>Alternative 1 (current choice):</strong> Commands that affect Reminder objects are not undoable/redoable.<br>
+Pros: Users would be more aware of any changes they made to a reminder, as they are forced to
+use the <code>editreminder</code>, <code>addreminder</code> and <code>deletereminder</code> commands.
+Cons: It is less user-friendly.<br>
+<strong>Alternative 2:</strong> Commands that affect Reminder objects are undoable/redoable.<br>
+Pros: More user-friendly.<br>
+Cons: Users might get careless with changing the information of a Reminder object. This might be detrimental
+as the date and time fields of a Reminder are very important.</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-toggle"><a class="link" href="#enhancement-added-toggle">Enhancement Added: Toggle</a></h3>
+<div class="sect3">
+<h4 id="external-behavior-2"><a class="link" href="#external-behavior-2">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="toggling-between-reminders-panel-and-browser-code-toggle-code-v1-2"><a class="link" href="#toggling-between-reminders-panel-and-browser-code-toggle-code-v1-2">Toggling between reminders panel and browser: <code>toggle</code> [V1.2]</a></h3>
+<div class="paragraph">
+<p>Toggle between the reminders panel (Refer to Figure 12 below) and the browser (Refer to Figure 13 below) as needed.<br>
+The reminders panel would display reminders for upcoming birthdays amongst the contacts in the current month and
+also reminders that users can set for themselves. The birthday reminders and reminders are
+displayed chronologically.<br>
+Format: <code>toggle</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>iContacts would display the reminders panel at start up.</p>
+</li>
+<li>
+<p>Executing the <code>select</code> command would always bring the browser to the front.</p>
+</li>
+<li>
+<p>Toggling to the browser without first executing a <code>select</code> command would display a default background (Refer to Figure 14).</p>
+</li>
+<li>
+<p>Executing this <code>toggle</code> command when the application is showing the details of a contact would always bring the reminders panel to the front, and then
+alternate between the reminders panel and the browser on further execution of the <code>toggle</code> command.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/RemindersPanel.png" alt="RemindersPanel" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 12 : The reminders panel.</em></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/BrowserPanel.png" alt="BrowserPanel" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 13 : The browser panel.</em></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/DefaultBackground.png" alt="DefaultBackground" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 14 : The default background.</em></p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification-2"><a class="link" href="#justification-2">Justification</a></h4>
+<div class="paragraph">
+<p>To make iContacts useful and appealing, it needs to be able to provide more functionality to users, and this also mean that it needs
+to be able to display more information. Without this toggling mechanism, users would have to squint their eyes as all the information
+and the browser would be squeezed together. Hence, to ensure a much more pleasant user experience, this toggling mechanism is required,
+as it allows related information to be displayed together in separate panels without being squeezed.<br></p>
+</div>
+<div class="paragraph">
+<p>However, we choose to permanently display the list of contacts as we felt that iContacts is first and foremost an address book, hence
+the list of contacts is the most important information within iContacts and thus should always be displayed.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-2"><a class="link" href="#implementation-2">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="toggling-mechanism"><a class="link" href="#toggling-mechanism">Toggling mechanism</a></h3>
+<div class="paragraph">
+<p>The toggling mechanism is an event-driven mechanism.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/togglingMechanism1.png" alt="togglingMechanism1" width=""790">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 25 : Component interactions for the toggling mechanism.</em></p>
+</div>
+<div class="paragraph">
+<p>The above diagram (Refer to Figure 25) shows the high-level overview of the component interactions for the toggling mechanism.<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/togglingMechanism2.png" alt="togglingMechanism2" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 26 : Sequence diagram for the first part of the toggling mechanism.</em></p>
+</div>
+<div class="paragraph">
+<p>As seen from the sequence diagram above (Refer to Figure 26), when the user type the command for <code>toggle</code>, an instance of <code>ToggleCommand</code> would be created.<br>
+Upon execution by <code>LogicManager</code>, the event <code>BrowserAndRemindersPanelToggleEvent</code> would be posted by the <code>EventCenter</code> to the <code>EventBus</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">ToggleCommand</span> <span class="directive">extends</span> Command {
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> CommandResult execute() {
+        EventsCenter.getInstance().post(<span class="keyword">new</span> BrowserAndRemindersPanelToggleEvent());
+        <span class="comment">// ... return some object or null ...</span>
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As seen from the diagram below (Refer to Figure 27), the method <code>handleBrowserToggleEvent()</code> in the <code>BrowserAndRemindersPanel</code> class in the <code>UI</code> component will then listen for the event,
+and upon receiving the event, it will invoke the method <code>toggleBrowserPanel</code> to trigger the actual toggling.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/togglingMechanism3.png" alt="togglingMechanism3" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 27 : Sequence diagram for the second part of the toggling mechanism.</em></p>
+</div>
+<div class="paragraph">
+<p>The <code>BrowserAndRemindersPanel</code> class has a variable <code>currentlyInFront</code> keeping track of which panel (browser or reminders) is currently being shown.
+<code>toggleBrowserPanel</code> would then use the <code>currentlyInFront</code> variable to toggle to the correct panel, and then update <code>currentlyInFront</code> appropriately:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">BrowserAndRemindersPanel</span> <span class="directive">extends</span> UIPart&lt;<span class="predefined-type">Region</span>&gt; {
+    <span class="annotation">@Subscribe</span>
+    <span class="directive">private</span> <span class="type">void</span> handleBrowserPanelToggleEvent(BrowserAndRemindersPanelToggleEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+        toggleBrowserPanel();
+    }
+
+    <span class="directive">private</span> <span class="type">void</span> toggleBrowserPanel() {
+        <span class="keyword">switch</span>(currentlyInFront) {
+        <span class="keyword">case</span> BROWSER:
+            setUpToShowRemindersPanel();
+            remindersPanel.toFront();
+            currentlyInFront = Node.REMINDERS;
+            <span class="keyword">break</span>;
+        <span class="keyword">case</span> REMINDERS:
+            setUpToShowWebBrowser();
+            browser.toFront();
+            currentlyInFront = Node.BROWSER;
+            <span class="keyword">break</span>;
+
+
+        <span class="comment">//... Other cases ...</span>
+
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>One important thing to note is that when the <code>select</code> command is executed, the browser panel would be brought forward no matter what:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">BrowserAndRemindersPanel</span> <span class="directive">extends</span> UIPart&lt;<span class="predefined-type">Region</span>&gt; {
+    <span class="annotation">@Subscribe</span>
+    <span class="directive">private</span> <span class="type">void</span> handleLoadPersonPageEvent(LoadPersonWebpageEvent event) {
+        setUpToShowWebBrowser();
+        currentlyInFront = Node.BROWSER;
+        browser.toFront();
+        loadPersonPage(event.getPerson());
+    }
+
+    <span class="directive">private</span> <span class="type">void</span> setUpToShowWebBrowser() {
+        browser.setVisible(<span class="predefined-constant">true</span>);
+        detailsPanel.setVisible(<span class="predefined-constant">false</span>);
+        remindersPanel.setVisible(<span class="predefined-constant">false</span>);
+     }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>LoadPersonWebpageEvent</code> is posted whenever the <code>select</code> command is executed. Within the <code>handleLoadPersonPageEvent</code>
+method, the statement <code>browser.toFront()</code> and the method <code>setUpToShowWebBrowser</code> would then bring the browser panel to the front no matter what, and also make it visible.</p>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Usage of browser area<br>
+<strong>Alternative 1 (current choice):</strong> Allow users to toggle between the browser and reminders panel.<br>
+Pros: Can use the entire space for either the browser or reminders panel.<br>
+Cons: Users need to manually switch between the browser and reminders panel.<br>
+<strong>Alternative 2:</strong> Put reminders and browser panels side-by-side.<br>
+Pros: Users do not need to manually switch between the browser and reminders panel.<br>
+Cons: Too little space for browser and reminders, making it difficult to read for the users.</p>
+</div>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Implementation of toggling mechanism.<br>
+<strong>Alternative 1 (current choice):</strong> Bring browser and reminders panel to the front as required, on top of setting their visibility suitably.<br>
+Pros: Users can interact with both browser and reminders (can scroll through reminders etc).<br>
+Cons: More difficult to implement.<br>
+<strong>Alternative 2:</strong> Only set visibility of browser and reminders panel as required (set browser visibility to false to display reminders and vice versa).<br>
+Pros: Easier to implement.<br>
+Cons: Users cannot interact with the reminders panel (since the browser is technically still at the front).</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-proposed-find-by-similar-keywords"><a class="link" href="#enhancement-proposed-find-by-similar-keywords">Enhancement Proposed: Find by similar keywords</a></h3>
+<div class="paragraph">
+<p>The <code>find</code> command in iContacts currently only works for keywords with exact wording (i.e. <code>find Han</code> would not work for a contact with name <code>Hans</code>),
+although it is still case-insensitive. This might be very inconvenient for users as they might not remember the exact wording. Hence.
+the <code>find</code> command should be enhanced such that it can work with similar keywords.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-proposed-dynamic-command-syntax-validation-using-commandbox-border-color"><a class="link" href="#enhancement-proposed-dynamic-command-syntax-validation-using-commandbox-border-color">Enhancement Proposed: Dynamic command syntax validation using CommandBox border color</a></h3>
+<div class="paragraph">
+<p>Currently, iContacts only notify users of an invalid command syntax after users have typed out the whole command and pressed <code>Enter</code>.
+As the feedback to the users is very general, users might have a hard time figuring out which part of the command had an erroneous
+syntax. Therefore, this dynamic command syntax validation feature would be able to instantly feedback to users regarding the
+validity of the command they typed, by changing the color of the border of the CommandBox. There will be three colors:<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A green border means that the syntax of the command is valid.</p>
+</li>
+<li>
+<p>A red border means that the syntax of the command is invalid.</p>
+</li>
+<li>
+<p>A yellow border means that the syntax of the command is not wrong, but is incomplete.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-proposed-integration-with-online-address-book-and-cloud-storage-services"><a class="link" href="#enhancement-proposed-integration-with-online-address-book-and-cloud-storage-services">Enhancement Proposed: Integration with online address book and Cloud Storage services</a></h3>
+<div class="paragraph">
+<p>Currently, iContacts is not integrated with any existing online services such as Google Contacts or Google Cloud Platform. Users still
+have to manually export the source file to share their contacts, and this can only take place if both users uses iContacts. Furthermore,
+if the local copies of the source file are all corrupted or deleted, there are no online backup copies. Hence, there is a need
+to integrate iContacts with existing online address book and Cloud Storage services.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="other-contributions"><a class="link" href="#other-contributions">Other contributions</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Created the current default GUI of iContacts, as well as creating the Day theme for iContacts. (Pull requests <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/195">#195</a>)</p>
+</li>
+<li>
+<p>Updated component diagrams in DG and diagrams in UG during the project. (Pull requests <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/171">#171</a>,
+<a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/200">#200</a>, <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/201/files">#201</a>,
+<a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/149">#149</a>, <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/108">#108</a>, <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/215">#215</a>)</p>
+</li>
+<li>
+<p>Implemented Birthday field. (Pull requests <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/76">#76</a>)</p>
+</li>
+<li>
+<p>Updated READ.ME. (Pull requests <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/86">#86</a>)</p>
+</li>
+<li>
+<p>Updated AboutUs.adoc. (Pull requests <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/88">#88</a>, <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/212">#212</a>)</p>
+</li>
+<li>
+<p>Updated Glossary. (Pull requests <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/59">#59</a>, <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/70">#70</a>)</p>
+</li>
+<li>
+<p>Updated NFR. (Pull requests <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/50">#50</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2017-11-11 18:00:17 +08:00
+</div>
+</div>
+</body>
+</html>
