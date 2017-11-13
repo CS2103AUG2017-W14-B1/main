@@ -350,10 +350,10 @@ Changes the theme to <code>day</code> (Refer to Figure 11).</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 39 : Component interactions for the theme-changing mechanism</em></p>
+<p><em>Figure 31 : Component interactions for the theme-changing mechanism</em></p>
 </div>
 <div class="paragraph">
-<p>The theme-changing mechanism is an event-driven mechanism. The above diagram (Refer to Figure 39) shows the high-level overview of the component interactions for the theme-changing mechanism.</p>
+<p>The theme-changing mechanism is an event-driven mechanism. The above diagram (Refer to Figure 31) shows the high-level overview of the component interactions for the theme-changing mechanism.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -361,10 +361,10 @@ Changes the theme to <code>day</code> (Refer to Figure 11).</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 40 : Sequence diagram for the first part of the theme-changing mechanism</em></p>
+<p><em>Figure 32 : Sequence diagram for the first part of the theme-changing mechanism</em></p>
 </div>
 <div class="paragraph">
-<p>As shown from the sequence diagram above (Refer to Figure 40), after the user entered the command <code>theme day</code>, a new object <code>ThemeCommand</code> will be created. The <code>LogicManager</code> will then execute <code>ThemeCommand</code>, and the event <code>ChangeThemeRequestEvent</code> will be posted by <code>EventsCenter</code>. The code snippet below shows the <code>execute()</code> method of <code>ThemeCommand</code>:</p>
+<p>As shown from the sequence diagram above (Refer to Figure 32), after the user entered the command <code>theme day</code>, a new object <code>ThemeCommand</code> will be created. The <code>LogicManager</code> will then execute <code>ThemeCommand</code>, and the event <code>ChangeThemeRequestEvent</code> will be posted by <code>EventsCenter</code>. The code snippet below shows the <code>execute()</code> method of <code>ThemeCommand</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -383,10 +383,10 @@ Changes the theme to <code>day</code> (Refer to Figure 11).</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 41 : Sequence diagram for the second part of the theme-changing mechanism</em></p>
+<p><em>Figure 33 : Sequence diagram for the second part of the theme-changing mechanism</em></p>
 </div>
 <div class="paragraph">
-<p>As shown from the sequence diagram above (Refer to Figure 41), the method <code>handleChangeThemeEvent()</code> in <code>MainWindow</code> will handle the event and change the theme of the address book through the method <code>changeTheme()</code> accordingly.</p>
+<p>As shown from the sequence diagram above (Refer to Figure 33), the method <code>handleChangeThemeEvent()</code> in <code>MainWindow</code> will handle the event and change the theme of iContacts through the method <code>changeTheme()</code> accordingly.</p>
 </div>
 <h4 id="design-considerations-2" class="discrete">Design Considerations</h4>
 <div class="paragraph">
@@ -482,7 +482,7 @@ Changes the theme to <code>day</code> (Refer to Figure 11).</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 05:00:38 +00:00
+Last updated 2017-11-13 04:58:50 +00:00
 </div>
 </div>
 </body>
