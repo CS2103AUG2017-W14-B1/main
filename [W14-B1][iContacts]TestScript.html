@@ -110,6 +110,18 @@
 </li>
 </ul>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For path mentioned in below command get the absolute path from your device and try the commands.
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -129,7 +141,7 @@
 <p><code>select</code></p>
 </li>
 <li>
-<p><code>details</code></p>
+<p><code>details</code> [special case when counter increases by 2 as it is a stronger indicator of who could be a frequently visited contact]</p>
 </li>
 <li>
 <p><code>location</code></p>
@@ -188,7 +200,7 @@ Akshay comes on #4 position</p>
 </li>
 <li>
 <p><code>list</code><br>
-<code>select 1</code><br>
+<code>select 3</code><br>
 Charlotte&#8217;s counter increases<br>
 Charlotte&#8217;s comes on #4 position before Akshay even though they have the same counter since, Charlotte was added before Akshay in address book</p>
 </li>
@@ -442,7 +454,7 @@ Expected result: Toggle successful.<br>
 iContacts would now display the reminders panel.</p>
 </li>
 <li>
-<p><code>toggle</code> and iContacts is currently displaying the details panel.<br>
+<p><code>toggle</code> and iContacts is currently displaying the details panel (To get details panel first execute <code>details 1</code> command).<br>
 Expected result: Toggle successful.<br>
 iContacts would now display the reminders panel.</p>
 </li>
@@ -892,10 +904,6 @@ Expected result:Invalid command format!
                 Example: email s/gmail to/cs2103 sub/Meeting body/On Monday</p>
 </li>
 <li>
-<p><code>email s/outlook to/friends</code><br>
-Expected result: Email .</p>
-</li>
-<li>
 <p><code>email s/incorrectService to/friends</code><br>
 Expected result: Email not sent. Please enter a valid tag and correct service</p>
 </li>
@@ -1046,13 +1054,16 @@ Expected result: 1 person/s imported 0 duplicate/s found<br></p>
 </div>
 </li>
 <li>
-<p><code>delete 1</code></p>
+<p><code>viewtag nusStudentClub</code></p>
 </li>
 <li>
 <p><code>delete 1</code></p>
 </li>
 <li>
 <p><code>delete 1</code></p>
+</li>
+<li>
+<p><code>delete 2</code></p>
 </li>
 <li>
 <p><code>import p/specified path\multiple.xml</code><br>
@@ -1107,7 +1118,7 @@ Expected result: List Sorted<br></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 10:31:35 +00:00
+Last updated 2017-11-13 13:16:21 +00:00
 </div>
 </div>
 </body>
