@@ -143,7 +143,7 @@ Format: <code>filter [n/NAME] [t/TAG]</code></p>
 Returns <code>john</code> and <code>John Doe</code></p>
 </li>
 <li>
-<p><code>filter n/John n/Doe</code><br>
+<p><code>filter n/John n/Doe</code> or<br>
 <code>filter n/John Doe</code><br>
 Returns any person with both <code>John</code> and <code>Doe</code> in his name.</p>
 </li>
@@ -152,7 +152,7 @@ Returns any person with both <code>John</code> and <code>Doe</code> in his name.
 Returns any persons with the tag <code>friends</code>.</p>
 </li>
 <li>
-<p><code>filter t/friends t/colleagues</code><br>
+<p><code>filter t/friends t/colleagues</code> or<br>
 <code>filter t/friends colleagues</code><br>
 Returns any person with the tag <code>friends</code> and <code>colleagues</code>.</p>
 </li>
@@ -212,7 +212,7 @@ Returns any person having the name <code>John</code> and with the tag <code>frie
 <p>The method <code>test(ReadOnlyPerson person)</code> iterates through the <code>nameKeywords</code> and the <code>tagKeywords</code> to find a match of every <code>person</code> from the address book.</p>
 </div>
 <div class="paragraph">
-<p>Below is an extract of the method <code>test(ReadOnlyPerson person)</code>. The tags of each person are retrieved by the <code>getTags()</code> method. This method iterates through the <code>tagKeywords</code> and counts the number of matches against the <code>tagsOfPerson</code>. If the count is equal to the size of the <code>tagKeywords</code>, this means all the keywords in the <code>tagKeywords</code> match. The <code>hasTag</code> will then be set to <code>true</code>.</p>
+<p>Below is an extract of the method <code>test(ReadOnlyPerson person)</code>. The method <code>countTagMatches(person)</code> counts and returns the number of matches between the tags of the <code>person</code> and the tags in the <code>tagKeywords</code>. If the <code>tagsMatchedCount</code> is equal to the size of the <code>tagKeywords</code>, this means all the keywords in the <code>tagKeywords</code> match. The <code>hasTag</code> will then be set to <code>true</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -243,7 +243,7 @@ Returns any person having the name <code>John</code> and with the tag <code>frie
     <span class="directive">public</span> <span class="type">boolean</span> test(ReadOnlyPerson person) {
         <span class="type">boolean</span> hasName = <span class="predefined-constant">false</span>;
             <span class="keyword">if</span> (!nameKeywords.isEmpty()) {
-                nameFound = nameKeywords.stream().allMatch(nameKeywords -&gt; StringUtil
+                hasName = nameKeywords.stream().allMatch(nameKeywords -&gt; StringUtil
                 .containsWordIgnoreCase(person.getName().fullName, nameKeywords));
         }
     }
@@ -255,13 +255,13 @@ Returns any person having the name <code>John</code> and with the tag <code>frie
 </div>
 <h4 id="design-considerations" class="discrete">Design Considerations</h4>
 <div class="paragraph">
-<p><strong>Aspect:</strong> Command with different search logic<br>
+<p><strong>Aspect:</strong> Should similar search commands be separated<br>
 <strong>Alternative 1 (current choice):</strong> Create a separate command to search for contacts that match all keywords.<br>
-<strong>Pros:</strong> Implementation can be easy as the logic is similar to the <code>FindCommand</code>.<br>
-<strong>Cons:</strong> May not make sense to have separate commands to search for contacts.<br>
+<strong>Pros:</strong> Users will not be confused between the functionality of the <code>find</code> and <code>filter</code> commands.<br>
+<strong>Cons:</strong> Users have to remember an additional command.<br>
 <strong>Alternative 2:</strong> Modify the <code>FindCommand</code> to allow users the option to search contacts that either match any keywords or match all keywords.<br>
 <strong>Pros:</strong> Lesser command for the users to remember when searching for contacts.<br>
-<strong>Cons:</strong> Implementation can be more complicated as there is a need to address both OR search and AND search on the same command.</p>
+<strong>Cons:</strong> Implementation can be more complicated as there is a need to address both <code>OR</code> search and <code>AND</code> search on the same command.</p>
 </div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
@@ -386,7 +386,7 @@ Changes the theme to <code>day</code> (Refer to Figure 11).</p>
 <p><em>Figure 33 : Sequence diagram for the second part of the theme-changing mechanism</em></p>
 </div>
 <div class="paragraph">
-<p>As shown from the sequence diagram above (Refer to Figure 33), the method <code>handleChangeThemeEvent()</code> in <code>MainWindow</code> will handle the event and change the theme of the address book through the method <code>changeTheme()</code> accordingly.</p>
+<p>As shown from the sequence diagram above (Refer to Figure 33), the method <code>handleChangeThemeEvent()</code> in <code>MainWindow</code> will handle the event and change the theme of iContacts through the method <code>changeTheme()</code> accordingly.</p>
 </div>
 <h4 id="design-considerations-2" class="discrete">Design Considerations</h4>
 <div class="paragraph">
@@ -482,7 +482,7 @@ Changes the theme to <code>day</code> (Refer to Figure 11).</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 04:24:43 +00:00
+Last updated 2017-11-13 04:25:07 +00:00
 </div>
 </div>
 </body>
