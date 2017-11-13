@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.3">
+<title>iContacts - Test Script</title>
+<link rel="stylesheet" href="./gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>iContacts - Test Script</h1>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="introduction"><a class="link" href="#introduction">1. Introduction</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This document explains the steps to perform manual testing, and how to load the sample data.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="loading-the-sample-data"><a class="link" href="#loading-the-sample-data">2. Loading the Sample Data</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following are the steps to load sample data:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Step 1</p>
+</li>
+<li>
+<p>Step 2</p>
+</li>
+<li>
+<p>&#8230;&#8203;</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="commands-to-test"><a class="link" href="#commands-to-test">3. Commands to Test</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="frequently-visited-contacts"><a class="link" href="#frequently-visited-contacts">3.1. Frequently Visited Contacts</a></h3>
+<div class="paragraph">
+<p>Following are the commands which will increase the <code>PopularityCounter</code> by one for the contacts viewed/searched:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>viewtag</code></p>
+</li>
+<li>
+<p><code>select</code></p>
+</li>
+<li>
+<p><code>details</code></p>
+</li>
+<li>
+<p><code>location</code></p>
+</li>
+<li>
+<p><code>email</code></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Manual selection of person through a click also increases the popularity counter of that person. This is the same action as <code>details</code> command.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+To closely notice the changes, please reset the data by deleting the <code>addressbook.xml</code> and allowing our application to generate default contacts each with zero popularity( or replacing by sampledata file given). Initially everyone has zero popularity and ones added earlier in addressbook will be ranked higher in Frequently Visited List
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Order of Events:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/initialPC.PNG" alt="initialPC" width="400">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Initially you should see the above list in Popular contact</p>
+</li>
+<li>
+<p><code>details 10</code><br>
+Index 10&#8217;s popularity counter increased.<br>
+Janice come on the #1 position</p>
+</li>
+<li>
+<p><code>viewtag friends</code><br>
+Everyone with tag <code>friends</code> gets counter increased.<br>
+Akshay comes on #4 position</p>
+</li>
+<li>
+<p><code>list</code><br>
+<code>select 1</code><br>
+Charlotte&#8217;s counter increases<br>
+Charlotte&#8217;s comes on #4 position before Akshay even though they have the same counter since, Charlotte was added before Akshay in address book</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>You can try other commands to see the updation of Popular Contact List.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="filter"><a class="link" href="#filter">3.2. Filter</a></h3>
+<div class="paragraph">
+<p><strong>Please reload the <code>addressbook</code> data before conducting the test.</strong></p>
+</div>
+<div class="paragraph">
+<p>Command usage: <code>filter [n/NAME] [t/TAG]</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>filter n/alex</code><br>
+Expected result: 2 persons listed!<br></p>
+<div class="paragraph">
+<p><code>Alex Yeoh</code> and <code>Alex</code> will be displayed</p>
+</div>
+</li>
+<li>
+<p><code>filter n/alex n/yeoh</code><br>
+Expected result: 1 persons listed!<br></p>
+<div class="paragraph">
+<p><code>Alex Yeoh</code> will be displayed.</p>
+</div>
+</li>
+<li>
+<p><code>filter n/alex yeoh</code><br>
+Expected result: 1 persons listed!<br></p>
+<div class="paragraph">
+<p><code>Alex Yeoh</code> will be displayed.</p>
+</div>
+</li>
+<li>
+<p><code>filter n/yeoh alex</code><br>
+Expected result: 1 persons listed!<br></p>
+<div class="paragraph">
+<p><code>Alex Yeoh</code> will be displayed. The order of the name does not matter.</p>
+</div>
+</li>
+<li>
+<p><code>filter t/friends</code><br>
+Expected result: 3 persons listed!<br></p>
+<div class="paragraph">
+<p><code>Alex Yeoh</code>, <code>Bernice Yu</code> and <code>Akshay</code> having the tag <code>friends</code> will be displayed.</p>
+</div>
+</li>
+<li>
+<p><code>filter t/friends t/colleagues</code><br>
+Expected result: 2 persons listed!<br></p>
+<div class="paragraph">
+<p><code>Bernice Yu</code> and <code>Akshay</code> having both tags <code>colleagues</code> and <code>friends</code> will be displayed.</p>
+</div>
+</li>
+<li>
+<p><code>filter t/friends colleagues</code><br>
+Expected result: 2 persons listed!<br></p>
+<div class="paragraph">
+<p><code>Bernice Yu</code> and <code>Akshay</code> having both tags <code>colleagues</code> and <code>friends</code> will be displayed.</p>
+</div>
+</li>
+<li>
+<p><code>filter n/alex t/friends</code><br>
+Expected result: 1 persons listed!<br></p>
+<div class="paragraph">
+<p><code>Alex Yeoh</code> will be displayed because the contact has a name containing <code>alex</code> and has the tag <code>friends</code>.</p>
+</div>
+</li>
+<li>
+<p><code>filter t/friends n/alex</code><br>
+Expected result: 1 persons listed!<br></p>
+<div class="paragraph">
+<p><code>Alex Yeoh</code> will be displayed. The ordering does not matter.</p>
+</div>
+</li>
+<li>
+<p><code>filter n/friends</code><br>
+Expected result: 0 persons listed!<br></p>
+<div class="paragraph">
+<p>No contacts will be displayed because there are no contacts having the name <code>friends</code>.</p>
+</div>
+</li>
+<li>
+<p><code>filter</code><br>
+Expected result: Invalid command format!<br>
+                 filter: Filters all persons whose names and tags contain all of the specified keywords and displays them as a list with index numbers.<br>
+                 Parameters: [n/NAME] [t/TAG]&#8230;&#8203;<br>
+                 Note: At least one of the parameters must be specified.<br>
+                 Example: filter n/Alex t/friends</p>
+</li>
+<li>
+<p><code>filter Alex</code><br>
+Expected result: Invalid command format!<br>
+                 filter: Filters all persons whose names and tags contain all of the specified keywords and displays them as a list with index numbers.<br>
+                 Parameters: [n/NAME] [t/TAG]&#8230;&#8203;<br>
+                 Note: At least one of the parameters must be specified.<br>
+                 Example: filter n/Alex t/friends</p>
+</li>
+<li>
+<p><code>filter n/</code><br>
+Expected result: Invalid command format!<br>
+                 filter: Filters all persons whose names and tags contain all of the specified keywords and displays them as a list with index numbers.<br>
+                 Parameters: [n/NAME] [t/TAG]&#8230;&#8203;<br>
+                 Note: At least one of the parameters must be specified.<br>
+                 Example: filter n/Alex t/friends</p>
+</li>
+<li>
+<p><code>filter t/</code><br>
+Expected result: Invalid command format!<br>
+                 filter: Filters all persons whose names and tags contain all of the specified keywords and displays them as a list with index numbers.<br>
+                 Parameters: [n/NAME] [t/TAG]&#8230;&#8203;<br>
+                 Note: At least one of the parameters must be specified.<br>
+                 Example: filter n/Alex t/friends</p>
+</li>
+<li>
+<p><code>filter n/Alex t/</code><br>
+Expected result: Invalid command format!<br>
+                 filter: Filters all persons whose names and tags contain all of the specified keywords and displays them as a list with index numbers.<br>
+                 Parameters: [n/NAME] [t/TAG]&#8230;&#8203;<br>
+                 Note: At least one of the parameters must be specified.<br>
+                 Example: filter n/Alex t/friends</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="nickname"><a class="link" href="#nickname">3.3. Nickname</a></h3>
+<div class="paragraph">
+<p><strong>Please reload the <code>addressbook</code> data before conducting the test.</strong></p>
+</div>
+<div class="paragraph">
+<p>Command usage: <code>nickname INDEX [NICKNAME]</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>list</code><br>
+<code>nickname 1 Alexandra</code><br>
+Expected result: Nickname successfully set to Person: Alex Yeoh Phone: 87438807 Email: <a href="mailto:alexyeoh@example.com">alexyeoh@example.com</a> Address: Blk 30 Geylang Street 29, #06-40 Birthday: 21-10-1995 Nickname: Alexandra Tags: [friends]<br></p>
+<div class="paragraph">
+<p>The nickname <code>Alexandra</code> will be displayed next to the contact.</p>
+</div>
+</li>
+<li>
+<p><code>nickname 1 Alexandra</code><br>
+Expected result: Nickname remains unchanged for Person: Alex Yeoh Phone: 87438807 Email: <a href="mailto:alexyeoh@example.com">alexyeoh@example.com</a> Address: Blk 30 Geylang Street 29, #06-40 Birthday: 21-10-1995 Nickname: Alexandra Tags: [friends]</p>
+</li>
+<li>
+<p><code>nickname 1</code><br>
+Expected result: Nickname successfully removed from Person: Alex Yeoh Phone: 87438807 Email: <a href="mailto:alexyeoh@example.com">alexyeoh@example.com</a> Address: Blk 30 Geylang Street 29, #06-40 Birthday: 21-10-1995 Nickname:  Tags: [friends]<br></p>
+<div class="paragraph">
+<p>The nickname from the contact will be removed.</p>
+</div>
+</li>
+<li>
+<p>To test the command works on a filtered list:<br>
+<code>find alex</code><br>
+<code>nickname 2 Alan</code><br>
+Expected result: Nickname successfully set to Person: Alex Phone: 83292191 Email: <a href="mailto:alex@example.com">alex@example.com</a> Address: 35, Jurong East Birthday: 10-2-1950 Nickname: Alan Tags: [family]<br></p>
+<div class="paragraph">
+<p>The nickname <code>Alan</code> will be displayed next to the contact.</p>
+</div>
+</li>
+<li>
+<p><code>nickname</code><br>
+Expected result: Invalid command format!
+                 nickname: Sets the nickname to the person identified by the index number used in the last person listing. Existing values will be overwritten by the input values.
+                 Parameters: INDEX (must be a positive integer) [NICKNAME]
+                 Example: nickname 1 Adam</p>
+</li>
+<li>
+<p><code>nickname 0</code><br>
+Expected result: Invalid command format!
+                 nickname: Sets the nickname to the person identified by the index number used in the last person listing. Existing values will be overwritten by the input values.
+                 Parameters: INDEX (must be a positive integer) [NICKNAME]
+                 Example: nickname 1 Adam</p>
+</li>
+<li>
+<p><code>nickname 22</code><br>
+Expected result: The person index provided is invalid<br></p>
+<div class="paragraph">
+<p>Note: This result will be displayed only if there are 21 or less contacts on the current displayed list.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="theme"><a class="link" href="#theme">3.4. Theme</a></h3>
+<div class="paragraph">
+<p>Command usage: <code>theme THEME</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>theme day</code><br>
+Expected result: Successfully set theme: day<br></p>
+<div class="paragraph">
+<p>The theme will be changed to <code>day</code>.</p>
+</div>
+</li>
+<li>
+<p><code>theme blue</code><br>
+Expected result: Unknown theme<br>
+                 theme: Changes the theme of the address book<br>
+                 Parameter: THEME<br>
+                 List of available themes: day, night<br>
+                 Example: theme day</p>
+</li>
+<li>
+<p><code>theme</code><br>
+Expected result: Invalid command format!<br>
+                 theme: Changes the theme of the address book<br>
+                 Parameter: THEME<br>
+                 List of available themes: day, night<br>
+                 Example: theme day</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="toggle"><a class="link" href="#toggle">3.5. Toggle</a></h3>
+<div class="paragraph">
+<p>Command usage: <code>toggle</code></p>
+</div>
+<div class="paragraph">
+<p>Toggles between the reminders panel and browser panel. Something to take note of is that if iContacts is currently
+displaying the details panel, <code>toggle</code> would then bring out the reminders panel first, before alternating between
+the reminders panel and browser panel.</p>
+</div>
+<div class="paragraph">
+<p>Cases:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>toggle</code> and iContacts is currently displaying the reminders panel.<br>
+Expected result: Toggle successful.<br>
+iContacts would now display the browser panel.</p>
+</li>
+<li>
+<p><code>toggle</code> and iContacts is currently displaying the browser panel.<br>
+Expected result: Toggle successful.<br>
+iContacts would now display the reminders panel.</p>
+</li>
+<li>
+<p><code>toggle</code> and iContacts is currently displaying the details panel.<br>
+Expected result: Toggle successful.<br>
+iContacts would now display the reminders panel.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-a-reminder"><a class="link" href="#adding-a-reminder">3.6. Adding a reminder</a></h3>
+<div class="paragraph">
+<p><strong>Please make sure to reload the sample reminder data before conducting the tests below to have accurate expected results.</strong></p>
+</div>
+<div class="paragraph">
+<p>Command usage: <code>addreminder rd/REMINDER d/DATE ti/TIME</code></p>
+</div>
+<div class="paragraph">
+<p>To note:<br></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>All three parameters REMINDER, DATE and TIME must be filled.<br></p>
+</li>
+<li>
+<p>DATE must be in the format dd/mm/yyyy. <code>'-'</code>, <code>'/'</code> and <code>'.'</code> can be used to separate the day, month and year field of the date,
+and they need not be paired up (i.e. 24.03/2017 is acceptable as well). The range of allowable dates is from 1900 to 2099.<br></p>
+</li>
+<li>
+<p>TIME must be in 24-hr format, with a colon separating the hour and minute values. Example: 08:00, 16:00, 23:59.<br></p>
+</li>
+<li>
+<p>REMINDER can be of any value, as long as it is not empty.</p>
+</li>
+<li>
+<p>If the event has passed, the reminder cell is colored in dark grey.<br></p>
+</li>
+<li>
+<p>If the event is happening today, the reminder cell is colored in red.<br></p>
+</li>
+<li>
+<p>If the event is happening within three days, the reminder cell is colored in yellow.<br></p>
+</li>
+<li>
+<p>If the event is happening more than three days later, the reminder cell is colored in green.<br></p>
+</li>
+<li>
+<p>The countdown to the date and time of the event, as well as the coloring of the reminder cell, <strong>is not dynamic</strong>. Both of these
+are relative to the date and time the program is started up.<br></p>
+</li>
+<li>
+<p>The <code>undo</code> and <code>redo</code> commands do not apply to reminders.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Cases:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>addreminder rd/Unique Reminder d/01-02-2017 ti/08:00</code><br>
+Expected result: New reminder added!<br>
+A new reminder would be added to the reminder list.</p>
+</li>
+<li>
+<p><code>addreminder rd/Unique Reminder d/01-02-2017 ti/08:00</code><br>
+<strong>As the reminder is exactly the same reminder as above, there will be an issue of duplicate reminders.</strong><br>
+Expected result: This reminder already exists in iContacts.</p>
+</li>
+<li>
+<p><code>addreminder rd/ d/12/12/2000 ti/09:00</code><br>
+Expected result:<br>
+Invalid command format!<br>
+addreminder: Adds a reminder.<br>
+Parameters: rd/REMINDER d/DATE ti/TIME<br>
+REMINDER must be non-empty. DATE must be in the format dd-mm-yyyy, dd/mm/yyyy or dd.mm.yyyy, and must be a valid date. TIME is in 24-hour format.<br>
+Example: addreminder rd/Dinner with Family d/22-11-2017 ti/1700</p>
+</li>
+<li>
+<p><code>addreminder rd/Valid reminder 1 d/29/2/2017 ti/18:00</code><br>
+<strong>This <code>addreminder</code> command includes an invalid leap day.</strong><br>
+Expected result:<br>
+Date must be valid, and in the following format:<br>
+'.', '-' and '/' can be used to separate the day, month and year fields, and need not be used in pairs (i.e. 21.10/1995 works as well).<br>
+Day field: 1 - 31.<br>
+Month field: 1-12.<br>
+Year field: 1900 - 2099.<br>
+Example: 21/10/1995, 21-05-1996, 8.10.1987, 01/12-1995, 01.01-1990</p>
+</li>
+<li>
+<p><code>addreminder rd/Valid reminder 1 d/31/11/2017 ti/18:00</code><br>
+<strong>This <code>addreminder</code> command includes an invalid day field for the specified month field.</strong><br>
+Expected result:<br>
+Date must be valid, and in the following format:<br>
+'.', '-' and '/' can be used to separate the day, month and year fields, and need not be used in pairs (i.e. 21.10/1995 works as well).<br>
+Day field: 1 - 31.<br>
+Month field: 1-12.<br>
+Year field: 1900 - 2099.<br>
+Example: 21/10/1995, 21-05-1996, 8.10.1987, 01/12-1995, 01.01-1990</p>
+</li>
+<li>
+<p><code>addreminder rd/Valid reminder 1 d/01-01-2017 ti/24:00</code><br>
+<strong>This <code>addreminder</code> command contains a time that is invalid in 24-hr format.</strong><br>
+Expected result:<br>
+Time must be in 24-hour format, with a colon separating the hour and minute fields.<br>
+Example: 09:00, 23:59, 17:56</p>
+</li>
+<li>
+<p><code>addreminder rd/Valid reminder 1 d/01-01-2017 ti/0800</code><br>
+<strong>This <code>addreminder</code> command contains a time field not separated by a colon <code>:</code>.</strong><br>
+Expected result:<br>
+Time must be in 24-hour format, with a colon separating the hour and minute fields.<br>
+Example: 09:00, 23:59, 17:56</p>
+</li>
+<li>
+<p>Any <code>addreminder</code> command that does not contain all three fields.<br>
+Expected result:<br>
+Invalid command format!<br>
+addreminder: Adds a reminder.<br>
+Parameters: rd/REMINDER d/DATE ti/TIME<br>
+REMINDER must be non-empty. DATE must be in the format dd-mm-yyyy, dd/mm/yyyy or dd.mm.yyyy, and must be a valid date. TIME is in 24-hour format.<br>
+Example: addreminder rd/Dinner with Family d/22-11-2017 ti/1700</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-a-reminder"><a class="link" href="#deleting-a-reminder">3.7. Deleting a reminder</a></h3>
+<div class="paragraph">
+<p><strong>Please make sure to reload the sample reminder data before conducting the tests below to have accurate expected results.</strong></p>
+</div>
+<div class="paragraph">
+<p>Command usage: <code>deletereminder INDEX</code><br></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Deletes the reminder at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the list of reminders.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>deletereminder 1</code><br>
+Expected result:<br>
+Deleted reminder: CS2103T Release jar<br>
+15-11-2017<br>
+12:00</p>
+</li>
+<li>
+<p><code>deletereminder 0</code><br>
+Expected result:<br>
+Invalid command format!<br>
+deletereminder: Deletes the reminder identified by the index number used in the reminder listing.<br>
+Parameters: INDEX (must be a positive integer)<br>
+Example: deletereminder 1</p>
+</li>
+<li>
+<p><code>deletereminder 7</code><br>
+Expected result:<br>
+The reminder index provided is invalid.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="editing-a-reminder"><a class="link" href="#editing-a-reminder">3.8. Editing a reminder</a></h3>
+<div class="paragraph">
+<p><strong>Please make sure to reload the sample reminder data before conducting the tests below to have accurate expected results.</strong></p>
+</div>
+<div class="paragraph">
+<p>Command usage: <code>editreminder [rd/REMINDER] [d/DATE] [ti/TIME]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Edits the reminder at the specified <code>INDEX</code>. The index refers to the index number shown in the list of reminders. The index <strong>must be a positive integer</strong> 1, 2, 3&#8230;&#8203;</p>
+</li>
+<li>
+<p>At least one of the optional fields must be provided.</p>
+</li>
+<li>
+<p>Existing values will be updated to the input values. If the field is left empty, the original value will be used instead.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Cases:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>editreminder 1 rd/New reminder 1 d/01/01/2017 ti/08:00</code><br>
+Expected result:<br>
+Edited Reminder: New reminder 1<br>
+01-01-2017<br>
+08:00.</p>
+</li>
+<li>
+<p><code>editreminder 0 rd/New reminder 2 d/02/02/2017 ti/10:00</code><br>
+Expected result:<br>
+Invalid command format!<br>
+editreminder: Edits the details of the reminder identified by the index number. Existing values will be overwritten by the input values.<br>
+Parameters: INDEX (must be a positive integer) [rd/REMINDER][d/DATE][ti/TIME]<br>
+Additionally, if REMINDER is edited, the new value must contain at least one character.<br>
+Example: editreminder 1 rd/Changed reminder</p>
+</li>
+<li>
+<p><code>editreminder 10 rd/New reminder 3 d/03/03/2017 ti/11:00</code><br>
+Expected result:<br>
+The reminder index provided is invalid.</p>
+</li>
+<li>
+<p><code>editreminder 1 rd/ d/03/03/2017 ti/11:00</code><br>
+Expected result:<br>
+Invalid command format!<br>
+Reminder can be of any value, and cannot be empty.</p>
+</li>
+<li>
+<p><code>editreminder 1 rd/New reminder 4 d/29/2/2017 ti/18:00</code><br>
+<strong>This <code>editreminder</code> command includes an invalid leap day.</strong><br>
+Expected result:<br>
+Date must be valid, and in the following format:<br>
+'.', '-' and '/' can be used to separate the day, month and year fields, and need not be used in pairs (i.e. 21.10/1995 works as well).<br>
+Day field: 1 - 31.<br>
+Month field: 1-12.<br>
+Year field: 1900 - 2099.<br>
+Example: 21/10/1995, 21-05-1996, 8.10.1987, 01/12-1995, 01.01-1990</p>
+</li>
+<li>
+<p><code>editreminder 1 rd/New reminder 5 d/31/11/2017 ti/18:00</code><br>
+<strong>This <code>editreminder</code> command includes an invalid day field for the specified month field.</strong><br>
+Expected result:<br>
+Date must be valid, and in the following format:<br>
+'.', '-' and '/' can be used to separate the day, month and year fields, and need not be used in pairs (i.e. 21.10/1995 works as well).<br>
+Day field: 1 - 31.<br>
+Month field: 1-12.<br>
+Year field: 1900 - 2099.<br>
+Example: 21/10/1995, 21-05-1996, 8.10.1987, 01/12-1995, 01.01-1990</p>
+</li>
+<li>
+<p><code>editreminder 1 rd/New reminder 6 d/30/11/2017 ti/24:00</code><br>
+<strong>This <code>editreminder</code> command contains a time that is invalid in 24-hr format.</strong><br>
+Expected result:<br>
+Time must be in 24-hour format, with a colon separating the hour and minute fields.<br>
+Example: 09:00, 23:59, 17:56</p>
+</li>
+<li>
+<p><code>editreminder 1 rd/New reminder 7 d/01-01-2017 ti/0800</code><br>
+<strong>This <code>editreminder</code> command contains a time field not separated by a colon <code>:</code>.</strong><br>
+Expected result:<br>
+Time must be in 24-hour format, with a colon separating the hour and minute fields.<br>
+Example: 09:00, 23:59, 17:56</p>
+</li>
+<li>
+<p><code>editreminder 1</code><br>
+<strong>This <code>editreminder</code> command did not specify a single field to edit.</strong><br>
+Expected result:<br>
+At least one field to edit must be provided.</p>
+</li>
+<li>
+<p><code>editreminder 1 rd/Fix Bugs of iContacts d/04-12-2017 ti/10:00</code><br>
+<strong>This <code>editreminder</code> command edits a reminder such that it becomes identical to another reminder, resulting in duplicate reminders.</strong><br>
+Expected result:<br>
+This reminder already exists in iContacts.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="display-picture"><a class="link" href="#display-picture">3.9. Display Picture</a></h3>
+<div class="paragraph">
+<p>Command usage:
+<code>displaypic INDEX PATHOFIMAGE</code></p>
+</div>
+<div class="paragraph">
+<p>Note: <br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>PATHOFIMAGE</code> refers to the path of the image existing in local device.</p>
+</li>
+<li>
+<p>Copy the path of image from your local device. Make sure the image is correct.</p>
+</li>
+<li>
+<p>The picture on local device can be deleted after executing the command.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Cases:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>displaypic 1 C:\Users\Admin\Desktop\My Files\mypic.jpg</code><br>
+Expected result: Added Display Picture to Person: Alex Yeoh Phone: 87438807 Email: <a href="mailto:alexyeoh@example.com">alexyeoh@example.com</a> Address: Blk 30 Geylang Street 29, #06-40 Birthday: 21-10-1995 Nickname: Albert Tags: [friends]</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The person with index 1 will be assigned the image.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>displaypic 23 C:\Users\Admin\Desktop\My Files\mypic.jpg</code><br>
+Expected result: The person index provided is invalid</p>
+</li>
+<li>
+<p><code>displaypic 1</code><br>
+Expected result: Removed Display Picture from Person: Alex Yeoh Phone: 87438807 Email: <a href="mailto:alexyeoh@example.com">alexyeoh@example.com</a> Address: Blk 30 Geylang Street 29, #06-40 Birthday: 21-10-1995 Nickname: Albert Tags: [friends]</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The person with index 1 will have his display picture removed and it will show the default display picture</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>displaypic C:\Users\Admin\Desktop\My Files\mypic.jpg</code><br>
+Expected result: Invalid command format!
+                 displaypic: Adds/Updates the profile picture of a person identified by the index number used in the last person listing. Existing Display picture will be updated by the image referenced in the input path.
+                 Parameters: INDEX (must be a positive integer) dp/[PATH]
+                 Example: displaypic 2 C:\Users\Admin\Desktop\pic.jpg</p>
+</li>
+<li>
+<p><code>displaypic 3 hucddv/sfsdd.svd</code><br>
+Expected result: This specified path cannot be read. Please check it&#8217;s validity and try again</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ImageException.PNG" alt="ImageException" width="400">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="location-command"><a class="link" href="#location-command">3.10. Location Command</a></h3>
+<div class="paragraph">
+<p>Command usage:
+<code>location INDEX</code></p>
+</div>
+<div class="paragraph">
+<p>Note: <br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Loads location of person in Browser Panel using GoogleMaps.</p>
+</li>
+<li>
+<p>It does not check for validity of Address and let&#8217;s google maps handle that case</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Cases:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>location 1</code><br>
+Expected result: Location of Bernice Yu: Blk 30 Lorong 3 Serangoon Gardens, #07-18</p>
+</li>
+<li>
+<p><code>location 22</code><br>
+Expected result: The person index provided is invalid</p>
+</li>
+<li>
+<p><code>location</code><br>
+Expected result: Invalid command format!
+                 location: Displays  the location of specified person. Parameters: INDEX (must be a positive integer)
+                 Example: location 1</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="email-command"><a class="link" href="#email-command">3.11. Email Command</a></h3>
+<div class="paragraph">
+<p>Command usage:
+<code>email s/SERVICE to/TAG [sub/SUBJECT] [body/BODY]</code></p>
+</div>
+<div class="paragraph">
+<p>Note: <br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The prefix body/ and sub/ are optional.</p>
+</li>
+<li>
+<p>The TAG can only be one single keyword.</p>
+</li>
+<li>
+<p>The SERVICE can only be <code>gmail</code> or <code>outlook</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Cases:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>email s/outlook to/friends sub/hey body/bye</code><br>
+Expected result: Email .</p>
+</li>
+<li>
+<p>`email s/gmail to/nonexistingtag `<br>
+Expected result: Email not sent. Please enter a valid tag and correct service</p>
+</li>
+<li>
+<p><code>email s/outlook to/friends</code><br>
+Expected result: Email .</p>
+</li>
+<li>
+<p><code>email s/gmail</code><br>
+Expected result:Invalid command format!
+                email:  people in the Address Book.
+                The 'service' field is compulsory
+                The 'to' field can take tag and it only supports one parameter.
+                Parameters: s/SERVICE to/TAG sub/SUBJECT body/BODY
+                Example: email s/gmail to/cs2103 sub/Meeting body/On Monday</p>
+</li>
+<li>
+<p><code>email s/outlook to/friends</code><br>
+Expected result: Email .</p>
+</li>
+<li>
+<p>`email s/incorrectService to/friends `<br>
+Expected result: Email not sent. Please enter a valid tag and correct service</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="viewtag-command"><a class="link" href="#viewtag-command">3.12. ViewTag Command</a></h3>
+<div class="paragraph">
+<p>Command usage:
+<code>viewtag TAG</code></p>
+</div>
+<div class="paragraph">
+<p>Note: <br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>It only supports one TAG</p>
+</li>
+<li>
+<p>It searches in entire address book rather than current shown list</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Cases:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>viewtag friends</code><br>
+Expected result: 3 persons listed!</p>
+</li>
+<li>
+<p><code>viewtag nothing</code><br>
+Expected result: 0 persons listed!</p>
+</li>
+<li>
+<p><code>viewtag</code><br>
+Expected result: Invalid command format!
+                 viewtag: Finds all persons who are associated with the tag in the specified keywords (case-sensitive) and displays them as a list with index numbers.
+                 Parameters: KEYWORD
+                 Example: viewtag cs2103</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="details-command"><a class="link" href="#details-command">3.13. Details Command</a></h3>
+<div class="paragraph">
+<p>Command usage:
+<code>details INDEX</code></p>
+</div>
+<div class="paragraph">
+<p>Note: <br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Shows details of the person in Details Panel depending on the INDEX specified in currently shown list.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Cases:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>details 1</code><br>
+Expected result: Showing Details: 1</p>
+</li>
+<li>
+<p><code>details 22</code><br>
+Expected result: The person index provided is invalid</p>
+</li>
+<li>
+<p><code>details</code><br>
+Expected result: Invalid command format!
+                 details: Shows details the person identified by the index number used in the last person listing.
+                 Parameters: INDEX (must be a positive integer)
+                 Example: details 1</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="export-command"><a class="link" href="#export-command">3.14. Export Command</a></h3>
+<div class="paragraph">
+<p>Command usage: <code>export r/RANGE p/PATH</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>viewtag nusStudentClub</code></p>
+</li>
+<li>
+<p><code>export r/<strong>1</strong> p/path of the file\Zee Leon <strong>WITHOUT</strong> .xml extension</code><br>
+Expected result: Export Successful<br></p>
+<div class="paragraph">
+<p><strong>Zee Leon.xml</strong> file containing contact <strong>Zee Leon</strong> will be generated and stored in the specified <strong>PATH</strong>.</p>
+</div>
+</li>
+<li>
+<p><code>export r/<strong>1-3</strong> p/path of the file\multiple <strong>WITHOUT</strong> .xml extension</code><br>
+Expected result: Export Successful<br></p>
+<div class="paragraph">
+<p><strong>multiple.xml</strong> file containing contacts <strong>Zee Leon</strong>, <strong>Yow rin</strong> and <strong>Wayne Lee</strong> will be generated and stored in the specified <strong>PATH</strong>.</p>
+</div>
+</li>
+<li>
+<p><code>export r/<strong>all</strong> p/path of the file\nusstudentclub <strong>WITHOUT</strong> .xml extension</code><br>
+Expected result: Export Successful<br></p>
+<div class="paragraph">
+<p><strong>nusstudentclub.xml</strong> file containing <strong>all</strong> contacts in the current list will be generated and stored in the specified <strong>PATH</strong>.</p>
+</div>
+</li>
+<li>
+<p><code>export r/a p/invalid filepath <strong>WITHOUT</strong> .xml extension</code><br>
+Expected result: Export Failed Invalid RANGE or PATH</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="import-command"><a class="link" href="#import-command">3.15. Import Command</a></h3>
+<div class="paragraph">
+<p>Command usage:
+<code>import p/PATH</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>viewtag nusStudentClub</code></p>
+</li>
+<li>
+<p><code>delete 1</code></p>
+</li>
+<li>
+<p><code>import p/specified path\Zee Leon.xml</code><br>
+Expected result: 1 person/s imported 0 duplicate/s found<br></p>
+<div class="paragraph">
+<p>Imports the contact <strong>Zee Leon</strong> into iContacts.</p>
+</div>
+</li>
+<li>
+<p><code>delete 1</code></p>
+</li>
+<li>
+<p><code>delete 1</code></p>
+</li>
+<li>
+<p><code>delete 1</code></p>
+</li>
+<li>
+<p><code>import p/specified path\multiple.xml</code><br>
+Expected result: 3 person/s imported 0 duplicate/s found<br></p>
+<div class="paragraph">
+<p>Imports the contact <strong>Zee Leon</strong>, <strong>Yow rin</strong>, <strong>Wayne Lee</strong> into iContacts.</p>
+</div>
+</li>
+<li>
+<p><code>import p/specified path\nusstudentclub.xml</code><br>
+Expected result: 0 person/s imported 4 duplicate/s found<br></p>
+<div class="paragraph">
+<p>Imports 0 contacts as all incoming contacts are duplicate.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sort-command"><a class="link" href="#sort-command">3.16. Sort Command</a></h3>
+<div class="paragraph">
+<p>Command usage:
+<code>sort</code></p>
+</div>
+<div class="paragraph">
+<p>Note: Sorting does not persist if you close the application.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>sort</code><br>
+Expected result: List Sorted<br></p>
+<div class="paragraph">
+<p>Contact list will be sorted in alphabetical order.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="find-command-enhancement"><a class="link" href="#find-command-enhancement">3.17. Find Command Enhancement</a></h3>
+<div class="paragraph">
+<p>Command usage:
+<code>find KEYWORD</code></p>
+</div>
+<div class="paragraph">
+<p>Note: Find allows searching iContacts using both name and nickname.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2017-11-13 03:08:59 +00:00
+</div>
+</div>
+</body>
+</html>
