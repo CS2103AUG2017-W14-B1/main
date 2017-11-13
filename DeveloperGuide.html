@@ -45,19 +45,21 @@
 <ul class="sectlevel2">
 <li><a href="#filter-mechanism">4.1. Filter mechanism</a></li>
 <li><a href="#export-mechanism">4.2. Export mechanism</a></li>
-<li><a href="#find-mechanism">4.3. Find mechanism</a></li>
-<li><a href="#undo-redo-mechanism">4.4. Undo/Redo mechanism</a></li>
-<li><a href="#display-picture-mechanism">4.5. Display Picture mechanism</a></li>
-<li><a href="#location-mechanism">4.6. Location mechanism</a></li>
-<li><a href="#email-mechanism">4.7. Email mechanism</a></li>
-<li><a href="#frequently-visited-contacts-mechanism">4.8. Frequently Visited Contacts mechanism</a></li>
-<li><a href="#details-panel-implementation">4.9. Details Panel Implementation</a></li>
-<li><a href="#view-tag-mechanism">4.10. View tag mechanism</a></li>
-<li><a href="#toggling-mechanism">4.11. Toggling mechanism</a></li>
-<li><a href="#reminder-implementation">4.12. Reminder Implementation</a></li>
-<li><a href="#theme-changing-mechanism">4.13. Theme-changing mechanism</a></li>
-<li><a href="#logging">4.14. Logging</a></li>
-<li><a href="#configuration">4.15. Configuration</a></li>
+<li><a href="#import-mechanism">4.3. Import mechanism</a></li>
+<li><a href="#find-mechanism">4.4. Find mechanism</a></li>
+<li><a href="#sorting-mechanism">4.5. Sorting mechanism</a></li>
+<li><a href="#undo-redo-mechanism">4.6. Undo/Redo mechanism</a></li>
+<li><a href="#display-picture-mechanism">4.7. Display Picture mechanism</a></li>
+<li><a href="#location-mechanism">4.8. Location mechanism</a></li>
+<li><a href="#email-mechanism">4.9. Email mechanism</a></li>
+<li><a href="#frequently-visited-contacts-mechanism">4.10. Frequently Visited Contacts mechanism</a></li>
+<li><a href="#details-panel-implementation">4.11. Details Panel Implementation</a></li>
+<li><a href="#view-tag-mechanism">4.12. View tag mechanism</a></li>
+<li><a href="#toggling-mechanism">4.13. Toggling mechanism</a></li>
+<li><a href="#reminder-implementation">4.14. Reminder Implementation</a></li>
+<li><a href="#theme-changing-mechanism">4.15. Theme-changing mechanism</a></li>
+<li><a href="#logging">4.16. Logging</a></li>
+<li><a href="#configuration">4.17. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">5. Documentation</a>
@@ -700,7 +702,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 </div>
 <div class="paragraph">
-<p>The method <code>getRangefromInput()</code> splits the String range using a seperator and returns a String array for the different values in the String range.</p>
+<p>The method <code>getRangefromInput()</code> splits the String range using a separator and returns a String array for the different values in the String range.</p>
 </div>
 <div class="paragraph">
 <p>Below is an extract of the method <code>getRangefromInput()</code>:</p>
@@ -772,9 +774,18 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
             <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; multipleRange.length; i++) {
                 <span class="keyword">if</span> (multipleRange[i].contains(<span class="string"><span class="delimiter">&quot;</span><span class="content">-</span><span class="delimiter">&quot;</span></span>)) {
                     <span class="predefined-type">String</span><span class="type">[]</span> rangeToExport = multipleRange[i].split(<span class="string"><span class="delimiter">&quot;</span><span class="content">-</span><span class="delimiter">&quot;</span></span>);
-                    exportRange(<span class="predefined-type">Integer</span>.parseInt(rangeToExport[<span class="integer">0</span>]), <span class="predefined-type">Integer</span>.parseInt(rangeToExport[<span class="integer">1</span>]));
+                    <span class="keyword">try</span> {
+                        exportRange(<span class="predefined-type">Integer</span>.parseInt(rangeToExport[<span class="integer">0</span>]), <span class="predefined-type">Integer</span>.parseInt(rangeToExport[<span class="integer">1</span>]));
+                    } <span class="keyword">catch</span> (<span class="exception">NumberFormatException</span> e) {
+                        <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(MESSAGE_EXPORT_FAIL);
+                    }
+
                 } <span class="keyword">else</span> {
-                    exportSpecific(<span class="predefined-type">Integer</span>.parseInt(multipleRange[i]));
+                    <span class="keyword">try</span> {
+                        exportSpecific(<span class="predefined-type">Integer</span>.parseInt(multipleRange[i]));
+                    } <span class="keyword">catch</span> (<span class="exception">NumberFormatException</span> e) {
+                        <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(MESSAGE_EXPORT_FAIL);
+                    }
                 }
             }
         }
@@ -810,7 +821,62 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 </div>
 <div class="sect2">
-<h3 id="find-mechanism"><a class="link" href="#find-mechanism">4.3. Find mechanism</a></h3>
+<h3 id="import-mechanism"><a class="link" href="#import-mechanism">4.3. Import mechanism</a></h3>
+<div class="paragraph">
+<p>The <code>ImportCommand</code> uses <code>XmlAddressBookStorage</code> to generate a temporary AddressBook object from a given path. It takes in a <code>String</code> value <code>path</code>. The command then adds the contacts found in the temporary AddressBook object into the main address book object. Below is the constructor for the class:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">ImportCommand</span> <span class="directive">extends</span> UndoableCommand {
+    <span class="directive">public</span> ImportCommand(<span class="predefined-type">String</span> path) {
+        <span class="local-variable">this</span>.path = path;
+        <span class="local-variable">this</span>.addressBookStorage = <span class="keyword">new</span> XmlAddressBookStorage(path);
+        numSuccess = <span class="integer">0</span>;
+        numDuplicates = <span class="integer">0</span>;
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>ImportCommand</code> first checks if an AddressBook object can be initialise from the specified path, and if it does it initialises a new Person Object and adds it into the main AddressBook object through the model. Below is the code snippet:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">ExportCommand</span> <span class="directive">extends</span> Command {
+
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> CommandResult executeUndoableCommand() <span class="directive">throws</span> CommandException {
+        <span class="keyword">try</span> {
+            <span class="keyword">if</span> (addressBookStorage.readAddressBook().isPresent()) {
+                <span class="local-variable">this</span>.addressBook = <span class="keyword">new</span> AddressBook(addressBookStorage.readAddressBook().get());
+                <span class="keyword">for</span> (ReadOnlyPerson person : <span class="local-variable">this</span>.addressBook.getPersonList()) {
+                    Person personToAdd = <span class="keyword">new</span> Person(person);
+                    personToAdd.setPopularityCounter(<span class="keyword">new</span> PopularityCounter());
+                    personToAdd.setDisplayPicture(<span class="keyword">new</span> DisplayPicture(<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>));
+                    <span class="keyword">try</span> {
+                        model.clearSelection();
+                        model.showDefaultPanel();
+                        model.addPerson(personToAdd);
+                        numSuccess++;
+                    } <span class="keyword">catch</span> (DuplicatePersonException e) {
+                        numDuplicates++;
+                    }
+                }
+            } <span class="keyword">else</span> {
+                <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(<span class="predefined-type">String</span>.format(MESSAGE_INVALID_FILE, path));
+            }
+        } <span class="keyword">catch</span> (DataConversionException | <span class="exception">IOException</span> e) {
+            <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(<span class="predefined-type">String</span>.format(MESSAGE_INVALID_FILE, path));
+        }
+
+        <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(<span class="predefined-type">String</span>.format(MESSAGE_SUCCESS, numSuccess, numDuplicates));
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="find-mechanism"><a class="link" href="#find-mechanism">4.4. Find mechanism</a></h3>
 <div class="paragraph">
 <p>The <code>FindCommand</code> uses <code>NameContainsKeywordsPredicate</code> to find contacts with matching names or nicknames. It accepts <code>List&lt;String&gt; nameKeywords</code> as the parameter that is parsed by <code>FindCommandParser</code>. Below is the constructor for the class:</p>
 </div>
@@ -858,7 +924,26 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 </div>
 <div class="sect2">
-<h3 id="undo-redo-mechanism"><a class="link" href="#undo-redo-mechanism">4.4. Undo/Redo mechanism</a></h3>
+<h3 id="sorting-mechanism"><a class="link" href="#sorting-mechanism">4.5. Sorting mechanism</a></h3>
+<div class="paragraph">
+<p>The <code>SortCommand</code> uses a <code>SortedList</code> that is initialise with the current filteredPerson and is sorted using a comparator. Below is the code snippet:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">sortedfilteredPersons = <span class="keyword">new</span> SortedList&lt;&gt;(filteredPersons);
+
+<span class="annotation">@Override</span>
+<span class="directive">public</span> <span class="type">void</span> sortFilteredPersonList() {
+
+    <span class="predefined-type">Comparator</span>&lt;ReadOnlyPerson&gt; sortByName = (o1, o2) -&gt; o1.getName().fullName.compareTo(o2.getName().fullName);
+    sortedfilteredPersons.setComparator(sortByName);
+    indicateAddressBookChanged();
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="undo-redo-mechanism"><a class="link" href="#undo-redo-mechanism">4.6. Undo/Redo mechanism</a></h3>
 <div class="paragraph">
 <p>The undo/redo mechanism is facilitated by an <code>UndoRedoStack</code>, which resides inside <code>LogicManager</code>. It supports undoing and redoing of commands that modify the state of the address book (e.g. <code>add</code>, <code>edit</code>). Such commands will inherit from <code>UndoableCommand</code>.</p>
 </div>
@@ -1076,7 +1161,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="display-picture-mechanism"><a class="link" href="#display-picture-mechanism">4.5. Display Picture mechanism</a></h3>
+<h3 id="display-picture-mechanism"><a class="link" href="#display-picture-mechanism">4.7. Display Picture mechanism</a></h3>
 <div class="paragraph">
 <p>The <code>displaypic</code> command adds/updates the display picture for the contact specified. The image is then displayed as <code>ImageView</code> in <code>PersonCard</code> and <code>DetailsPanel</code>.
 The arguments of the command are <code>INDEX</code> and <code>PATHOFIMAGE</code>. The image needs to be present in the local device of the user.</p>
@@ -1179,7 +1264,7 @@ The <code>Circle</code> shape is used for better UI/UX design and is filled with
 </div>
 </div>
 <div class="sect3">
-<h4 id="reason-for-this-type-of-implementation"><a class="link" href="#reason-for-this-type-of-implementation">4.5.1. Reason for this type of implementation</a></h4>
+<h4 id="reason-for-this-type-of-implementation"><a class="link" href="#reason-for-this-type-of-implementation">4.7.1. Reason for this type of implementation</a></h4>
 <div class="paragraph">
 <p>The command is implemented in this manner because of the following:</p>
 </div>
@@ -1207,7 +1292,7 @@ The <code>Circle</code> shape is used for better UI/UX design and is filled with
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.5.2. Design Considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.7.2. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> At what stage should the image be read and stored<br>
 <strong>Alternative 1 (current choice):</strong> Make proper Storage Architecture for reading and writing of Image  <br>
@@ -1231,7 +1316,7 @@ The <code>Circle</code> shape is used for better UI/UX design and is filled with
 </div>
 </div>
 <div class="sect2">
-<h3 id="location-mechanism"><a class="link" href="#location-mechanism">4.6. Location mechanism</a></h3>
+<h3 id="location-mechanism"><a class="link" href="#location-mechanism">4.8. Location mechanism</a></h3>
 <div class="paragraph">
 <p>The location command is implemented in the form of an event-driven mechanism . The diagram below (Refer to Figure 21) shows the sequence diagram for it.</p>
 </div>
@@ -1301,7 +1386,7 @@ The activity diagram for such a case is shown below (Refer to Figure 22):</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="email-mechanism"><a class="link" href="#email-mechanism">4.7. Email mechanism</a></h3>
+<h3 id="email-mechanism"><a class="link" href="#email-mechanism">4.9. Email mechanism</a></h3>
 <div class="paragraph">
 <p>The email command lets the user compose an email in default browser with filled in data like recipients, subject and body.</p>
 </div>
@@ -1392,7 +1477,7 @@ Desktop.getDesktop().browse(<span class="keyword">new</span> <span class="predef
 </div>
 </div>
 <div class="sect2">
-<h3 id="frequently-visited-contacts-mechanism"><a class="link" href="#frequently-visited-contacts-mechanism">4.8. Frequently Visited Contacts mechanism</a></h3>
+<h3 id="frequently-visited-contacts-mechanism"><a class="link" href="#frequently-visited-contacts-mechanism">4.10. Frequently Visited Contacts mechanism</a></h3>
 <div class="paragraph">
 <p>This feature brings in a new UI element which is a list of maximum size 5 called <code>PopularContactList</code> and each list showing the name, popularity rank and display picture in a <code>PopularContactCard</code>.
 These way these UI elements are added is shown in the following diagram:</p>
@@ -1511,7 +1596,7 @@ Manual selection of person through a click also increases the popularity counter
 <p><em>Figure TBD : Sequence diagram for frequently visited mechanism.</em></p>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.8.1. Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.10.1. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> How to implement the feature<br>
 <strong>Alternative 1 (current choice):</strong> Make the list get refreshed every time one of the command which changes popularity is executed  <br>
@@ -1524,7 +1609,7 @@ Manual selection of person through a click also increases the popularity counter
 </div>
 </div>
 <div class="sect2">
-<h3 id="details-panel-implementation"><a class="link" href="#details-panel-implementation">4.9. Details Panel Implementation</a></h3>
+<h3 id="details-panel-implementation"><a class="link" href="#details-panel-implementation">4.11. Details Panel Implementation</a></h3>
 <div class="paragraph">
 <p>The <code>detail</code> command shows more details of the contact like address, birthday, email in addition to the details shown in the <code>PersonCard</code> of <code>PersonListPanel</code></p>
 </div>
@@ -1613,7 +1698,7 @@ The <code>selectionModel()</code> of <code>PersonListView</code> is now linked t
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-consideration-3"><a class="link" href="#design-consideration-3">4.9.1. Design Consideration</a></h4>
+<h4 id="design-consideration-3"><a class="link" href="#design-consideration-3">4.11.1. Design Consideration</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> How to improve UI<br>
 <strong>Alternative 1 (current choice):</strong> Show the extra details of contact after they are selected<br>
@@ -1626,7 +1711,7 @@ Cons: Looks very cluttered and has poor User Interface design</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="view-tag-mechanism"><a class="link" href="#view-tag-mechanism">4.10. View tag mechanism</a></h3>
+<h3 id="view-tag-mechanism"><a class="link" href="#view-tag-mechanism">4.12. View tag mechanism</a></h3>
 <div class="paragraph">
 <p>The command is added into the logic following the given class diagram:</p>
 </div>
@@ -1673,7 +1758,7 @@ Cons: Looks very cluttered and has poor User Interface design</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="toggling-mechanism"><a class="link" href="#toggling-mechanism">4.11. Toggling mechanism</a></h3>
+<h3 id="toggling-mechanism"><a class="link" href="#toggling-mechanism">4.13. Toggling mechanism</a></h3>
 <div class="paragraph">
 <p>The toggling mechanism is an <code>event-driven</code> mechanism.</p>
 </div>
@@ -1804,7 +1889,7 @@ Cons: Users cannot interact with the reminders panel (since the browser is techn
 </div>
 </div>
 <div class="sect2">
-<h3 id="reminder-implementation"><a class="link" href="#reminder-implementation">4.12. Reminder Implementation</a></h3>
+<h3 id="reminder-implementation"><a class="link" href="#reminder-implementation">4.14. Reminder Implementation</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/ReminderUML1.png" alt="ReminderUML1" width="390">
@@ -2011,7 +2096,7 @@ as the date and time fields of a <code>Reminder</code> are very important.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="theme-changing-mechanism"><a class="link" href="#theme-changing-mechanism">4.13. Theme-changing mechanism</a></h3>
+<h3 id="theme-changing-mechanism"><a class="link" href="#theme-changing-mechanism">4.15. Theme-changing mechanism</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/themeChangingMechanism1.png" alt="themeChangingMechanism1" width="790">
@@ -2068,7 +2153,7 @@ as the date and time fields of a <code>Reminder</code> are very important.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">4.14. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">4.16. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
@@ -2109,7 +2194,7 @@ as the date and time fields of a <code>Reminder</code> are very important.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configuration"><a class="link" href="#configuration">4.15. Configuration</a></h3>
+<h3 id="configuration"><a class="link" href="#configuration">4.17. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -3900,7 +3985,7 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 03:08:59 +00:00
+Last updated 2017-11-13 03:51:05 +00:00
 </div>
 </div>
 </body>

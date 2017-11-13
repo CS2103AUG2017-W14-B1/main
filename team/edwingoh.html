@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.3">
+<title>Edwin Goh - Project Portfolio</title>
+<link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Edwin Goh - Project Portfolio</h1>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="project-icontacts"><a class="link" href="#project-icontacts">Project: iContacts</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>iContacts is a Command Line Interface (CLI) application created for University Students who requires the functionality of managing contacts, deadlines and reminders in a single application.</p>
+</div>
+<div class="paragraph">
+<p>The purpose of this portfolio is to summarise my contributions in iContacts and shows the readers how this contributions are implemented. In addition it contains a few proposed enhancements for upcoming versions of the application.</p>
+</div>
+<div class="paragraph">
+<p><strong>Code contributed</strong>: [<a href="https://github.com/CS2103AUG2017-W14-B1/main/blob/master/collated/main/edwinghy.md">Functional code</a>] [<a href="https://github.com/CS2103AUG2017-W14-B1/main/blob/master/collated/test/edwinghy.md">Test code</a>]</p>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-exporting-of-contacts"><a class="link" href="#enhancement-added-exporting-of-contacts">Enhancement Added: Exporting of contacts</a></h3>
+<div class="sect3">
+<h4 id="external-behavior"><a class="link" href="#external-behavior">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="exporting-selected-contacts-code-export-code"><a class="link" href="#exporting-selected-contacts-code-export-code">Exporting selected contacts : <code>export</code></a></h3>
+<div class="paragraph">
+<p>Exports selected contacts in iContacts.<br>
+Format: <code>export r/RANGE p/PATH</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Exports the contact/s from a specified <code>RANGE</code> to a specified <code>PATH</code>.</p>
+</li>
+<li>
+<p>The range refers to any index number shown in the most recent listing.</p>
+</li>
+<li>
+<p>The range <strong>must be a positive integer and must not be larger than the last index of the list</strong> 1, 2, 3, 4-7, &#8230;&#8203;</p>
+</li>
+<li>
+<p>The path <strong>must include the file name without the file extension</strong> c:\exports\classmates</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Types of range inputs:</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Specific contacts - 1, 2, 3, 4</p>
+</li>
+<li>
+<p>Range of contacts - 1-4, 6-9</p>
+</li>
+<li>
+<p>All contacts - all</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>list</code><br>
+<code>export r/all p/c:\exports\classmates</code><br>
+Exports all the contacts to the file <strong>classmates.xml</strong> in path <strong>c:\exports</strong>.</p>
+</li>
+<li>
+<p><code>export r/1-4 p/c:\exports\classmates</code><br>
+Exports the contacts from index 1 to index 4 to the file <strong>classmates.xml</strong> in path <strong>c:\exports</strong>.</p>
+</li>
+<li>
+<p><code>export r/1-4,6,8 p/c:\exports\classmates</code><br>
+Exports the contacts at index 1 to index 4 with index 6 and index 8 to the file <strong>classmates.xml</strong> in path <strong>c:\exports</strong>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification"><a class="link" href="#justification">Justification</a></h4>
+<div class="paragraph">
+<p>Exporting contacts from the application is a key feature to enable users to share contact information. As this application is targeted at university students
+sharing of contacts is necessary in the daily life of the student.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="export-mechanism"><a class="link" href="#export-mechanism">Export mechanism</a></h3>
+<div class="paragraph">
+<p>The <code>ExportCommand</code> uses <code>XmlAddressBookStorage</code> class to generate a xml file based on a given range and saves it to the path provided. It takes in two <code>String</code> values <code>range</code> and <code>path</code>. Below is the constructor for the class:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">ExportCommand</span> <span class="directive">extends</span> Command {
+    <span class="directive">public</span> ExportCommand(<span class="predefined-type">String</span> range, <span class="predefined-type">String</span> path) {
+        requireNonNull(range);
+        requireNonNull(path);
+
+        <span class="local-variable">this</span>.range = range;
+        <span class="local-variable">this</span>.path = path;
+        exportBook = <span class="keyword">new</span> AddressBook();
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The method <code>getRangefromInput()</code> splits the String range using a separator and returns a String array for the different values in the String range.</p>
+</div>
+<div class="paragraph">
+<p>Below is an extract of the method <code>getRangefromInput()</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">ExportCommand</span> <span class="directive">extends</span> Command {
+    <span class="directive">private</span> <span class="predefined-type">String</span><span class="type">[]</span> getRangeFromInput() {
+        <span class="directive">private</span> <span class="predefined-type">String</span><span class="type">[]</span> getRangeFromInput() {
+            <span class="predefined-type">String</span><span class="type">[]</span> splitStringComma = <span class="local-variable">this</span>.range.split(<span class="string"><span class="delimiter">&quot;</span><span class="content">,</span><span class="delimiter">&quot;</span></span>);
+
+            <span class="keyword">return</span> splitStringComma;
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To determine which contacts should be added to the exportBook we have to check the the user input. There are three cases:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>All (Priority)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>if the word <code>all</code> is present in the user input, we will just export all the contacts in the last shown list.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Specific index (e.g. 1, 2, 3)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>if the user input contains a specific index we will add that index (one-based) to the <code>exportBook</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Range of indexes (e.g. 1-5,8-10)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>if the user input contains a range which is identified by <code>-</code> character, we will add that range of index (one-based) to the <code>exportBook</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Below is the code snippet to identify the three cases in the user input:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">ExportCommand</span> <span class="directive">extends</span> Command {
+
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> CommandResult execute() <span class="directive">throws</span> CommandException {
+        <span class="predefined-type">String</span><span class="type">[]</span> multipleRange = getRangeFromInput();
+
+        <span class="keyword">if</span> (multipleRange[<span class="integer">0</span>].equals(<span class="string"><span class="delimiter">&quot;</span><span class="content">all</span><span class="delimiter">&quot;</span></span>)) {
+            exportAll();
+        } <span class="keyword">else</span> {
+            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; multipleRange.length; i++) {
+                <span class="keyword">if</span> (multipleRange[i].contains(<span class="string"><span class="delimiter">&quot;</span><span class="content">-</span><span class="delimiter">&quot;</span></span>)) {
+                    <span class="predefined-type">String</span><span class="type">[]</span> rangeToExport = multipleRange[i].split(<span class="string"><span class="delimiter">&quot;</span><span class="content">-</span><span class="delimiter">&quot;</span></span>);
+                    <span class="keyword">try</span> {
+                        exportRange(<span class="predefined-type">Integer</span>.parseInt(rangeToExport[<span class="integer">0</span>]), <span class="predefined-type">Integer</span>.parseInt(rangeToExport[<span class="integer">1</span>]));
+                    } <span class="keyword">catch</span> (<span class="exception">NumberFormatException</span> e) {
+                        <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(MESSAGE_EXPORT_FAIL);
+                    }
+
+                } <span class="keyword">else</span> {
+                    <span class="keyword">try</span> {
+                        exportSpecific(<span class="predefined-type">Integer</span>.parseInt(multipleRange[i]));
+                    } <span class="keyword">catch</span> (<span class="exception">NumberFormatException</span> e) {
+                        <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(MESSAGE_EXPORT_FAIL);
+                    }
+                }
+            }
+        }
+        /... storage is resolved here ...
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The final step is to create the xml file from the <code>exportBook</code>.</p>
+</div>
+<div class="paragraph">
+<p>Below is the code snippet to export the data into an xml file using <code>AddressBookStorage</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">ExportCommand</span> <span class="directive">extends</span> Command {
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> CommandResult execute() <span class="directive">throws</span> CommandException {
+
+    /... the exporting is resolved here ...
+
+        try {
+            AddressBookStorage storage = <span class="keyword">new</span> XmlAddressBookStorage(path + <span class="string"><span class="delimiter">&quot;</span><span class="content">.xml</span><span class="delimiter">&quot;</span></span>);
+            storage.saveAddressBook(exportBook);
+        } <span class="keyword">catch</span> (<span class="exception">IOException</span> ioe) {
+            <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_EXPORT_FAIL);
+        }
+        <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_EXPORT_SUCCESS);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-importing-contacts-from-file"><a class="link" href="#enhancement-added-importing-contacts-from-file">Enhancement Added: Importing contacts from file</a></h3>
+<div class="sect3">
+<h4 id="external-behavior-2"><a class="link" href="#external-behavior-2">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="importing-contacts-from-file-code-import-code"><a class="link" href="#importing-contacts-from-file-code-import-code">Importing contacts from file : <code>import</code></a></h3>
+<div class="paragraph">
+<p>Imports contacts into iContacts.<br>
+Format: <code>import p/PATH</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Imports all contacts from a specified file <code>PATH</code>.</p>
+</li>
+<li>
+<p>The path <strong>must include the file name with the file extension</strong> c:\exports\classmates.xml</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>import p/c:\exports\classmates.xml</code><br>
+Imports all the contacts stored in the file classmates.xml* into iContacts.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification-2"><a class="link" href="#justification-2">Justification</a></h4>
+<div class="paragraph">
+<p>To complete the entire contact sharing experience, students must be able to import contacts shared
+by their peers with a single command.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-2"><a class="link" href="#implementation-2">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="import-mechanism"><a class="link" href="#import-mechanism">Import mechanism</a></h3>
+<div class="paragraph">
+<p>The <code>ImportCommand</code> uses <code>XmlAddressBookStorage</code> to generate a temporary AddressBook object from a given path. It takes in a <code>String</code> value <code>path</code>. The command then adds the contacts found in the temporary AddressBook object into the main address book object. Below is the constructor for the class:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">ImportCommand</span> <span class="directive">extends</span> UndoableCommand {
+    <span class="directive">public</span> ImportCommand(<span class="predefined-type">String</span> path) {
+        <span class="local-variable">this</span>.path = path;
+        <span class="local-variable">this</span>.addressBookStorage = <span class="keyword">new</span> XmlAddressBookStorage(path);
+        numSuccess = <span class="integer">0</span>;
+        numDuplicates = <span class="integer">0</span>;
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>ImportCommand</code> first checks if an AddressBook object can be initialise from the specified path, and if it does it initialises a new Person Object and adds it into the main AddressBook object through the model. Below is the code snippet:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">ExportCommand</span> <span class="directive">extends</span> Command {
+
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> CommandResult executeUndoableCommand() <span class="directive">throws</span> CommandException {
+        <span class="keyword">try</span> {
+            <span class="keyword">if</span> (addressBookStorage.readAddressBook().isPresent()) {
+                <span class="local-variable">this</span>.addressBook = <span class="keyword">new</span> AddressBook(addressBookStorage.readAddressBook().get());
+                <span class="keyword">for</span> (ReadOnlyPerson person : <span class="local-variable">this</span>.addressBook.getPersonList()) {
+                    Person personToAdd = <span class="keyword">new</span> Person(person);
+                    personToAdd.setPopularityCounter(<span class="keyword">new</span> PopularityCounter());
+                    personToAdd.setDisplayPicture(<span class="keyword">new</span> DisplayPicture(<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>));
+                    <span class="keyword">try</span> {
+                        model.clearSelection();
+                        model.showDefaultPanel();
+                        model.addPerson(personToAdd);
+                        numSuccess++;
+                    } <span class="keyword">catch</span> (DuplicatePersonException e) {
+                        numDuplicates++;
+                    }
+                }
+            } <span class="keyword">else</span> {
+                <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(<span class="predefined-type">String</span>.format(MESSAGE_INVALID_FILE, path));
+            }
+        } <span class="keyword">catch</span> (DataConversionException | <span class="exception">IOException</span> e) {
+            <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(<span class="predefined-type">String</span>.format(MESSAGE_INVALID_FILE, path));
+        }
+
+        <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(<span class="predefined-type">String</span>.format(MESSAGE_SUCCESS, numSuccess, numDuplicates));
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-find-to-include-nickname-searches"><a class="link" href="#enhancement-added-find-to-include-nickname-searches">Enhancement Added: Find to include nickname searches</a></h3>
+<div class="sect3">
+<h4 id="external-behavior-3"><a class="link" href="#external-behavior-3">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="locating-persons-by-name-code-find-code"><a class="link" href="#locating-persons-by-name-code-find-code">Locating persons by name: <code>find</code></a></h3>
+<div class="paragraph">
+<p>Finds persons whose names or nicknames contain any of the given keywords.<br>
+Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code></p>
+</li>
+<li>
+<p>The order of the keywords does not matter. e.g. <code>Hans Bo</code> will match <code>Bo Hans</code></p>
+</li>
+<li>
+<p>Only the name and nickname is searched.</p>
+</li>
+<li>
+<p>Only full words will be matched e.g. <code>Han</code> will not match <code>Hans</code></p>
+</li>
+<li>
+<p>Persons matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Hans Bo</code> will return <code>Hans Gruber</code>, <code>Bo Yang</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>find John</code><br>
+Returns <code>john</code> and <code>John Doe</code></p>
+</li>
+<li>
+<p><code>find Betsy Tim John</code><br></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Returns any person having names or nicknames <code>Betsy</code>, <code>Tim</code>, or <code>John</code></p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification-3"><a class="link" href="#justification-3">Justification</a></h4>
+<div class="paragraph">
+<p>With the implementation of the nickname feature, the find command should allow users to search for contacts using both nicknames and names.
+==== Implementation</p>
+</div>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="find-mechanism"><a class="link" href="#find-mechanism">Find mechanism</a></h3>
+<div class="paragraph">
+<p>The <code>FindCommand</code> uses <code>NameContainsKeywordsPredicate</code> to find contacts with matching names or nicknames. It accepts <code>List&lt;String&gt; nameKeywords</code> as the parameter that is parsed by <code>FindCommandParser</code>. Below is the constructor for the class:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> FindCommand(NameContainsKeywordsPredicate predicate) {
+        <span class="local-variable">this</span>.predicate = predicate;
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The method <code>test(ReadOnlyPerson person)</code> iterates through <code>nameKeywords</code> to find a match with the name or nickname of every <code>person</code> from the address book.</p>
+</div>
+<div class="paragraph">
+<p>Below is an extract of the method <code>test(ReadOnlyPerson person</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">   <span class="annotation">@Override</span>
+    <span class="directive">public</span> <span class="type">boolean</span> test(ReadOnlyPerson person) {
+        <span class="keyword">return</span> keywords.stream()
+                .anyMatch(keyword -&gt; StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword))
+                || keywords.stream()
+                .anyMatch(keyword -&gt; StringUtil.containsWordIgnoreCase(person.getNickname().value, keyword));
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For the <code>FindCommand</code> to work properly <code>nameKeywords</code> must be non-empty. The code extract below checks for empty inputs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">    <span class="directive">public</span> FindCommand parse(<span class="predefined-type">String</span> args) <span class="directive">throws</span> <span class="exception">ParseException</span> {
+        <span class="predefined-type">String</span> trimmedArgs = args.trim();
+        <span class="keyword">if</span> (trimmedArgs.isEmpty()) {
+            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="exception">ParseException</span>(
+                    <span class="predefined-type">String</span>.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
+
+        <span class="predefined-type">String</span><span class="type">[]</span> nameKeywords = trimmedArgs.split(<span class="string"><span class="delimiter">&quot;</span><span class="char">\\</span><span class="content">s+</span><span class="delimiter">&quot;</span></span>);
+
+        <span class="keyword">return</span> <span class="keyword">new</span> FindCommand(<span class="keyword">new</span> NameContainsKeywordsPredicate(<span class="predefined-type">Arrays</span>.asList(nameKeywords)));
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-sorting-of-contacts"><a class="link" href="#enhancement-added-sorting-of-contacts">Enhancement Added: Sorting of contacts</a></h3>
+<div class="sect3">
+<h4 id="external-behavior-4"><a class="link" href="#external-behavior-4">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sorting-all-persons-code-sort-code"><a class="link" href="#sorting-all-persons-code-sort-code">Sorting all persons : <code>sort</code></a></h3>
+<div class="paragraph">
+<p>Sorts and shows a list of all contacts in the iContacts alphabetically.<br>
+Format: <code>sort</code></p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification-4"><a class="link" href="#justification-4">Justification</a></h4>
+<div class="paragraph">
+<p>When a contact is added to iContacts it is being appended to the end of the list, creating a very unorganised list.
+With sorting users can choose to sort iContacts in alphabetical order to have more organised contact list.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-3"><a class="link" href="#implementation-3">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sorting-mechanism"><a class="link" href="#sorting-mechanism">Sorting mechanism</a></h3>
+<div class="paragraph">
+<p>The <code>SortCommand</code> uses a <code>SortedList</code> that is initialise with the current filteredPerson and is sorted using a comparator. Below is the code snippet:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">sortedfilteredPersons = <span class="keyword">new</span> SortedList&lt;&gt;(filteredPersons);
+
+<span class="annotation">@Override</span>
+<span class="directive">public</span> <span class="type">void</span> sortFilteredPersonList() {
+
+    <span class="predefined-type">Comparator</span>&lt;ReadOnlyPerson&gt; sortByName = (o1, o2) -&gt; o1.getName().fullName.compareTo(o2.getName().fullName);
+    sortedfilteredPersons.setComparator(sortByName);
+    indicateAddressBookChanged();
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="enhancement-proposed-automatically-add-required-field-prefixs-when-a-valid-command-is-entered"><a class="link" href="#enhancement-proposed-automatically-add-required-field-prefixs-when-a-valid-command-is-entered">Enhancement Proposed: Automatically add required field prefixs when a valid command is entered</a></h3>
+<div class="paragraph">
+<p>It is not possible to remember all the required fields for all the different commands in iContacts. Although the user is able to refer
+to check the required field from the help command, it makes the entire experience troublesome. With this enhancement as long as the user types in a valid command all required fields prefix will appear. This will allow for a better user experience.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-proposed-delete-multiple-contacts"><a class="link" href="#enhancement-proposed-delete-multiple-contacts">Enhancement Proposed: delete multiple contacts</a></h3>
+<div class="paragraph">
+<p>The current delete feature for iContacts only allows deleting 1 contact at a time. it will be troublesome if the student wants to delete a group of contacts. With this enhancement the user will  be able to delete multiple contacts in a single command.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-proposed-enhance-sort-command-to-allow-sorting-by-date-added"><a class="link" href="#enhancement-proposed-enhance-sort-command-to-allow-sorting-by-date-added">Enhancement Proposed: Enhance sort command to allow sorting by date added</a></h3>
+<div class="paragraph">
+<p>The current sort feature only sorts iContacts alphabetically, more sorting options can be added.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="other-contributions"><a class="link" href="#other-contributions">Other contributions</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Implemented Colored Tags <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/60" class="bare">https://github.com/CS2103AUG2017-W14-B1/main/pull/60</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2017-11-13 03:51:05 +00:00
+</div>
+</div>
+</body>
+</html>
