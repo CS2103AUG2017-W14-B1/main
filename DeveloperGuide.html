@@ -1175,11 +1175,11 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <div class="sect2">
 <h3 id="display-picture-mechanism"><a class="link" href="#display-picture-mechanism">4.7. Display Picture mechanism</a></h3>
 <div class="paragraph">
-<p>The <code>displaypic</code> command adds/updates the display picture for the contact specified. The image is then displayed as <code>ImageView</code> in <code>PersonCard</code> and <code>DetailsPanel</code>.
+<p>The <code>displaypic</code> command adds or updates the display picture for the contact specified. The image is then displayed as <code>ImageView</code> in <code>PersonCard</code> and <code>DetailsPanel</code>.
 The arguments of the command are <code>INDEX</code> and <code>PATHOFIMAGE</code>. The image needs to be present in the local device of the user.</p>
 </div>
 <div class="paragraph">
-<p>The Display Picture command is implemented in a way so that the image is read from the user specified path and then stored in iContacts directory so that the image is never lost.</p>
+<p>The Display Picture command is implemented in a way so that the image is read from the user specified path. It is then stored in iContacts directory so that the image is never lost.</p>
 </div>
 <div class="paragraph">
 <p>By executing the given code below, a new folder named 'pictures/' is created if it is missing. The folder is used to store the images.</p>
@@ -1196,10 +1196,10 @@ The arguments of the command are <code>INDEX</code> and <code>PATHOFIMAGE</code>
 </div>
 </div>
 <div class="paragraph">
-<p>Since the command has function of reading and writing of image, the Storage architectural style was used and extended for Display pictures.</p>
+<p>Since the command has to read and write an image, the Storage architectural style is used and extended to Display pictures.</p>
 </div>
 <div class="paragraph">
-<p>The following UML diagram shows the Storage Architecture for reading and writing of image file:</p>
+<p>The following UML diagram shows the Storage Architecture for reading and writing of image file (Refer to Figure 19):</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1207,7 +1207,7 @@ The arguments of the command are <code>INDEX</code> and <code>PATHOFIMAGE</code>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 2 : UML Diagram for the extended Storage Component.</em></p>
+<p><em>Figure 19 : UML Diagram for the extended Storage Component.</em></p>
 </div>
 <div class="paragraph">
 <p>This command works by retrieving the image using <code>BufferedImage</code>. The command extracts the image from the specified absolute path of image e.g. <code>C:\Users\Admin\Desktop\My files\pic.jpg</code></p>
@@ -1217,10 +1217,10 @@ The arguments of the command are <code>INDEX</code> and <code>PATHOFIMAGE</code>
 The reading and writing of images is done using the <code>ImageIO</code> class.</p>
 </div>
 <div class="paragraph">
-<p>An event handler is used to notify the <code>UI</code> and <code>Storage</code> component of the changes made in image and it&#8217;s name.</p>
+<p>An event handler is used to notify the <code>UI</code> and <code>Storage</code> component of the changes made in image and its name.</p>
 </div>
 <div class="paragraph">
-<p>The sequence diagram for adding a display picture is shown below:<br></p>
+<p>The sequence diagram for adding a display picture is shown below (Refer to Figure 20):<br></p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1228,7 +1228,7 @@ The reading and writing of images is done using the <code>ImageIO</code> class.<
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 3 : Sequence Diagram for Display Picture Command.</em></p>
+<p><em>Figure 20 : Sequence Diagram for Display Picture Command.</em></p>
 </div>
 <div class="paragraph">
 <p>The binder for refreshing the image every time the picture is updated is implemented by the following function:</p>
@@ -1248,7 +1248,8 @@ The reading and writing of images is done using the <code>ImageIO</code> class.<
 </div>
 <div class="paragraph">
 <p>The Display Picture mechanism is done by using <code>ImageView</code>/<code>ImagePattern</code> in JavaFX which is a part of the UI Component.
-The <code>Circle</code> shape is used for better UI/UX design and is filled with the <code>ImagePatten</code>. The wireframe used to display the image for each person is shown below:</p>
+The <code>Circle</code> shape is used for better UI/UX design and is filled with the <code>ImagePattern</code>.
+ The wireframe used to display the image for each person is shown below (Refer to Figure 21):</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1256,10 +1257,11 @@ The <code>Circle</code> shape is used for better UI/UX design and is filled with
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 4 : Wireframe for the UI.</em></p>
+<p><em>Figure 21 : Wireframe for the <code>PersonCard</code>.</em></p>
 </div>
 <div class="paragraph">
-<p>The new image stored in directory is given a unique name which is formed using hashcode of the unique email address of each contact:</p>
+<p>The new image stored in directory is given a unique name which is formed using the hash code of the unique email address of each contact.
+The following code is used to set the name of image as the hash code:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1275,8 +1277,7 @@ The <code>Circle</code> shape is used for better UI/UX design and is filled with
 }</code></pre>
 </div>
 </div>
-<div class="sect3">
-<h4 id="reason-for-this-type-of-implementation"><a class="link" href="#reason-for-this-type-of-implementation">4.7.1. Reason for this type of implementation</a></h4>
+<h4 id="reason-for-this-type-of-implementation" class="discrete">Reason for this type of implementation</h4>
 <div class="paragraph">
 <p>The command is implemented in this manner because of the following:</p>
 </div>
@@ -1289,7 +1290,7 @@ The <code>Circle</code> shape is used for better UI/UX design and is filled with
 <p>The <code>PATHOFIMAGE</code> must be an absolute path on the local device to make sure the image is referenced.</p>
 </li>
 <li>
-<p>The image is stored in directory with a unique name to avoid conflict. Hashcode of user&#8217;s email address is used to maintain uniqueness.</p>
+<p>The image is stored in directory with a unique name to avoid conflict. The hash code of the user&#8217;s email address is used to maintain uniqueness.</p>
 </li>
 <li>
 <p>The task is done using CLI to follow project requirements.</p>
@@ -1302,35 +1303,33 @@ The <code>Circle</code> shape is used for better UI/UX design and is filled with
 </li>
 </ul>
 </div>
-</div>
-<div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.7.2. Design Considerations</a></h4>
+<h4 id="design-considerations-4" class="discrete">Design Considerations</h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> At what stage should the image be read and stored<br>
-<strong>Alternative 1 (current choice):</strong> Make proper Storage Architecture for reading and writing of Image  <br>
+<strong>Alternative 1 (current choice):</strong> Make proper Storage Architecture for reading and writing of Image.  <br>
 <strong>Pros:</strong> It will follow the existing Architectural Design and Software Engineering Principles like OCP. <br>
 <strong>Cons:</strong> It will take more time and will be tougher to implement.<br>
 <strong>Alternative 2:</strong> Invoke 'ReadAndStoreImage' from Logic component.<br>
-<strong>Pros:</strong> : It will make it easier for new developers to understand the sequence diagram and maintains event-driven nature.<br>
-<strong>Cons:</strong> It will cause bad architectural design and won’t follow the pre-existing pattern and moreover will defy the Law of Demeter.</p>
+<strong>Pros:</strong> : It will be easier for new developers to understand the sequence diagram and maintains event-driven nature.<br>
+<strong>Cons:</strong> It will cause bad architectural design and will not follow the pre-existing pattern and moreover will defy the Law of Demeter.</p>
 </div>
 <hr>
 <div class="paragraph">
 <p><strong>Aspect:</strong> How should the image be taken from user<br>
 <strong>Alternative 1 (current choice):</strong> User has to enter the absolute path of image by checking his local device.  <br>
 <strong>Pros:</strong> It will be a complete CLI process. <br>
-<strong>Cons:</strong> It might be problematic for user to copy and paste and might result in error of path giving fail command.<br>
-<strong>Alternative 2:</strong> Pop up a <code>FileChooser</code> after command is entered.<br>
+<strong>Cons:</strong> It might be problematic for user to copy and paste and might result in error.<br>
+<strong>Alternative 2:</strong> Pop up a <code>FileChooser</code> after the command is entered.<br>
 <strong>Pros:</strong> It will be easier for users to mention the correct image quickly.<br>
 <strong>Cons:</strong> It will no longer be a complete CLI process.</p>
 </div>
 <hr>
 </div>
-</div>
 <div class="sect2">
 <h3 id="location-mechanism"><a class="link" href="#location-mechanism">4.8. Location mechanism</a></h3>
 <div class="paragraph">
-<p>The location command is implemented in the form of an event-driven mechanism . The diagram below (Refer to Figure 21) shows the sequence diagram for it.</p>
+<p>The <code>location</code> command is implemented in the form of an event-driven mechanism .
+The diagram below (Refer to Figure 22) shows the sequence diagram for the command execution:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1338,11 +1337,11 @@ The <code>Circle</code> shape is used for better UI/UX design and is filled with
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 21 : Sequence diagram for the Location Command.</em></p>
+<p><em>Figure 22 : Sequence diagram for the Location Command.</em></p>
 </div>
 <div class="paragraph">
-<p>The execution of command raises an event <code>ShowLocationEvent</code>. This causes the <code>BrowserAndReminderPanel</code> to switch to Node <code>Browser</code> irrespective of current state of the application.
-The activity diagram for such a case is shown below (Refer to Figure 22):</p>
+<p>The execution of command raises an event <code>ShowLocationEvent</code>. This causes the <code>BrowserAndReminderPanel</code> to switch to Node <code>Browser</code> irrespective of the current state of the application.
+The activity diagram for such case is shown below (Refer to Figure 23):</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1350,10 +1349,10 @@ The activity diagram for such a case is shown below (Refer to Figure 22):</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 22 : Sequence diagram for the Location Command.</em></p>
+<p><em>Figure 23 : Sequence diagram for the Location Command.</em></p>
 </div>
 <div class="paragraph">
-<p>Following is the code written to ensure the GUI set up for the command:</p>
+<p>The following code below ensures the set up for the GUI:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1389,10 +1388,10 @@ The activity diagram for such a case is shown below (Refer to Figure 22):</p>
 <h4 id="design-consideration" class="discrete">Design Consideration</h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> What to use to show the location<br>
-<strong>Alternative 1 (current choice):</strong> Show using google maps url in BrowserPanel <br>
-<strong>Pros:</strong> We will be able to get the location easily with accuracy.<br>
-<strong>Cons:</strong> It could cause problem due to limited functionality of URL.<br>
-<strong>Alternative 2:</strong> Google Maps API<br>
+<strong>Alternative 1 (current choice):</strong> Show using google maps url in <code>BrowserPanel</code>. <br>
+<strong>Pros:</strong> We will be able to get the location easily and accurately.<br>
+<strong>Cons:</strong> It could cause problem due to limited functionality of the URL.<br>
+<strong>Alternative 2:</strong> Use Google Maps <em>API</em>.<br>
 <strong>Pros:</strong>  It will provide more functionality.<br>
 <strong>Cons:</strong> It could cause more resources to be used for the exact same feature and wouldn’t utilise pre-existing browser properly.</p>
 </div>
@@ -1400,10 +1399,13 @@ The activity diagram for such a case is shown below (Refer to Figure 22):</p>
 <div class="sect2">
 <h3 id="email-mechanism"><a class="link" href="#email-mechanism">4.9. Email mechanism</a></h3>
 <div class="paragraph">
-<p>The email command lets the user compose an email in default browser with filled in data like recipients, subject and body.</p>
+<p>The <code>email</code> command has various fields to denote the Recipients (Tag), Subject, Body and Service.</p>
 </div>
 <div class="paragraph">
-<p>The email command has various fields to denote the Recipients, Subject, Body and Service. Than relation between them can be shown through the UML diagram below:</p>
+<p>The <code>email</code> command allows the users to compose an email in the default browser with data such as recipients, subject and body.</p>
+</div>
+<div class="paragraph">
+<p>The relation between them is shown in the UML diagram below (Refer to Figure 24):</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1411,7 +1413,21 @@ The activity diagram for such a case is shown below (Refer to Figure 22):</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 23 : Sequence diagram for the Email Command.</em></p>
+<p><em>Figure 24 : UML Class Diagram for the Email Feature.</em></p>
+</div>
+<div class="paragraph">
+<p>The command is parsed to get the <code>Service</code>, <code>Tag</code>, <code>Subject</code> and <code>Body</code> fields.</p>
+</div>
+<div class="paragraph">
+<p>The parsing takes place in the following manner (Refer to Figure 25):</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ParserSDEmail.PNG" alt="ParserSDEmail" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 25 : Sequence diagram for parsing the Email Command.</em></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1421,24 +1437,13 @@ The activity diagram for such a case is shown below (Refer to Figure 22):</p>
 </td>
 <td class="content">
 The recipients are all contacts belonging to a particular tag.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
 The only two services offered are <code>gmail</code> and <code>outlook</code> as our target users are students.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>The email command happens through an event driven mechanism. The below diagram (Refer to Figure 23) shows sequence diagram for it.
+<p>The email command happens through an event driven mechanism. The below diagram (Refer to Figure 26) shows sequence diagram for it.
 The execution of command raises an event <code>SendingEmailEvent</code>.</p>
 </div>
 <div class="imageblock">
@@ -1447,24 +1452,10 @@ The execution of command raises an event <code>SendingEmailEvent</code>.</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 23 : Sequence diagram for the Email Command.</em></p>
+<p><em>Figure 26 : Sequence diagram for the Email Command.</em></p>
 </div>
 <div class="paragraph">
-<p>The command is parsed to know the <code>Service</code> , <code>Tag</code> to which email has to be sent, <code>Subject</code> and <code>Body</code>.</p>
-</div>
-<div class="paragraph">
-<p>The parsing takes place in the following manner (Refer to Figure 24):</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/ParserSDEmail.PNG" alt="ParserSDEmail" width="790">
-</div>
-</div>
-<div class="paragraph">
-<p><em>Figure 24 : Sequence diagram for parsing the Email Command.</em></p>
-</div>
-<div class="paragraph">
-<p>The URL for composing the mail set up through the following code</p>
+<p>The URL for composing the mail is set up through the following code:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1480,19 +1471,19 @@ Desktop.getDesktop().browse(<span class="keyword">new</span> <span class="predef
 <h4 id="design-consideration-2" class="discrete">Design Consideration</h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Where to compose the mail<br>
-<strong>Alternative 1 (current choice):</strong> Opens the default browser of Desktop <br>
-<strong>Pros:</strong> The browser has user already signed up and browser supports the url<br>
-<strong>Cons:</strong> Depending on third party apps<br>
-<strong>Alternative 2:</strong> Open in <code>BrowserPanel</code><br>
-<strong>Pros:</strong> No dependency on other apps<br>
-<strong>Cons:</strong> Does not auto fill in the text due to older version of browser</p>
+<strong>Alternative 1 (current choice):</strong> Opens the default browser of Desktop. <br>
+<strong>Pros:</strong> The default browser will have the user logged in to his email account. <br>
+<strong>Cons:</strong> High dependency on third party apps.<br>
+<strong>Alternative 2:</strong> Open in <code>BrowserPanel</code>.<br>
+<strong>Pros:</strong> No dependency on other apps.<br>
+<strong>Cons:</strong> It will not auto fill in the text due to older version of browser.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="frequently-visited-contacts-mechanism"><a class="link" href="#frequently-visited-contacts-mechanism">4.10. Frequently Visited Contacts mechanism</a></h3>
 <div class="paragraph">
-<p>This feature brings in a new UI element which is a list of maximum size 5 called <code>PopularContactList</code> and each list showing the name, popularity rank and display picture in a <code>PopularContactCard</code>.
-These way these UI elements are added is shown in the following diagram:</p>
+<p>This feature brings in a new UI element  called <code>PopularContactList</code>, which is a list of maximum size of 5  and each element of showing the name, popularity rank and display picture in a <code>PopularContactCard</code>.
+The way these UI elements are added is shown in the following diagram (Refer to Figure 27) :</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1500,11 +1491,11 @@ These way these UI elements are added is shown in the following diagram:</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure TBD : Class Digram of UI with Popular Contact Panel.</em></p>
+<p><em>Figure 27 : Class Diagram of UI with Popular Contact Panel.</em></p>
 </div>
 <div class="paragraph">
 <p>The mechanism to show the top five most frequently visited contacts is facilitated by the <code>PopularityCounter</code> of each contact.
-For every new person added into the address book, he is assigned a popularity counter of <code>0</code>. The top five popular contacts are extracted by sorting the list based on the field <code>PopularityCounter</code> of each person. In case of same popularity counter, the person who was added before is given higher priority.</p>
+For every new person added into the address book, he is assigned a popularity counter of <code>0</code>. The top five popular contacts are extracted by sorting the list based on the field <code>PopularityCounter</code> of each person. In the case of two or more people having the same popularity counter, the person who was added earlier into iContacts is given higher priority.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1513,14 +1504,14 @@ For every new person added into the address book, he is assigned a popularity co
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-This feature is not implemented as a command.The list gets refreshed whenever the popularity counter is supposed to change.
+This feature is not implemented as a command.The list gets refreshed whenever the <code>PopularityCounter</code> is supposed to change.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>The Frequently Visited Contacts mechanism is an event-driven mechanism. However, there is no explicit command to view the top five frequently visited contacts as they are always refreshed whenever there is an change in the address book. They are always displayed on the UI below the <code>CommandResult</code> panel. The
-The event to refresh the Popular Contacts List, <code>PopularContactChangedEvent</code> is triggered whenever any of the command that increases <code>PopularityCounter</code> is execcuted.</p>
+<p>The Frequently Visited Contacts mechanism is an event-driven mechanism. However, there is no explicit command to view the top five frequently visited contacts as they are always refreshed whenever there is an change in the address book. They are always displayed on the UI below the <code>CommandResult</code> panel.
+The event to refresh the <code>PopularContactList</code>, <code>PopularContactChangedEvent</code> is triggered whenever any of the command that increases <code>PopularityCounter</code> is executed.</p>
 </div>
 <div class="paragraph">
 <p>The event triggers the following method:</p>
@@ -1537,7 +1528,7 @@ The event to refresh the Popular Contacts List, <code>PopularContactChangedEvent
 </div>
 </div>
 <div class="paragraph">
-<p>Following are the commands which will increase the <code>PopularityCounter</code> by one for the contacts viewed/searched:</p>
+<p>The following are the commands which will increase the <code>PopularityCounter</code> by one for the contacts viewed or searched:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1559,8 +1550,8 @@ The event to refresh the Popular Contacts List, <code>PopularContactChangedEvent
 </ul>
 </div>
 <div class="paragraph">
-<p>On execution of any of the following command, an extra event is raised which updates the popular contact list after updating the popularity counter of the contact.
-The sequence diagram for the extra event is shown below for <code>select</code> command:</p>
+<p>On execution of any of the following command, an extra event is raised which updates the <code>PopularContactList</code> after updating the popularity counter of the contact.
+The sequence diagram for the extra event is shown below for <code>select</code> command (Refer to Figure 28):</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1568,7 +1559,7 @@ The sequence diagram for the extra event is shown below for <code>select</code> 
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure TBD : Sequence diagram for frequently visited mechanism for <code>select</code> command.</em></p>
+<p><em>Figure 28 : Sequence diagram for frequently visited mechanism for <code>select</code> command.</em></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1577,13 +1568,13 @@ The sequence diagram for the extra event is shown below for <code>select</code> 
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Manual selection of person through a click also increases the popularity counter of that person. This is the same action as <code>details</code> command.
+Manual selection of person through a click also increases the popularity counter of that person. This is the same action as the <code>details</code> command.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>The following method is used to increate the <code>popularityCounter</code> by one:</p>
+<p>The following method is used to increase the <code>PopularityCounter</code> by one:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1597,7 +1588,7 @@ Manual selection of person through a click also increases the popularity counter
 </div>
 </div>
 <div class="paragraph">
-<p>Following is the sequence diagram which shows how the event is triggered and how the saving of updated address book takes place:</p>
+<p>The sequence diagram below shows how the event is triggered and how the saving of updated address book takes place (Refer to Figure 29):</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1605,13 +1596,12 @@ Manual selection of person through a click also increases the popularity counter
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure TBD : Sequence diagram for frequently visited mechanism.</em></p>
+<p><em>Figure 29 : Sequence diagram for frequently visited mechanism.</em></p>
 </div>
-<div class="sect3">
-<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.10.1. Design Considerations</a></h4>
+<h4 id="design-considerations-5" class="discrete">Design Considerations</h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> How to implement the feature<br>
-<strong>Alternative 1 (current choice):</strong> Make the list get refreshed every time one of the command which changes popularity is executed  <br>
+<strong>Alternative 1 (current choice):</strong> Refresh the list every time one of the command that changes the <code>Popularity</code> is executed  <br>
 <strong>Pros:</strong> Becomes a dynamic feature such that user can see favourite contacts at any time<br>
 <strong>Cons:</strong> Makes application slightly slower as more execution of code for those commands<br>
 <strong>Alternative 2:</strong> Execute command to refresh list of popular contacts<br>
@@ -1619,11 +1609,10 @@ Manual selection of person through a click also increases the popularity counter
 <strong>Cons:</strong> Will have to keep track of command history to see the list of commands executed before previous execution of favourites command</p>
 </div>
 </div>
-</div>
 <div class="sect2">
 <h3 id="details-panel-implementation"><a class="link" href="#details-panel-implementation">4.11. Details Panel Implementation</a></h3>
 <div class="paragraph">
-<p>The <code>detail</code> command shows more details of the contact like address, birthday, email in addition to the details shown in the <code>PersonCard</code> of <code>PersonListPanel</code></p>
+<p>The <code>details</code> command shows more details of the contact like address, birthday, email in addition to the details shown in the <code>PersonCard</code> of <code>PersonListPanel</code></p>
 </div>
 <div class="paragraph">
 <p>The <code>DetailsPanel</code> is an Anchor Pane which is embedded inside <code>BrowserAndReminderPanel</code>.</p>
@@ -1635,13 +1624,13 @@ Manual selection of person through a click also increases the popularity counter
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-At any point of time, only one of the three panels(Borwser, Reminder, Details) inside <code>BrowserAndReminderPanel</code> will have the visibility set as <code>true</code> and in front of the other two panels.
+At any point of time, only one of the three panels (Browser, Reminder, Details) inside <code>BrowserAndReminderPanel</code> will have the visibility set as <code>true</code> and in front of the other two panels.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>The UML diagram below represents the UI structure for the <code>BrowserAndReminderPanel</code>:</p>
+<p>The UML diagram below represents the UI structure for the <code>BrowserAndReminderPanel</code> (Refer to Figure 30):</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1649,10 +1638,10 @@ At any point of time, only one of the three panels(Borwser, Reminder, Details) i
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure TBD : UML Diagram for Panel.</em></p>
+<p><em>Figure 30 : UML Diagram for Panel.</em></p>
 </div>
 <div class="paragraph">
-<p>The code to ensure only Details Panel is displayed on execution of command is shown below:</p>
+<p>The code to ensure only <code>DetailsPanel</code> is displayed on execution of command is shown below:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1660,12 +1649,12 @@ At any point of time, only one of the three panels(Borwser, Reminder, Details) i
         detailsPanel.setVisible(<span class="predefined-constant">true</span>);
         remindersPanel.setVisible(<span class="predefined-constant">false</span>);
         browser.setVisible(<span class="predefined-constant">false</span>);
-    }</code></pre>
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The details panel also gets displayed when user manually clicks on the <code>PersonCard</code>. This is made possible by making the <code>SelectionChangedEvent</code> raise the event to show the details panel.
-The <code>selectionModel()</code> of <code>PersonListView</code> is now linked to <code>details</code> command rather than <code>select</code> command.</p>
+<p>The <code>DetailsPanel</code> is also displayed when the user manually clicks on the <code>PersonCard</code>. This is made possible by raising the <code>SelectionChangedEvent</code> to show the <code>DetailsPanel</code>.
+The <code>selectionModel()</code> of <code>PersonListView</code> is now linked to the <code>details</code> command rather than the <code>select</code> command.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1674,13 +1663,13 @@ The <code>selectionModel()</code> of <code>PersonListView</code> is now linked t
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>select</code> command now only scrolls to the INDEX specified whereas <code>details</code> command scrolls to and selects the person to show his details in the panel.
+The <code>select</code> command now only scrolls to the INDEX specified whereas <code>details</code> command scrolls to and selects the person to show his/her details in the panel.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Following is the wireframe for the Details Panel:</p>
+<p>The figure below (Refer to figure 31) is the wireframe for the <code>DetailsPanel</code>:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1688,16 +1677,16 @@ The <code>selectionModel()</code> of <code>PersonListView</code> is now linked t
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure TBD : Wireframe for Details Panel.</em></p>
+<p><em>Figure 31 : Wireframe for Details Panel.</em></p>
 </div>
 <div class="paragraph">
-<p>Using the <code>FontAwesomeFx</code> library, an icon is set for each label to make the UI look appealing as seen in the UI above(Refer to figure TBD).</p>
+<p>Using the <code>FontAwesomeFx</code> library, an icon is set for each label to make the UI look appealing as seen in the UI above (Refer to figure TBD).</p>
 </div>
 <div class="paragraph">
-<p>The solution to showing the same colour for a tag in <code>DetailsPanel</code> and <code>PersonCard</code> was resolved by having a <strong>Singleton Class</strong> <code>TagColor</code>.</p>
+<p>The solution to show the same colour for a tag in <code>DetailsPanel</code> and <code>PersonCard</code> was resolved by having a <strong>Singleton Class</strong> <code>TagColor</code>.</p>
 </div>
 <div class="paragraph">
-<p>The following code inside the class ensured that the class acted as an global class and since only one instance was created, it made the tag color&#8217;s constant for each tag.</p>
+<p>The following code inside the class ensured that the class acts as an global class and since only one instance is created, it made the tag color&#8217;s constant.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1709,23 +1698,21 @@ The <code>selectionModel()</code> of <code>PersonListView</code> is now linked t
     }</code></pre>
 </div>
 </div>
-<div class="sect3">
-<h4 id="design-consideration-3"><a class="link" href="#design-consideration-3">4.11.1. Design Consideration</a></h4>
+<h4 id="design-consideration-3" class="discrete">Design Consideration</h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> How to improve UI<br>
-<strong>Alternative 1 (current choice):</strong> Show the extra details of contact after they are selected<br>
-Pros: Allows more contacts to be shown in the list as they information there is reduced<br>
-Cons: User needs to manually select the user to see more details of that person<br>
-<strong>Alternative 2:</strong> Show all detail of person in the <code>PersonCard</code><br>
-Pros: Reduces effort of selection of contact to see extra details<br>
-Cons: Looks very cluttered and has poor User Interface design</p>
-</div>
+<strong>Alternative 1 (current choice):</strong> Show the extra details of contact after they are selected.<br>
+<strong>Pros</strong>: Allows more contacts to be shown in the list as the information is reduced.<br>
+<strong>Cons</strong>: User needs to manually select the user to see more details of that person.<br>
+<strong>Alternative 2:</strong> Show all detail of person in the <code>PersonCard</code>.<br>
+<strong>Pros</strong>: Reduces effort of selection of contact to see extra details.<br>
+<strong>Cons</strong>: Looks very cluttered and has poor User Interface design.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="view-tag-mechanism"><a class="link" href="#view-tag-mechanism">4.12. View tag mechanism</a></h3>
 <div class="paragraph">
-<p>The command is added into the logic following the given class diagram:</p>
+<p>The command is added into the <code>Logic</code> component according to following class diagram (Refer to Figure 32):</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1733,19 +1720,19 @@ Cons: Looks very cluttered and has poor User Interface design</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure TBD : Class Diagram of Logic.</em></p>
+<p><em>Figure 32 : Class Diagram of Logic.</em></p>
 </div>
 <div class="paragraph">
-<p>The <code>viewtag</code> command works by setting predicate to the <code>Observable filteredlist</code>.</p>
+<p>The <code>viewtag</code> command works by setting the predicate to the <code>Observable filteredlist</code>.</p>
 </div>
 <div class="paragraph">
-<p>Only one keyword is allowed for the command and it shows all people with thr given tag.</p>
+<p>Only one keyword is allowed for the command and it shows all people with the given tag.</p>
 </div>
 <div class="paragraph">
 <p>The method <code>test(ReadOnlyPerson person)</code> iterates through the <code>tagKeywords</code> to find a match of every <code>person</code> from the address book.</p>
 </div>
 <div class="paragraph">
-<p>There is use of streams and lambda[Java 8 features] to make the code more readable as shown below:</p>
+<p>Streams and lambda (Java 8 features) are used to make the code more readable as shown below:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1761,12 +1748,12 @@ Cons: Looks very cluttered and has poor User Interface design</p>
 <h4 id="design-consideration-4" class="discrete">Design Consideration</h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> How to filter the list<br>
-<strong>Alternative 1 (current choice):</strong> Use of Lambda and Stream <br>
-<strong>Pros:</strong>  Code is more readable<br>
-<strong>Cons:</strong> Sometimes takes more time to process than normal loops<br>
-<strong>Alternative 2:</strong> Loops and Conditions<br>
-<strong>Pros:</strong>  Known to be faster than Streams at times<br>
-<strong>Cons:</strong> Harder to avoid arrow headed violation of coding style.</p>
+<strong>Alternative 1 (current choice):</strong> Use of Lambda and Stream. <br>
+<strong>Pros:</strong>  The code is more readable.<br>
+<strong>Cons:</strong> It sometimes takes more time to process than normal loops.<br>
+<strong>Alternative 2:</strong> Loops and Conditions.<br>
+<strong>Pros:</strong>  It is known to be faster than Streams at times.<br>
+<strong>Cons:</strong> It is harder to avoid arrow-headed violation of coding style.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1780,10 +1767,10 @@ Cons: Looks very cluttered and has poor User Interface design</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 25 : Component interactions for the toggling mechanism.</em></p>
+<p><em>Figure 33 : Component interactions for the toggling mechanism.</em></p>
 </div>
 <div class="paragraph">
-<p>The above diagram (Refer to Figure 25) shows the high-level overview of the component interactions for the toggling mechanism.<br></p>
+<p>The above diagram (Refer to Figure 33) shows the high-level overview of the component interactions for the toggling mechanism.<br></p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1791,10 +1778,10 @@ Cons: Looks very cluttered and has poor User Interface design</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 26 : Sequence diagram for the first part of the toggling mechanism.</em></p>
+<p><em>Figure 34 : Sequence diagram for the first part of the toggling mechanism.</em></p>
 </div>
 <div class="paragraph">
-<p>As seen from the sequence diagram above (Refer to Figure 26), when the user types the command for <code>toggle</code>, an instance of <code>ToggleCommand</code> would be created.<br>
+<p>As seen from the sequence diagram above (Refer to Figure 34), when the user types the command for <code>toggle</code>, an instance of <code>ToggleCommand</code> would be created.<br>
 Upon execution by <code>LogicManager</code>, the event <code>BrowserAndRemindersPanelToggleEvent</code> would be posted by the <code>EventCenter</code> to the <code>EventBus</code>:</p>
 </div>
 <div class="listingblock">
@@ -1809,7 +1796,7 @@ Upon execution by <code>LogicManager</code>, the event <code>BrowserAndReminders
 </div>
 </div>
 <div class="paragraph">
-<p>As seen from the diagram below (Refer to Figure 27), the method <code>handleBrowserToggleEvent()</code> in the <code>BrowserAndRemindersPanel</code> class in the <code>UI</code> component will then listen for the event,
+<p>As seen from the diagram below (Refer to Figure 35), the method <code>handleBrowserToggleEvent()</code> in the <code>BrowserAndRemindersPanel</code> class in the <code>UI</code> component will then listen for the event,
 and upon receiving the event it will invoke the method <code>toggleBrowserPanel</code> to trigger the actual toggling.</p>
 </div>
 <div class="imageblock">
@@ -1818,7 +1805,7 @@ and upon receiving the event it will invoke the method <code>toggleBrowserPanel<
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 27 : Sequence diagram for the second part of the toggling mechanism.</em></p>
+<p><em>Figure 35 : Sequence diagram for the second part of the toggling mechanism.</em></p>
 </div>
 <div class="paragraph">
 <p>The <code>BrowserAndRemindersPanel</code> class has a variable <code>currentlyInFront</code> keeping track of which panel (browser or reminders) is currently being shown.
@@ -1884,20 +1871,20 @@ method, the statement <code>browser.toFront()</code> and the method <code>setUpT
 <div class="paragraph">
 <p><strong>Aspect:</strong> Usage of browser area<br>
 <strong>Alternative 1 (current choice):</strong> Allow users to toggle between the browser and reminders panel.<br>
-Pros: Can use the entire space for either the browser or reminders panel.<br>
-Cons: Users need to manually switch between the browser and reminders panel.<br>
+<strong>Pros</strong>: Can use the entire space for either the browser or reminders panel.<br>
+<strong>Cons</strong>: Users need to manually switch between the browser and reminders panel.<br>
 <strong>Alternative 2:</strong> Put reminders and browser panels side-by-side.<br>
-Pros: Users do not need to manually switch between the browser and reminders panel.<br>
-Cons: Too little space for browser and reminders, making it difficult to read for the users.</p>
+<strong>Pros</strong>: Users do not need to manually switch between the browser and reminders panel.<br>
+<strong>Cons</strong>: Too little space for browser and reminders, making it difficult to read for the users.</p>
 </div>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Implementation of toggling mechanism.<br>
 <strong>Alternative 1 (current choice):</strong> Bring browser and reminders panel to the front as required, on top of setting their visibility suitably.<br>
-Pros: Users can interact with both browser and reminders (can scroll through reminders etc).<br>
-Cons: More difficult to implement.<br>
+<strong>Pros</strong>: Users can interact with both browser and reminders (can scroll through reminders etc).<br>
+<strong>Cons</strong>: More difficult to implement.<br>
 <strong>Alternative 2:</strong> Only set visibility of browser and reminders panel as required (set browser visibility to false to display reminders and vice versa).<br>
-Pros: Easier to implement.<br>
-Cons: Users cannot interact with the reminders panel (since the browser is technically still at the front).</p>
+<strong>Pros</strong>: Easier to implement.<br>
+<strong>Cons</strong>: Users cannot interact with the reminders panel (since the browser is technically still at the front).</p>
 </div>
 </div>
 <div class="sect2">
@@ -1908,13 +1895,13 @@ Cons: Users cannot interact with the reminders panel (since the browser is techn
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 28: UML class diagram showing the make-up of Reminder objects.</em></p>
+<p><em>Figure 36: UML class diagram showing the make-up of Reminder objects.</em></p>
 </div>
 <div class="paragraph">
 <p>The <code>Reminder</code> object represents a reminder in iContacts. It contains a <code>String</code> variable <code>reminder</code>, which represents
 the actual reminder from the user, and also a <code>Date</code>, <code>Time</code> and <code>Status</code> object, which represents the date, time and <a href="#status">status</a> of the reminder respectively
-(Refer to Figure 28). As part of <em>defensive programming</em>, <code>Reminder</code> implements the <code>ReadOnlyReminder</code> interface, which only allows <em>read</em> operations, thus
-helping to prevent inappropriate or unintended modifications to <code>Reminder</code> objects (Refer to Figure 28) during the execution of the program.
+(Refer to Figure 36). As part of <em>defensive programming</em>, <code>Reminder</code> implements the <code>ReadOnlyReminder</code> interface, which only allows <em>read</em> operations, thus
+helping to prevent inappropriate or unintended modifications to <code>Reminder</code> objects (Refer to Figure 36) during the execution of the program.
 For example, for <code>DeleteReminderCommand</code>, its <code>execute</code> method should only execute the deletion of a specified reminder, not to alter any reminders.
 To ensure that no unintended or inappropriate alteration happens, <code>DeleteReminderCommand</code> is passed a list of <code>ReadOnlyReminder</code> instead of <code>Reminder</code>. This can
 be seen from the code snippet below:</p>
@@ -1949,15 +1936,15 @@ be seen from the code snippet below:</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 29: In-memory implementation of Reminder.</em></p>
+<p><em>Figure 37: In-memory implementation of Reminder.</em></p>
 </div>
 <div class="paragraph">
 <p>In terms of how <code>Reminder</code> objects are kept in-memory during the execution of the program, <code>Reminder</code> objects are
-kept within <code>UniqueReminderList</code> (Refer to Figure 29), which assures that there are no duplicate <code>Reminder</code> objects. The <code>UniqueReminderList</code>
+kept within <code>UniqueReminderList</code> (Refer to Figure 37), which assures that there are no duplicate <code>Reminder</code> objects. The <code>UniqueReminderList</code>
 object is then kept and used by <code>ModelManager</code> to carry out commands related to reminders while the program is running.<br></p>
 </div>
 <div class="paragraph">
-<p>Similar to <code>Reminder</code>, as can be seen from Figure 29 above, <code>UniqueReminderList</code> implements the <code>ReadOnlyUniqueReminderList</code> interface to prevent
+<p>Similar to <code>Reminder</code>, as can be seen from Figure 37 above, <code>UniqueReminderList</code> implements the <code>ReadOnlyUniqueReminderList</code> interface to prevent
 inappropriate or unintended modifications to <code>UniqueReminderList</code> during the execution of the program.<br></p>
 </div>
 <div class="imageblock">
@@ -1966,10 +1953,10 @@ inappropriate or unintended modifications to <code>UniqueReminderList</code> dur
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 30: How Reminder is stored.</em></p>
+<p><em>Figure 38: How Reminder is stored.</em></p>
 </div>
 <div class="paragraph">
-<p>As seen from Figure 30, <code>Reminder</code> objects are stored in a XML storage file in a JAXB-friendly version <code>XmlAdaptedReminder</code>. Notably, the <code>Status</code> object is not stored along with
+<p>As seen from Figure 38, <code>Reminder</code> objects are stored in a XML storage file in a JAXB-friendly version <code>XmlAdaptedReminder</code>. Notably, the <code>Status</code> object is not stored along with
 the <code>Reminder</code> object; it is instantiated and initialized with an appropriate value during runtime when the <code>Reminder</code> object is instantiated.
 When the program starts, <code>XmlAdaptedReminder</code> objects are read in as <code>XmlSerializableReminders</code> via <code>XmlFileStorage</code> and <code>XmlUtil</code>.
 This can be seen below:</p>
@@ -2020,7 +2007,7 @@ This can be seen below:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>As can be seen from the code snippet above and in Figure 30, as part of <em>defensive programming</em>, <code>XmlSerializableReminders</code> also implements the <code>ReadOnlyUniqueReminderList</code> interface.<br></p>
+<p>As can be seen from the code snippet above and in Figure 38, as part of <em>defensive programming</em>, <code>XmlSerializableReminders</code> also implements the <code>ReadOnlyUniqueReminderList</code> interface.<br></p>
 </div>
 <div class="paragraph">
 <p>To save, the <code>saveReminders</code> method in <code>StorageManager</code> is invoked:</p>
@@ -2089,21 +2076,21 @@ the <code>Status</code> object of each <code>Reminder</code> object and propagat
 <div class="paragraph">
 <p><strong>Aspect:</strong> How to store <code>Reminder</code> in-memory<br>
 <strong>Alternative 1 (current choice):</strong> Store <code>Reminder</code> objects in <code>UniqueReminderList</code>, independent of <code>AddressBook</code>.<br>
-Pros: Follows the <em>Single-Responsibility Principle</em>, because a reminder should not be an address book&#8217;s responsibility.<br>
-Cons: More changes have to be made to the existing code base, making it tougher to implement.<br>
+<strong>Pros</strong>: Follows the <em>Single-Responsibility Principle</em>, because a reminder should not be an address book&#8217;s responsibility.<br>
+<strong>Cons</strong>: More changes have to be made to the existing code base, making it tougher to implement.<br>
 <strong>Alternative 2:</strong> Store <code>Reminder</code> objects within <code>AddressBook</code>.<br>
-Pros: Easier to implement as lesser changes have to be made to the existing code base.<br>
-Cons: Violates the <em>Single-Responsibility Principle</em>.</p>
+<strong>Pros</strong>: Easier to implement as lesser changes have to be made to the existing code base.<br>
+<strong>Cons</strong>: Violates the <em>Single-Responsibility Principle</em>.</p>
 </div>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Should the undo/redo mechanism be applied to <code>Reminder</code><br>
 <strong>Alternative 1 (current choice):</strong> Commands that affect <code>Reminder</code> objects are not undoable/redoable.<br>
-Pros: Users would be more aware of any changes they made to a reminder, as they are forced to
+<strong>Pros</strong>: Users would be more aware of any changes they made to a reminder, as they are forced to
 use the <code>editreminder</code>, <code>addreminder</code> and <code>deletereminder</code> commands.
-Cons: It is less user-friendly.<br>
+<strong>Cons</strong>: It is less user-friendly.<br>
 <strong>Alternative 2:</strong> Commands that affect <code>Reminder</code> objects are undoable/redoable.<br>
-Pros: More user-friendly.<br>
-Cons: Users might get careless with changing the information of a <code>Reminder</code> object. This might be detrimental
+<strong>Pros</strong>: More user-friendly.<br>
+<strong>Cons</strong>: Users might get careless with changing the information of a <code>Reminder</code> object. This might be detrimental
 as the date and time fields of a <code>Reminder</code> are very important.</p>
 </div>
 </div>
@@ -2115,10 +2102,10 @@ as the date and time fields of a <code>Reminder</code> are very important.</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 31 : Component interactions for the theme-changing mechanism</em></p>
+<p><em>Figure 39 : Component interactions for the theme-changing mechanism</em></p>
 </div>
 <div class="paragraph">
-<p>The theme-changing mechanism is an event-driven mechanism. The above diagram (Refer to Figure 31) shows the high-level overview of the component interactions for the theme-changing mechanism.</p>
+<p>The theme-changing mechanism is an event-driven mechanism. The above diagram (Refer to Figure 39) shows the high-level overview of the component interactions for the theme-changing mechanism.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -2126,10 +2113,10 @@ as the date and time fields of a <code>Reminder</code> are very important.</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 32 : Sequence diagram for the first part of the theme-changing mechanism</em></p>
+<p><em>Figure 40 : Sequence diagram for the first part of the theme-changing mechanism</em></p>
 </div>
 <div class="paragraph">
-<p>As shown from the sequence diagram above (Refer to Figure 32), after the user entered the command <code>theme day</code>, a new object <code>ThemeCommand</code> will be created. The <code>LogicManager</code> will then execute <code>ThemeCommand</code>, and the event <code>ChangeThemeRequestEvent</code> will be posted by <code>EventsCenter</code>. The code snippet below shows the <code>execute()</code> method of <code>ThemeCommand</code>:</p>
+<p>As shown from the sequence diagram above (Refer to Figure 40), after the user entered the command <code>theme day</code>, a new object <code>ThemeCommand</code> will be created. The <code>LogicManager</code> will then execute <code>ThemeCommand</code>, and the event <code>ChangeThemeRequestEvent</code> will be posted by <code>EventsCenter</code>. The code snippet below shows the <code>execute()</code> method of <code>ThemeCommand</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2148,10 +2135,10 @@ as the date and time fields of a <code>Reminder</code> are very important.</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 33 : Sequence diagram for the second part of the theme-changing mechanism</em></p>
+<p><em>Figure 41 : Sequence diagram for the second part of the theme-changing mechanism</em></p>
 </div>
 <div class="paragraph">
-<p>As shown from the sequence diagram above (Refer to Figure 33), the method <code>handleChangeThemeEvent()</code> in <code>MainWindow</code> will handle the event and change the theme of iContacts through the method <code>changeTheme()</code> accordingly.</p>
+<p>As shown from the sequence diagram above (Refer to Figure 41), the method <code>handleChangeThemeEvent()</code> in <code>MainWindow</code> will handle the event and change the theme of the address book through the method <code>changeTheme()</code> accordingly.</p>
 </div>
 <h4 id="design-considerations-7" class="discrete">Design Considerations</h4>
 <div class="paragraph">
@@ -2264,7 +2251,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <p>Within Chrome, click on the <code>Print</code> option in Chrome&#8217;s menu.</p>
 </li>
 <li>
-<p>Set the destination to <code>Save as PDF</code>, then click <code>Save</code> to save a copy of the file in PDF format. For best results, use the settings indicated in the screenshot below (Refer to Figure 34).</p>
+<p>Set the destination to <code>Save as PDF</code>, then click <code>Save</code> to save a copy of the file in PDF format. For best results, use the settings indicated in the screenshot below (Refer to Figure 42).</p>
 </li>
 </ol>
 </div>
@@ -2274,7 +2261,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 34 : Saving documentation as PDF files in Chrome</em></p>
+<p><em>Figure 42 : Saving documentation as PDF files in Chrome</em></p>
 </div>
 </div>
 </div>
@@ -2604,7 +2591,7 @@ Do take a look at the <a href="#ui-component">Design: UI Component</a> section b
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Use different colors for different tags inside person cards. For example, <code>friends</code> tags can be all in grey, and <code>colleagues</code> tags can be all in red (Refer to Figures 35 and 36).</p>
+<p>Use different colors for different tags inside person cards. For example, <code>friends</code> tags can be all in grey, and <code>colleagues</code> tags can be all in red (Refer to Figures 43 and 44).</p>
 <div class="paragraph">
 <p><strong>Before</strong></p>
 </div>
@@ -2614,7 +2601,7 @@ Do take a look at the <a href="#ui-component">Design: UI Component</a> section b
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 35: Before applying colors to tags.</em></p>
+<p><em>Figure 43: Before applying colors to tags.</em></p>
 </div>
 <div class="paragraph">
 <p><strong>After</strong></p>
@@ -2625,7 +2612,7 @@ Do take a look at the <a href="#ui-component">Design: UI Component</a> section b
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 36: After applying colors to tags.</em></p>
+<p><em>Figure 44: After applying colors to tags.</em></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -2660,7 +2647,7 @@ Do take a look at the <a href="#ui-component">Design: UI Component</a> section b
 </div>
 </li>
 <li>
-<p>Modify <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/commons/events/ui/NewResultAvailableEvent.java"><code>NewResultAvailableEvent</code></a> such that <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/ui/ResultDisplay.java"><code>ResultDisplay</code></a> can show a different style on error (currently it shows the same regardless of errors) (Refer to Figures 37 and 38).</p>
+<p>Modify <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/commons/events/ui/NewResultAvailableEvent.java"><code>NewResultAvailableEvent</code></a> such that <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/ui/ResultDisplay.java"><code>ResultDisplay</code></a> can show a different style on error (currently it shows the same regardless of errors) (Refer to Figures 45 and 46).</p>
 <div class="paragraph">
 <p><strong>Before</strong></p>
 </div>
@@ -2670,7 +2657,7 @@ Do take a look at the <a href="#ui-component">Design: UI Component</a> section b
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 37: Style before modification.</em></p>
+<p><em>Figure 45: Style before modification.</em></p>
 </div>
 <div class="paragraph">
 <p><strong>After</strong></p>
@@ -2681,7 +2668,7 @@ Do take a look at the <a href="#ui-component">Design: UI Component</a> section b
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 38: Style after modification.</em></p>
+<p><em>Figure 46: Style after modification.</em></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -2722,7 +2709,7 @@ Do take a look at the <a href="#ui-component">Design: UI Component</a> section b
 </div>
 </li>
 <li>
-<p>Modify the <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> to show the total number of people in the address book (Refer to Figures 39 and 40).</p>
+<p>Modify the <a href="https://github.com/CS2103AUG2017-W14-B1/main/tree/master/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> to show the total number of people in the address book (Refer to Figures 47 and 48).</p>
 <div class="paragraph">
 <p><strong>Before</strong></p>
 </div>
@@ -2732,7 +2719,7 @@ Do take a look at the <a href="#ui-component">Design: UI Component</a> section b
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 39: No values showed before modification.</em></p>
+<p><em>Figure 47: No values showed before modification.</em></p>
 </div>
 <div class="paragraph">
 <p><strong>After</strong></p>
@@ -2743,7 +2730,7 @@ Do take a look at the <a href="#ui-component">Design: UI Component</a> section b
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 40: Number of persons showed after modification.</em></p>
+<p><em>Figure 48: Number of persons showed after modification.</em></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -3997,7 +3984,7 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 04:25:07 +00:00
+Last updated 2017-11-13 04:58:54 +00:00
 </div>
 </div>
 </body>

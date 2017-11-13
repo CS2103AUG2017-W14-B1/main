@@ -29,18 +29,48 @@
 <div class="paragraph">
 <p>The following are the steps to load sample data:</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 1 (easier)</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Step 1</p>
+<p>Create a new, empty folder and name it "iContacts". Place the iContacts JAR file within it.</p>
 </li>
 <li>
-<p>Step 2</p>
+<p>For the first command tested, run the JAR file as normal. A "data" folder will be created in the working directory of iContacts.</p>
 </li>
 <li>
-<p>&#8230;&#8203;</p>
+<p>For subsequent commands, delete the <code>addressbook.xml</code> and <code>reminders.xml</code> files inside the "data" folder.</p>
 </li>
 </ol>
+</div>
+</li>
+<li>
+<p>Alternative 2 (more troublesome)</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a new, empty folder and name it "iContacts". Place the iContacts JAR file within it.</p>
+</li>
+<li>
+<p>Rename <code>SampleData.xml</code> and <code>SampleRemindersData.xml</code> to <code>addressbook.xml</code> and <code>reminders.xml</code> respectively.</p>
+</li>
+<li>
+<p>Move these 2 files into another empty folder.</p>
+</li>
+<li>
+<p>For the first command tested, run the JAR file as normal. A "data" folder will be created in the working directory of iContacts.</p>
+</li>
+<li>
+<p>For subsequent commands, copy-paste the <code>addressbook.xml</code> and <code>reminders.xml</code> files into the "data" folder. Overwrite the existing
+<code>addressbook.xml</code> and <code>reminders.xml</code> files inside the "data" folder if need to.</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -1036,7 +1066,7 @@ Expected result: List Sorted<br></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 04:25:07 +00:00
+Last updated 2017-11-13 04:58:54 +00:00
 </div>
 </div>
 </body>
