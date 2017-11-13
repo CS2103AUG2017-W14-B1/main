@@ -874,6 +874,18 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 }</code></pre>
 </div>
 </div>
+<div class="sect4">
+<h5 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h5>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Should PopularityCounter and DisplayPicture be set to the default value+
+<strong>Alternative 1 (current choice):</strong> Both PopularityCounter and DisplayPicture should be set to the default value <br>
+<strong>Pros:</strong> Does not affect the users contact&#8217;s PopularityCounter and allows the user to set their own preferred DisplayPicture of a contact <br>
+<strong>Cons:</strong> Users wont be able to share display picture even if they want to.<br>
+<strong>Alternative 2:</strong> Import the contacts as how it was exported+
+<strong>Pros:</strong> : DisplayPicture will be imported into iContacts<br>
+<strong>Cons:</strong> : The PopularityCounter of the user&#8217;s contacts will be inaccurate.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="find-mechanism"><a class="link" href="#find-mechanism">4.4. Find mechanism</a></h3>
@@ -1118,7 +1130,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <div class="paragraph">
 <p><em>Figure 18 : Activity diagram for UndoRedoStack</em></p>
 </div>
-<h4 id="design-considerations-2" class="discrete">Design Considerations</h4>
+<h4 id="design-considerations-3" class="discrete">Design Considerations</h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Implementation of <code>UndoableCommand</code><br>
 <strong>Alternative 1 (current choice):</strong> Add a new abstract method <code>executeUndoableCommand()</code>.<br>
@@ -1292,7 +1304,7 @@ The <code>Circle</code> shape is used for better UI/UX design and is filled with
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.7.2. Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.7.2. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> At what stage should the image be read and stored<br>
 <strong>Alternative 1 (current choice):</strong> Make proper Storage Architecture for reading and writing of Image  <br>
@@ -1596,7 +1608,7 @@ Manual selection of person through a click also increases the popularity counter
 <p><em>Figure TBD : Sequence diagram for frequently visited mechanism.</em></p>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.10.1. Design Considerations</a></h4>
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.10.1. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> How to implement the feature<br>
 <strong>Alternative 1 (current choice):</strong> Make the list get refreshed every time one of the command which changes popularity is executed  <br>
@@ -1868,7 +1880,7 @@ and upon receiving the event it will invoke the method <code>toggleBrowserPanel<
 <p>The <code>LoadPersonWebpageEvent</code> is posted whenever the <code>select</code> command is executed. Within the <code>handleLoadPersonPageEvent</code>
 method, the statement <code>browser.toFront()</code> and the method <code>setUpToShowWebBrowser</code> would then bring the browser panel to the front no matter what, and also make it visible.</p>
 </div>
-<h4 id="design-considerations-5" class="discrete">Design Considerations</h4>
+<h4 id="design-considerations-6" class="discrete">Design Considerations</h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Usage of browser area<br>
 <strong>Alternative 1 (current choice):</strong> Allow users to toggle between the browser and reminders panel.<br>
@@ -2141,7 +2153,7 @@ as the date and time fields of a <code>Reminder</code> are very important.</p>
 <div class="paragraph">
 <p>As shown from the sequence diagram above (Refer to Figure 33), the method <code>handleChangeThemeEvent()</code> in <code>MainWindow</code> will handle the event and change the theme of the address book through the method <code>changeTheme()</code> accordingly.</p>
 </div>
-<h4 id="design-considerations-6" class="discrete">Design Considerations</h4>
+<h4 id="design-considerations-7" class="discrete">Design Considerations</h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Implementation of <code>ThemeCommand</code><br>
 <strong>Alternative 1 (current choice):</strong> Utilize <code>ChangeEventRequestEvent</code> that allow <code>MainWindow</code> to handle the event to change the theme.<br>
@@ -3985,7 +3997,7 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 03:51:05 +00:00
+Last updated 2017-11-13 04:24:44 +00:00
 </div>
 </div>
 </body>
