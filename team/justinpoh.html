@@ -277,13 +277,13 @@ by coloring the reminder cells differently. Using color is simple but powerful.<
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 28: UML class diagram showing the make-up of Reminder objects.</em></p>
+<p><em>Figure 36: UML class diagram showing the make-up of Reminder objects.</em></p>
 </div>
 <div class="paragraph">
 <p>The <code>Reminder</code> object represents a reminder in iContacts. It contains a <code>String</code> variable <code>reminder</code>, which represents
 the actual reminder from the user, and also a <code>Date</code>, <code>Time</code> and <code>Status</code> object, which represents the date, time and <a href="#status">status</a> of the reminder respectively
-(Refer to Figure 28). As part of <em>defensive programming</em>, <code>Reminder</code> implements the <code>ReadOnlyReminder</code> interface, which only allows <em>read</em> operations, thus
-helping to prevent inappropriate or unintended modifications to <code>Reminder</code> objects (Refer to Figure 28) during the execution of the program.
+(Refer to Figure 36). As part of <em>defensive programming</em>, <code>Reminder</code> implements the <code>ReadOnlyReminder</code> interface, which only allows <em>read</em> operations, thus
+helping to prevent inappropriate or unintended modifications to <code>Reminder</code> objects (Refer to Figure 36) during the execution of the program.
 For example, for <code>DeleteReminderCommand</code>, its <code>execute</code> method should only execute the deletion of a specified reminder, not to alter any reminders.
 To ensure that no unintended or inappropriate alteration happens, <code>DeleteReminderCommand</code> is passed a list of <code>ReadOnlyReminder</code> instead of <code>Reminder</code>. This can
 be seen from the code snippet below:</p>
@@ -318,15 +318,15 @@ be seen from the code snippet below:</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 29: In-memory implementation of Reminder.</em></p>
+<p><em>Figure 37: In-memory implementation of Reminder.</em></p>
 </div>
 <div class="paragraph">
 <p>In terms of how <code>Reminder</code> objects are kept in-memory during the execution of the program, <code>Reminder</code> objects are
-kept within <code>UniqueReminderList</code> (Refer to Figure 29), which assures that there are no duplicate <code>Reminder</code> objects. The <code>UniqueReminderList</code>
+kept within <code>UniqueReminderList</code> (Refer to Figure 37), which assures that there are no duplicate <code>Reminder</code> objects. The <code>UniqueReminderList</code>
 object is then kept and used by <code>ModelManager</code> to carry out commands related to reminders while the program is running.<br></p>
 </div>
 <div class="paragraph">
-<p>Similar to <code>Reminder</code>, as can be seen from Figure 29 above, <code>UniqueReminderList</code> implements the <code>ReadOnlyUniqueReminderList</code> interface to prevent
+<p>Similar to <code>Reminder</code>, as can be seen from Figure 37 above, <code>UniqueReminderList</code> implements the <code>ReadOnlyUniqueReminderList</code> interface to prevent
 inappropriate or unintended modifications to <code>UniqueReminderList</code> during the execution of the program.<br></p>
 </div>
 <div class="imageblock">
@@ -335,10 +335,10 @@ inappropriate or unintended modifications to <code>UniqueReminderList</code> dur
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 30: How Reminder is stored.</em></p>
+<p><em>Figure 38: How Reminder is stored.</em></p>
 </div>
 <div class="paragraph">
-<p>As seen from Figure 30, <code>Reminder</code> objects are stored in a XML storage file in a JAXB-friendly version <code>XmlAdaptedReminder</code>. Notably, the <code>Status</code> object is not stored along with
+<p>As seen from Figure 38, <code>Reminder</code> objects are stored in a XML storage file in a JAXB-friendly version <code>XmlAdaptedReminder</code>. Notably, the <code>Status</code> object is not stored along with
 the <code>Reminder</code> object; it is instantiated and initialized with an appropriate value during runtime when the <code>Reminder</code> object is instantiated.
 When the program starts, <code>XmlAdaptedReminder</code> objects are read in as <code>XmlSerializableReminders</code> via <code>XmlFileStorage</code> and <code>XmlUtil</code>.
 This can be seen below:</p>
@@ -389,7 +389,7 @@ This can be seen below:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>As can be seen from the code snippet above and in Figure 30, as part of <em>defensive programming</em>, <code>XmlSerializableReminders</code> also implements the <code>ReadOnlyUniqueReminderList</code> interface.<br></p>
+<p>As can be seen from the code snippet above and in Figure 38, as part of <em>defensive programming</em>, <code>XmlSerializableReminders</code> also implements the <code>ReadOnlyUniqueReminderList</code> interface.<br></p>
 </div>
 <div class="paragraph">
 <p>To save, the <code>saveReminders</code> method in <code>StorageManager</code> is invoked:</p>
@@ -458,21 +458,21 @@ the <code>Status</code> object of each <code>Reminder</code> object and propagat
 <div class="paragraph">
 <p><strong>Aspect:</strong> How to store <code>Reminder</code> in-memory<br>
 <strong>Alternative 1 (current choice):</strong> Store <code>Reminder</code> objects in <code>UniqueReminderList</code>, independent of <code>AddressBook</code>.<br>
-Pros: Follows the <em>Single-Responsibility Principle</em>, because a reminder should not be an address book&#8217;s responsibility.<br>
-Cons: More changes have to be made to the existing code base, making it tougher to implement.<br>
+<strong>Pros</strong>: Follows the <em>Single-Responsibility Principle</em>, because a reminder should not be an address book&#8217;s responsibility.<br>
+<strong>Cons</strong>: More changes have to be made to the existing code base, making it tougher to implement.<br>
 <strong>Alternative 2:</strong> Store <code>Reminder</code> objects within <code>AddressBook</code>.<br>
-Pros: Easier to implement as lesser changes have to be made to the existing code base.<br>
-Cons: Violates the <em>Single-Responsibility Principle</em>.</p>
+<strong>Pros</strong>: Easier to implement as lesser changes have to be made to the existing code base.<br>
+<strong>Cons</strong>: Violates the <em>Single-Responsibility Principle</em>.</p>
 </div>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Should the undo/redo mechanism be applied to <code>Reminder</code><br>
 <strong>Alternative 1 (current choice):</strong> Commands that affect <code>Reminder</code> objects are not undoable/redoable.<br>
-Pros: Users would be more aware of any changes they made to a reminder, as they are forced to
+<strong>Pros</strong>: Users would be more aware of any changes they made to a reminder, as they are forced to
 use the <code>editreminder</code>, <code>addreminder</code> and <code>deletereminder</code> commands.
-Cons: It is less user-friendly.<br>
+<strong>Cons</strong>: It is less user-friendly.<br>
 <strong>Alternative 2:</strong> Commands that affect <code>Reminder</code> objects are undoable/redoable.<br>
-Pros: More user-friendly.<br>
-Cons: Users might get careless with changing the information of a <code>Reminder</code> object. This might be detrimental
+<strong>Pros</strong>: More user-friendly.<br>
+<strong>Cons</strong>: Users might get careless with changing the information of a <code>Reminder</code> object. This might be detrimental
 as the date and time fields of a <code>Reminder</code> are very important.</p>
 </div>
 <div class="paragraph">
@@ -580,10 +580,10 @@ the list of contacts is the most important information within iContacts and thus
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 25 : Component interactions for the toggling mechanism.</em></p>
+<p><em>Figure 33 : Component interactions for the toggling mechanism.</em></p>
 </div>
 <div class="paragraph">
-<p>The above diagram (Refer to Figure 25) shows the high-level overview of the component interactions for the toggling mechanism.<br></p>
+<p>The above diagram (Refer to Figure 33) shows the high-level overview of the component interactions for the toggling mechanism.<br></p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -591,10 +591,10 @@ the list of contacts is the most important information within iContacts and thus
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 26 : Sequence diagram for the first part of the toggling mechanism.</em></p>
+<p><em>Figure 34 : Sequence diagram for the first part of the toggling mechanism.</em></p>
 </div>
 <div class="paragraph">
-<p>As seen from the sequence diagram above (Refer to Figure 26), when the user types the command for <code>toggle</code>, an instance of <code>ToggleCommand</code> would be created.<br>
+<p>As seen from the sequence diagram above (Refer to Figure 34), when the user types the command for <code>toggle</code>, an instance of <code>ToggleCommand</code> would be created.<br>
 Upon execution by <code>LogicManager</code>, the event <code>BrowserAndRemindersPanelToggleEvent</code> would be posted by the <code>EventCenter</code> to the <code>EventBus</code>:</p>
 </div>
 <div class="listingblock">
@@ -609,7 +609,7 @@ Upon execution by <code>LogicManager</code>, the event <code>BrowserAndReminders
 </div>
 </div>
 <div class="paragraph">
-<p>As seen from the diagram below (Refer to Figure 27), the method <code>handleBrowserToggleEvent()</code> in the <code>BrowserAndRemindersPanel</code> class in the <code>UI</code> component will then listen for the event,
+<p>As seen from the diagram below (Refer to Figure 35), the method <code>handleBrowserToggleEvent()</code> in the <code>BrowserAndRemindersPanel</code> class in the <code>UI</code> component will then listen for the event,
 and upon receiving the event it will invoke the method <code>toggleBrowserPanel</code> to trigger the actual toggling.</p>
 </div>
 <div class="imageblock">
@@ -618,7 +618,7 @@ and upon receiving the event it will invoke the method <code>toggleBrowserPanel<
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 27 : Sequence diagram for the second part of the toggling mechanism.</em></p>
+<p><em>Figure 35 : Sequence diagram for the second part of the toggling mechanism.</em></p>
 </div>
 <div class="paragraph">
 <p>The <code>BrowserAndRemindersPanel</code> class has a variable <code>currentlyInFront</code> keeping track of which panel (browser or reminders) is currently being shown.
@@ -684,20 +684,20 @@ method, the statement <code>browser.toFront()</code> and the method <code>setUpT
 <div class="paragraph">
 <p><strong>Aspect:</strong> Usage of browser area<br>
 <strong>Alternative 1 (current choice):</strong> Allow users to toggle between the browser and reminders panel.<br>
-Pros: Can use the entire space for either the browser or reminders panel.<br>
-Cons: Users need to manually switch between the browser and reminders panel.<br>
+<strong>Pros</strong>: Can use the entire space for either the browser or reminders panel.<br>
+<strong>Cons</strong>: Users need to manually switch between the browser and reminders panel.<br>
 <strong>Alternative 2:</strong> Put reminders and browser panels side-by-side.<br>
-Pros: Users do not need to manually switch between the browser and reminders panel.<br>
-Cons: Too little space for browser and reminders, making it difficult to read for the users.</p>
+<strong>Pros</strong>: Users do not need to manually switch between the browser and reminders panel.<br>
+<strong>Cons</strong>: Too little space for browser and reminders, making it difficult to read for the users.</p>
 </div>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Implementation of toggling mechanism.<br>
 <strong>Alternative 1 (current choice):</strong> Bring browser and reminders panel to the front as required, on top of setting their visibility suitably.<br>
-Pros: Users can interact with both browser and reminders (can scroll through reminders etc).<br>
-Cons: More difficult to implement.<br>
+<strong>Pros</strong>: Users can interact with both browser and reminders (can scroll through reminders etc).<br>
+<strong>Cons</strong>: More difficult to implement.<br>
 <strong>Alternative 2:</strong> Only set visibility of browser and reminders panel as required (set browser visibility to false to display reminders and vice versa).<br>
-Pros: Easier to implement.<br>
-Cons: Users cannot interact with the reminders panel (since the browser is technically still at the front).</p>
+<strong>Pros</strong>: Easier to implement.<br>
+<strong>Cons</strong>: Users cannot interact with the reminders panel (since the browser is technically still at the front).</p>
 </div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
@@ -780,7 +780,7 @@ to integrate iContacts with existing online address book and Cloud Storage servi
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 04:58:50 +00:00
+Last updated 2017-11-13 05:25:31 +00:00
 </div>
 </div>
 </body>

@@ -350,10 +350,10 @@ Changes the theme to <code>day</code> (Refer to Figure 11).</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 31 : Component interactions for the theme-changing mechanism</em></p>
+<p><em>Figure 39 : Component interactions for the theme-changing mechanism</em></p>
 </div>
 <div class="paragraph">
-<p>The theme-changing mechanism is an event-driven mechanism. The above diagram (Refer to Figure 31) shows the high-level overview of the component interactions for the theme-changing mechanism.</p>
+<p>The theme-changing mechanism is an event-driven mechanism. The above diagram (Refer to Figure 39) shows the high-level overview of the component interactions for the theme-changing mechanism.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -361,10 +361,10 @@ Changes the theme to <code>day</code> (Refer to Figure 11).</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 32 : Sequence diagram for the first part of the theme-changing mechanism</em></p>
+<p><em>Figure 40 : Sequence diagram for the first part of the theme-changing mechanism</em></p>
 </div>
 <div class="paragraph">
-<p>As shown from the sequence diagram above (Refer to Figure 32), after the user entered the command <code>theme day</code>, a new object <code>ThemeCommand</code> will be created. The <code>LogicManager</code> will then execute <code>ThemeCommand</code>, and the event <code>ChangeThemeRequestEvent</code> will be posted by <code>EventsCenter</code>. The code snippet below shows the <code>execute()</code> method of <code>ThemeCommand</code>:</p>
+<p>As shown from the sequence diagram above (Refer to Figure 40), after the user entered the command <code>theme day</code>, a new object <code>ThemeCommand</code> will be created. The <code>LogicManager</code> will then execute <code>ThemeCommand</code>, and the event <code>ChangeThemeRequestEvent</code> will be posted by <code>EventsCenter</code>. The code snippet below shows the <code>execute()</code> method of <code>ThemeCommand</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -383,10 +383,10 @@ Changes the theme to <code>day</code> (Refer to Figure 11).</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 33 : Sequence diagram for the second part of the theme-changing mechanism</em></p>
+<p><em>Figure 41 : Sequence diagram for the second part of the theme-changing mechanism</em></p>
 </div>
 <div class="paragraph">
-<p>As shown from the sequence diagram above (Refer to Figure 33), the method <code>handleChangeThemeEvent()</code> in <code>MainWindow</code> will handle the event and change the theme of iContacts through the method <code>changeTheme()</code> accordingly.</p>
+<p>As shown from the sequence diagram above (Refer to Figure 41), the method <code>handleChangeThemeEvent()</code> in <code>MainWindow</code> will handle the event and change the theme of the address book through the method <code>changeTheme()</code> accordingly.</p>
 </div>
 <h4 id="design-considerations-2" class="discrete">Design Considerations</h4>
 <div class="paragraph">
@@ -463,16 +463,22 @@ Changes the theme to <code>day</code> (Refer to Figure 11).</p>
 <p>Conducted acceptance testing on another team project and uncovered bugs (see issue <a href="https://github.com/CS2103AUG2017-F11-B4/main/issues/48">#48</a>, <a href="https://github.com/CS2103AUG2017-F11-B4/main/issues/49">#49</a>, <a href="https://github.com/CS2103AUG2017-F11-B4/main/issues/51">#51</a>, <a href="https://github.com/CS2103AUG2017-F11-B4/main/issues/52">#52</a>).</p>
 </li>
 <li>
-<p>Wrote additional tests to increase coverage (see pull requests <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/93">#93</a>, <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/180">#180</a>).</p>
+<p>Wrote additional tests to increase coverage slightly (see pull requests <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/93">#93</a>, <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/180">#180</a>).</p>
+</li>
+<li>
+<p>Wrote descriptions of iContacts and target audience in the <a href="https://github.com/CS2103AUG2017-W14-B1/main/blob/master/README.adoc">README.adoc</a> (see pull request <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/250">#250</a>).</p>
 </li>
 <li>
 <p>Wrote part of the <a href="https://github.com/CS2103AUG2017-W14-B1/main/blob/master/src/test/data/ManualTesting/%5BW14-B1%5D%5BiContacts%5DTestScript.adoc">TestScript.adoc</a> (see pull requests <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/232">#232</a>, <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/233">#233</a>).</p>
 </li>
 <li>
-<p>Fixed the grammatical errors in the User Guide and Developer Guide (see pull requests <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/202">#202</a>, <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/214">#214</a>).</p>
+<p>Corrected the grammatical errors in the User Guide and Developer Guide (see pull requests <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/202">#202</a>, <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/214">#214</a>).</p>
 </li>
 <li>
-<p>Highlighted improvements to the quality of the User Guide and Developer Guide (see issue <a href="https://github.com/CS2103AUG2017-W14-B1/main/issues/169">#169</a>).</p>
+<p>Corrected my teammates' grammatical errors in the Developer Guide (see pull requests <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/263">#263</a>, <a href="https://github.com/CS2103AUG2017-W14-B1/main/pull/265">#265</a>)</p>
+</li>
+<li>
+<p>Highlighted actions to be made to improve the quality of the User Guide and Developer Guide (see issue <a href="https://github.com/CS2103AUG2017-W14-B1/main/issues/169">#169</a>).</p>
 </li>
 </ul>
 </div>
@@ -482,7 +488,7 @@ Changes the theme to <code>day</code> (Refer to Figure 11).</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 04:58:50 +00:00
+Last updated 2017-11-13 05:25:31 +00:00
 </div>
 </div>
 </body>
