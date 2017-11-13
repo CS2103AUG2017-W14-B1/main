@@ -702,7 +702,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 </div>
 <div class="paragraph">
-<p>The method <code>getRangefromInput()</code> splits the String range using a separator and returns a String array for the different values in the String range.</p>
+<p>The method <code>getRangefromInput()</code> splits the range using a separator and returns a <code>String</code> array for the different values in the range.</p>
 </div>
 <div class="paragraph">
 <p>Below is an extract of the method <code>getRangefromInput()</code>:</p>
@@ -721,7 +721,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 </div>
 <div class="paragraph">
-<p>To determine which contacts should be added to the exportBook we have to check the the user input. There are three cases:</p>
+<p>To determine which contacts should be added to the <code>exportBook</code> we have to check the the user input. There are three cases:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -730,7 +730,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <div class="ulist">
 <ul>
 <li>
-<p>if the word <code>all</code> is present in the user input, we will just export all the contacts in the last shown list.</p>
+<p>if the word <code>all</code> is present in the user input, we will just export all the contacts from the last shown list.</p>
 </li>
 </ul>
 </div>
@@ -740,7 +740,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <div class="ulist">
 <ul>
 <li>
-<p>if the user input contains a specific index we will add that index (one-based) to the <code>exportBook</code>.</p>
+<p>if the user input contains a specific index, we will add that index (one-based) to the <code>exportBook</code>.</p>
 </li>
 </ul>
 </div>
@@ -750,7 +750,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <div class="ulist">
 <ul>
 <li>
-<p>if the user input contains a range which is identified by <code>-</code> character, we will add that range of index (one-based) to the <code>exportBook</code>.</p>
+<p>if the user input contains a range which is identified by the <code>-</code> character, we will add that range of index (one-based) to the <code>exportBook</code>.</p>
 </li>
 </ul>
 </div>
@@ -823,7 +823,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <div class="sect2">
 <h3 id="import-mechanism"><a class="link" href="#import-mechanism">4.3. Import mechanism</a></h3>
 <div class="paragraph">
-<p>The <code>ImportCommand</code> uses <code>XmlAddressBookStorage</code> to generate a temporary AddressBook object from a given path. It takes in a <code>String</code> value <code>path</code>. The command then adds the contacts found in the temporary AddressBook object into the main address book object. Below is the constructor for the class:</p>
+<p>The <code>ImportCommand</code> uses <code>XmlAddressBookStorage</code> to generate a temporary <code>AddressBook</code> object from a given path. It takes in a <code>String</code> value <code>path</code>. The command then adds the contacts found in the temporary AddressBook object into the main address book object. Below is the constructor for the class:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -838,11 +838,11 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>ImportCommand</code> first checks if an AddressBook object can be initialise from the specified path, and if it does it initialises a new Person Object and adds it into the main AddressBook object through the model. Below is the code snippet:</p>
+<p>The <code>ImportCommand</code> first checks if an AddressBook object can be initialised from the specified path, and if it does it initialises a new <code>Person</code> object and adds it into the main <code>AddressBook</code> object through the <code>model</code>. Below is the code snippet:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">ExportCommand</span> <span class="directive">extends</span> Command {
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">ImportCommand</span> <span class="directive">extends</span> UndoableCommand {
 
     <span class="annotation">@Override</span>
     <span class="directive">public</span> CommandResult executeUndoableCommand() <span class="directive">throws</span> CommandException {
@@ -874,17 +874,15 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 }</code></pre>
 </div>
 </div>
-<div class="sect4">
-<h5 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h5>
+<h4 id="design-considerations-2" class="discrete">Design Considerations</h4>
 <div class="paragraph">
-<p><strong>Aspect:</strong> Should PopularityCounter and DisplayPicture be set to the default value+
-<strong>Alternative 1 (current choice):</strong> Both PopularityCounter and DisplayPicture should be set to the default value <br>
-<strong>Pros:</strong> Does not affect the users contact&#8217;s PopularityCounter and allows the user to set their own preferred DisplayPicture of a contact <br>
-<strong>Cons:</strong> Users wont be able to share display picture even if they want to.<br>
-<strong>Alternative 2:</strong> Import the contacts as how it was exported+
-<strong>Pros:</strong> : DisplayPicture will be imported into iContacts<br>
-<strong>Cons:</strong> : The PopularityCounter of the user&#8217;s contacts will be inaccurate.</p>
-</div>
+<p><strong>Aspect:</strong> Should <code>PopularityCounter</code> and <code>DisplayPicture</code> be set to the default value<br>
+<strong>Alternative 1 (current choice):</strong> Both <code>PopularityCounter</code> and <code>DisplayPicture</code> should be set to the default value. <br>
+<strong>Pros:</strong> Does not affect the contact&#8217;s <code>PopularityCounter</code> and allows the user to set their own preferred <code>DisplayPicture</code> of a contact. <br>
+<strong>Cons:</strong> Users will not be able to share <code>DisplayPicture.<br>
+<strong>Alternative 2:</strong> Import the contacts with both `PopularityCounter</code> and <code>DisplayPicture</code> unchanged.<br>
+<strong>Pros:</strong> <code>DisplayPicture</code> will be imported into iContacts.<br>
+<strong>Cons:</strong> The <code>PopularityCounter</code> of the user&#8217;s contacts will be inaccurate.</p>
 </div>
 </div>
 <div class="sect2">
@@ -938,7 +936,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <div class="sect2">
 <h3 id="sorting-mechanism"><a class="link" href="#sorting-mechanism">4.5. Sorting mechanism</a></h3>
 <div class="paragraph">
-<p>The <code>SortCommand</code> uses a <code>SortedList</code> that is initialise with the current filteredPerson and is sorted using a comparator. Below is the code snippet:</p>
+<p>The <code>SortCommand</code> uses a <code>SortedList</code> that is initialised with the current <code>filteredPerson</code> and is sorted using a comparator. Below is the code snippet:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3984,7 +3982,7 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 04:58:54 +00:00
+Last updated 2017-11-13 05:00:38 +00:00
 </div>
 </div>
 </body>
